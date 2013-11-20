@@ -1,0 +1,6 @@
+{% for id, item in block.items %}
+	{{wysiwygTagBegin(block, item, lang)|raw}}
+	<h3 class="title">{{item.attributes.links_title.value.value}}</h3>
+	{{item.attributes.links.value.value|raw}}
+	{{ wysiwygTagEnd()|raw }}
+{% endfor %}

@@ -1,0 +1,85 @@
+{% extends 'MajesTeelBundle::layout.html.twig' %}
+{% block title %}{{parent()}} New symfony2 framework{% endblock %}
+
+{% block meta_type %}{{parent()}}{% endblock %}
+{% block meta_title %}{{parent()}}{% endblock %}
+{% block meta_description %}{% endblock %}
+{% block meta_image %}{% endblock %}
+
+
+
+{% block content %}
+
+	{{parent()}}
+<!-- Start of Page Container -->
+<div class="page-container">
+        <div class="container">
+                <div class="row">
+
+                        <!-- start of page content -->
+                        <div class="span8 page-content">
+
+                                <article class="type-page hentry clearfix">
+                                        {{ render_esi(controller('MajesCmsBundle:Index:block', { 'block' : content.contact_paragraph })) }}
+                                </article>
+
+
+                                <form id="contact-form" class="row" action="contact_form_handler.php" method="post">
+
+                                        <div class="span2">
+                                                <label for="name">Your Name <span>*</span> </label>
+                                        </div>
+                                        <div class="span6">
+                                                <input type="text" name="name" id="name" class="required input-xlarge" value="" title="* Please provide your name">
+                                        </div>
+
+                                        <div class="span2">
+                                                <label for="email">Your Email <span>*</span></label>
+                                        </div>
+                                        <div class="span6">
+                                                <input type="text" name="email" id="email" class="email required input-xlarge" value="" title="* Please provide a valid email address">
+                                        </div>
+
+                                        <div class="span2">
+                                                <label for="reason">Subject </label>
+                                        </div>
+                                        <div class="span6">
+                                                <input type="text" name="reason" id="reason" class="input-xlarge" value="">
+                                        </div>
+
+                                        <div class="span2">
+                                                <label for="message">Your Message <span>*</span> </label>
+                                        </div>
+                                        <div class="span6">
+                                                <textarea name="message" id="message" class="required span6" rows="6" title="* Please enter your message"></textarea>
+                                        </div>
+
+                                        <div class="span6 offset2 bm30">
+                                                <input type="submit" name="submit" value="Send Message" class="btn btn-inverse">
+                                                <img src="images/loading.gif" id="contact-loader" alt="Loading...">
+                                        </div>
+
+                                        <div class="span6 offset2 error-container"></div>
+                                        <div class="span8 offset2" id="message-sent"></div>
+
+                                </form>
+                        </div>
+                        <!-- end of page content -->
+
+
+                        <!-- start of sidebar -->
+                        <aside class="span4 page-sidebar">
+
+                                <section class="widget" style="width: 100%; height: 200px">
+                                        {{ render_esi(controller('MajesCmsBundle:Index:block', { 'block' : content.gmap })) }}
+                                </section>
+
+
+                        </aside>
+                        <!-- end of sidebar -->
+                </div>
+        </div>
+</div>
+<!-- End of Page Container -->
+
+{% endblock %}

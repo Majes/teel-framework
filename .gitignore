@@ -1,0 +1,32 @@
+# OS generated files  #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Icon?
+ehthumbs.db
+Thumbs.db
+.idea
+
+# Bootstrap
+app/bootstrap*
+
+# Symfony directories
+vendor/*
+*/logs/*
+*/cache/*
+*/var/sessions/*
+web/uploads/*
+web/media/*
+web/bundles/*
+
+# Configuration files
+app/config/parameters.ini
+app/config/parameters.yml
+
+bin/elasticsearch-0.90.7/data*
+bin/elasticsearch-0.90.7/logs*
+
+nbproject*

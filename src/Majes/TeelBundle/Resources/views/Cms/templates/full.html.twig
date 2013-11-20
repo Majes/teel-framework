@@ -1,0 +1,36 @@
+{% extends 'MajesTeelBundle::layout.html.twig' %}
+{% block title %}{{parent()}} New symfony2 framework{% endblock %}
+
+{% block meta_type %}{{parent()}}{% endblock %}
+{% block meta_title %}{{parent()}}{% endblock %}
+{% block meta_description %}{% endblock %}
+{% block meta_image %}{% endblock %}
+
+
+
+{% block content %}
+
+	{{parent()}}
+<!-- Start of Page Container -->
+    <div class="page-container">
+        <div class="container">
+            <div class="row">
+
+                <!-- start of page content -->
+                <div class="span12 page-content">
+
+                    <article class="type-page hentry clearfix">
+                        
+                        {{ render_esi(controller('MajesCmsBundle:Index:block', { 'block' : content.full_paragraph })) }}
+
+                    </article>
+                </div>
+                <!-- end of page content -->
+
+
+            </div>
+        </div>
+    </div>
+    <!-- End of Page Container -->
+
+{% endblock %}

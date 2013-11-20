@@ -1,0 +1,3 @@
+_teel_index:
+    pattern:  /
+    defaults: { _controller: MajesTeelBundle:Index:index}

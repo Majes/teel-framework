@@ -1,0 +1,22 @@
+#majes_search:
+#    resource: "@MajesSearchBundle/Resources/config/routing.yml"
+#    prefix:   /
+
+_majes_admin:
+    resource: "@MajesCoreBundle/Resources/config/routing.yml"
+    prefix:   /{_locale}/administration
+
+_majes_media_admin:
+    resource: "@MajesMediaBundle/Resources/config/routing_admin.yml"
+    prefix:   /{_locale}/administration
+
+_majes_media:
+    resource: "@MajesMediaBundle/Resources/config/routing.yml"
+
+_majes_cms_admin:
+    resource: "@MajesCmsBundle/Resources/config/routing_admin.yml"
+    prefix:   /{_locale}/administration
+
+_majes_teel:
+    resource: "@MajesTeelBundle/Resources/config/routing.yml"
+    prefix:   /

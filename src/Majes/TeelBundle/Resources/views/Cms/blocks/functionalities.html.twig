@@ -1,0 +1,30 @@
+{% for id, item in block.items %}
+{{wysiwygTagBegin(block, item, lang)|raw}}
+<div class="row-fluid top-cats">
+	<section class="span4">
+	        <h4 class="category"><a href="#">{{item.attributes.functionalities1_title.value.value}}</a></h4>
+	        <div class="category-description">
+	                <p>{{item.attributes.functionalities1_content.value.value}}</p>
+	        </div>
+	</section>
+	
+	{% if item.attributes.functionalities2_title.value.value is not empty %}
+	<section class="span4">
+	        <h4 class="category"><a href="#">{{item.attributes.functionalities2_title.value.value}}</a></h4>
+	        <div class="category-description">
+	                <p>{{item.attributes.functionalities2_content.value.value}}</p>
+	        </div>
+	</section>
+	{% endif %}
+	
+	{% if item.attributes.functionalities3_title.value.value is not empty %}
+	<section class="span4">
+	        <h4 class="category"><a href="#">{{item.attributes.functionalities3_title.value.value}}</a></h4>
+	        <div class="category-description">
+	                <p>{{item.attributes.functionalities3_content.value.value}}</p>
+	        </div>
+	</section>
+	{% endif %}
+</div>
+{{ wysiwygTagEnd()|raw }}
+{% endfor %}

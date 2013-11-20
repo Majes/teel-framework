@@ -1,0 +1,16 @@
+twig:
+    globals:
+        default_lang: fr
+
+parameters: 
+    admin:
+        wysiwyg: false
+        maintenance: false
+    google:
+        oauth2_client_id: 547541809449.apps.googleusercontent.com
+        oauth2_client_secret: TW2AyJSMgl3XCud_Ln9-ChXN
+        oauth2_redirect_uri: http://localhost/majesteel
+        api_server_key: AIzaSyAf-oaugDzHT1ELFKdi8hHLvwUUf2zgjJI
+        api_browser_key: AIzaSyAWGnObM62SfrDyWhDnzmXh6qqMqsHDBVs
+        analytics: UA-20838281-1
+        view_id: 41253167

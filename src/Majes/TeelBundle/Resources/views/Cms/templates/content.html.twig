@@ -1,0 +1,53 @@
+{% extends 'MajesTeelBundle::layout.html.twig' %}
+{% block title %}{{parent()}} New symfony2 framework{% endblock %}
+
+{% block meta_type %}{{parent()}}{% endblock %}
+{% block meta_title %}{{parent()}}{% endblock %}
+{% block meta_description %}{% endblock %}
+{% block meta_image %}{% endblock %}
+
+
+
+{% block content %}
+
+	{{parent()}}
+<!-- Start of Page Container -->
+    <div class="page-container">
+        <div class="container">
+            <div class="row">
+
+                <!-- start of page content -->
+                <div class="span8 page-content">
+
+                    <article class="type-page hentry clearfix">
+                        
+                        <h1>{{pageLang.title}}</h1>
+                        <hr/>
+                        {{ render_esi(controller('MajesCmsBundle:Index:block', { 'block' : content.content_paragraph })) }}
+
+                    </article>
+                </div>
+                <!-- end of page content -->
+
+                <!-- start of sidebar -->
+                <aside class="span4 page-sidebar">
+
+                    {% set parent_id = null %}
+                    {% if page.parent is not null %}{% set parent_id = page.parent.id %}{% endif %}
+                    {% set sub_menu = getMenu(host.id, lang, 'main', 1, page.id, 1, parent_id) %}
+                    <section class="widget"><h3 class="title">{% trans %}Menu{% endtrans %}</h3>
+                        <ul>
+                            {% for menu_page_id, menu_page in sub_menu %}
+                            <li class="{% if menu_page.current == true %}active{% endif %}"><a href="{% if menu_page.link_url is null %}{{ path('majes_cms_' ~ menu_page.id ~ '_' ~ lang) }}{% else %}{% endif %}"{% if menu_page.target_url is not null %}target="{{ menu_page.target_url }}"{% endif %}>{{menu_page.label}}</a> </li>{% endfor %}
+                        </ul>
+                    </section>
+
+                </aside>
+                <!-- end of sidebar -->
+
+            </div>
+        </div>
+    </div>
+    <!-- End of Page Container -->
+
+{% endblock %}

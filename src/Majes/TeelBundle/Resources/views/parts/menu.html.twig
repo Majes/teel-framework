@@ -1,0 +1,41 @@
+<!-- Start of Header -->
+<div class="header-wrapper">
+        <header>
+                <div class="container">
+
+
+                        <div class="logo-container">
+                                <!-- Website Logo -->
+                                <a href="{{ path('cms_majes_1_' ~ lang) }}"  title="Knowledge Base Theme">
+                                    <img src="{{ asset('bundles/majesteel/images/logo.png')}}" alt="Maje'Steel">
+                                </a>
+                                <span class="tag-line">Modern Symfony2 framework</span>
+                        </div>
+
+
+                        <!-- Start of Main Navigation -->
+                        <nav class="main-nav">
+                                <div class="menu-top-menu-container">
+                                        <ul id="menu-top-menu" class="clearfix">
+											      {% for menu_page_id, menu_page in menu %}
+            								<li class="{% if menu_page.current %}current-menu-item{% endif %}">
+              								{% if menu_page.children is not null %}<a href="#">
+              								{% else %}<a href="{% if menu_page.link_url is null %}{{ path('majes_cms_' ~ menu_page.id ~ '_' ~ lang) }}{% else %}{{menu_page.link_url}}{% endif %}"{% if menu_page.target_url is not null %}target="{{ menu_page.target_url }}"{% endif %}>{% endif %}{{ menu_page.label }}</a>
+
+              								{% if menu_page.children is not null %}
+              									<ul class="sub-menu">
+                									{% for children_id, children in menu_page.children %}<li><a href="{{ path('majes_cms_' ~ children.id ~ '_' ~ lang) }}"{% if children.target_url is not null %}target="{{ children.target_url }}"{% endif %}>{{ children.label }}</a></li>{% endfor %}
+              									</ul>
+              								{% endif %}
+            								</li>
+            								{% endfor %}
+
+                                        </ul>
+                                </div>
+                        </nav>
+                        <!-- End of Main Navigation -->
+
+                </div>
+        </header>
+</div>
+<!-- End of Header -->
