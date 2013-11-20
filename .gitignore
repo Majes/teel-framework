@@ -26,7 +26,6 @@ web/bundles/*
 app/config/parameters.ini
 app/config/parameters.yml
 
-bin/elasticsearch-0.90.7/data*
-bin/elasticsearch-0.90.7/logs*
+bin
 
 nbproject*
