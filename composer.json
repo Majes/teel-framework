@@ -24,6 +24,7 @@
         "symfony-cmf/routing-bundle": "1.1.*",
         "google/google-api-php-client": "1.0.0",
         "doctrine/doctrine-migrations-bundle": "dev-master",
+        "friendsofsymfony/elastica-bundle": "3.0.*@dev",
         "majes/core-bundle": "dev-master",
         "majes/media-bundle": "dev-master",
         "majes/cms-bundle": "dev-master",
