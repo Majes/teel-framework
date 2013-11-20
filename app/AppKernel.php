@@ -20,14 +20,14 @@ class AppKernel extends Kernel
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
             new JMS\DiExtraBundle\JMSDiExtraBundle($this),
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
+            new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
+            new Symfony\Cmf\Bundle\RoutingBundle\CmfRoutingBundle(),
             new Majes\CoreBundle\MajesCoreBundle(),
             new Majes\MediaBundle\MajesMediaBundle(),
             new Majes\CmsBundle\MajesCmsBundle(),
             new Majes\TeelBundle\MajesTeelBundle(),
-            new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
-            new Symfony\Cmf\Bundle\RoutingBundle\CmfRoutingBundle(),
-	        //new FOS\ElasticaBundle\FOSElasticaBundle(),
-            //new Majes\SearchBundle\MajesSearchBundle(),
+            new Majes\SearchBundle\MajesSearchBundle(),
+	        new FOS\ElasticaBundle\FOSElasticaBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
