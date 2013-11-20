@@ -106,22 +106,22 @@ cmf_routing:
             router.default: 200
 
 
-#fos_elastica:
-#    clients:
-#        default: { host: localhost, port: 9200 }
-#    indexes:
-#        majesteel_back:
-#            client: default
-#            types:
-#                users:
-#                    mappings:
-#                        username: { analyzer: snowball }
-#                        email: { analyzer: snowball }
-#                        firstname: { analyzer: snowball }
-#                        lastname: { analyzer: snowball }
-#                    persistence:
-#                        driver: orm
-#                        model: Majes\CoreBundle\Entity\User\User
-#                        provider:
-#                        listener:
-#                        finder:
+fos_elastica:
+    clients:
+        default: { host: localhost, port: 9200 }
+    indexes:
+        majesteel_back:
+            client: default
+            types:
+                users:
+                    mappings:
+                        username: { analyzer: snowball }
+                        email: { analyzer: snowball }
+                        firstname: { analyzer: snowball }
+                        lastname: { analyzer: snowball }
+                    persistence:
+                        driver: orm
+                        model: Majes\CoreBundle\Entity\User\User
+                        provider:
+                        listener:
+                        finder:
