@@ -1,8 +1,7 @@
 {
-    "name": "symfony/framework-standard-edition",
-    "license": "MIT",
+    "name": "majes/teel-framework",
     "type": "project",
-    "description": "The \"Symfony Standard Edition\" distribution",
+    "description": "The \"MajeS'teel Edition\" distribution",
     "autoload": {
         "psr-0": { "": "src/" },
         "classmap": ["vendor/google/google-api-php-client/src","vendor/google/google-api-php-client/src/contrib"]
