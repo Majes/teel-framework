@@ -96,15 +96,6 @@ CREATE TABLE IF NOT EXISTS `cms_host` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
--- Contenu de la table `cms_host`
---
-
-INSERT INTO `cms_host` (`id`, `title`, `url`, `create_date`) VALUES
-(3, 'Site majes', 'local.majesteel', '2013-10-16 13:25:13');
-
--- --------------------------------------------------------
-
---
 -- Structure de la table `cms_menu`
 --
 
