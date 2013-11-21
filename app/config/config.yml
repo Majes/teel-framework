@@ -2,9 +2,10 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: majesteel.yml }
-    - { resource: @MajesCoreBundle/Resources/config/services.yml }
-    - { resource: @MajesMediaBundle/Resources/config/services.yml }
-    - { resource: @MajesCmsBundle/Resources/config/services.yml }
+    - { resource: @MajesCoreBundle/Resources/config/config.yml }
+    - { resource: @MajesMediaBundle/Resources/config/config.yml }
+    - { resource: @MajesCmsBundle/Resources/config/config.yml }
+    - { resource: @MajesSearchBundle/Resources/config/config.yml }
 
 framework:
     esi: { enabled: true }
@@ -94,34 +95,3 @@ swiftmailer:
     username:  %mailer_user%
     password:  %mailer_password%
     spool:     { type: memory }
-
-
-cmf_routing:
-    dynamic:
-        enabled: true
-        route_provider_service_id: majescms.routing.loader
-    chain:
-        routers_by_id:
-            cmf_routing.dynamic_router: 100
-            router.default: 200
-
-
-fos_elastica:
-    clients:
-        default: { host: localhost, port: 9200 }
-    indexes:
-        majesteel_back:
-            client: default
-            types:
-                users:
-                    mappings:
-                        username: { analyzer: snowball }
-                        email: { analyzer: snowball }
-                        firstname: { analyzer: snowball }
-                        lastname: { analyzer: snowball }
-                    persistence:
-                        driver: orm
-                        model: Majes\CoreBundle\Entity\User\User
-                        provider:
-                        listener:
-                        finder:
