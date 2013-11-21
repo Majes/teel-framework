@@ -95,3 +95,8 @@ swiftmailer:
     username:  %mailer_user%
     password:  %mailer_password%
     spool:     { type: memory }
+
+
+fos_elastica:
+    clients:
+        default: { host: localhost, port: 9200 }
