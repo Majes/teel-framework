@@ -1,6 +1,6 @@
-#majes_search:
-#    resource: "@MajesSearchBundle/Resources/config/routing.yml"
-#    prefix:   /
+_majes_search:
+    resource: "@MajesSearchBundle/Resources/config/routing.yml"
+    prefix:   /{_locale}
 
 _majes_install:
     pattern:  /install
@@ -27,4 +27,4 @@ _majes_cms_admin:
 
 _majes_teel:
     resource: "@MajesTeelBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /{_locale}

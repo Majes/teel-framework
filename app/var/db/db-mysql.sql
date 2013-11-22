@@ -178,6 +178,7 @@ CREATE TABLE IF NOT EXISTS `cms_page_role` (
   PRIMARY KEY (`page_id`,`role_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+ALTER TABLE  `role` ADD  `tags` TEXT NOT NULL DEFAULT  '' AFTER  `internal`;
 --
 -- Structure de la table `cms_page_template_block`
 --
@@ -409,6 +410,8 @@ CREATE TABLE IF NOT EXISTS `user` (
   `create_date` datetime NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+
+ALTER TABLE  `user` ADD  `tags` TEXT NOT NULL DEFAULT  '' AFTER  `wysiwyg`;
 
 --
 -- Contenu de la table `user`
