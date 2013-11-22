@@ -373,18 +373,16 @@ CREATE TABLE IF NOT EXISTS `role` (
 -- Contenu de la table `role`
 --
 
-INSERT INTO `role` (`id`, `name`, `role`, `bundle`, `internal`) VALUES
-(1, 'Admin - is mandatory in order to have acces to admin panel', 'ROLE_ADMIN', '', 0),
-(2, 'Admin user - has permissions to manage users', 'ROLE_ADMIN_USER', '', 0),
-(3, 'Super admin - has all permissions', 'ROLE_SUPERADMIN', '', 0),
-(9, 'Allow admin user to see all media', 'ROLE_MEDIA_LIST', 'media', 0),
-(10, 'Allow admin user to edit or add a media', 'ROLE_MEDIA_EDIT', 'media', 0),
-(11, 'Allow admin user to delete a media', 'ROLE_MEDIA_REMOVE', 'media', 0),
-(13, 'Allowed users to add and edit content within the content management system', 'ROLE_CMS_CONTENT', 'cms', 0),
-(14, 'Allowed users to publish pages within the content management system', 'ROLE_CMS_PUBLISH', 'cms', 0),
-(15, 'Allowed users to edit blocks and templates within the content management system', 'ROLE_CMS_DESIGNER', 'cms', 0),
-(16, 'Allowed only users belonging to FRANCE to edit specific pages', 'ROLE_CMS_GROUP_FRANCE', 'cms', 1),
-(17, 'Allowed only users belonging to Europe to edit specific pages', 'ROLE_CMS_GROUP_EUROPE', 'cms', 1);
+INSERT INTO `role` (`id`, `name`, `role`, `bundle`, `internal`, `tags`) VALUES
+(1, 'Admin - is mandatory in order to have acces to admin panel', 'ROLE_ADMIN', '', 0, 'Role'),
+(2, 'Admin user - has permissions to manage users', 'ROLE_ADMIN_USER', '', 0, 'Role'),
+(3, 'Super admin - has all permissions', 'ROLE_SUPERADMIN', '', 0, 'Role'),
+(9, 'Allow admin user to see all media', 'ROLE_MEDIA_LIST', 'media', 0, 'Role'),
+(10, 'Allow admin user to edit or add a media', 'ROLE_MEDIA_EDIT', 'media', 0, 'Role'),
+(11, 'Allow admin user to delete a media', 'ROLE_MEDIA_REMOVE', 'media', 0, 'Role'),
+(13, 'Allowed users to add and edit content within the content management system', 'ROLE_CMS_CONTENT', 'cms', 0, 'Role'),
+(14, 'Allowed users to publish pages within the content management system', 'ROLE_CMS_PUBLISH', 'cms', 0, 'Role'),
+(15, 'Allowed users to edit blocks and templates within the content management system', 'ROLE_CMS_DESIGNER', 'cms', 0, 'Role');
 
 -- --------------------------------------------------------
 
@@ -417,8 +415,8 @@ ALTER TABLE  `user` ADD  `tags` TEXT NOT NULL DEFAULT  '' AFTER  `wysiwyg`;
 -- Contenu de la table `user`
 --
 
-INSERT INTO `user` (`id`, `media_id`, `username`, `email`, `salt`, `password`, `is_active`, `firstname`, `lastname`, `locale`, `wysiwyg`) VALUES
-(1, null, 'admin', 'admin@majes.fr', '', 'd033e22ae348aeb5660fc2140aec35850c4da997', 1, 'Admin', 'Admin', 'en', 1);
+INSERT INTO `user` (`id`, `media_id`, `username`, `email`, `salt`, `password`, `is_active`, `firstname`, `lastname`, `locale`, `wysiwyg`, `tags`) VALUES
+(1, null, 'admin', 'admin@majes.fr', '', 'd033e22ae348aeb5660fc2140aec35850c4da997', 1, 'Admin', 'Admin', 'en', 1, 'User');
 
 -- --------------------------------------------------------
 
