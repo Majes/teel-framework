@@ -2,6 +2,10 @@ _majes_search:
     resource: "@MajesSearchBundle/Resources/config/routing.yml"
     prefix:   /{_locale}
 
+_majes_search_admin:
+    resource: "@MajesSearchBundle/Resources/config/routing_admin.yml"
+    prefix:   /{_locale}/administration
+
 _majes_install:
     pattern:  /install
     defaults: { _controller: MajesCoreBundle:Core:install }
