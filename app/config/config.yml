@@ -3,9 +3,7 @@ imports:
     - { resource: security.yml }
     - { resource: majesteel.yml }
     - { resource: @MajesCoreBundle/Resources/config/config.yml }
-    - { resource: @MajesMediaBundle/Resources/config/config.yml }
     - { resource: @MajesCmsBundle/Resources/config/config.yml }
-    - { resource: @MajesSearchBundle/Resources/config/config.yml }
 
 framework:
     esi: { enabled: true }
