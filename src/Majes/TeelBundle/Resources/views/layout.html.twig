@@ -49,11 +49,11 @@
 
 
 {% block teel_header %}
-	
+    
     {{parent()}}
-	
+    
     {% block main_menu %}{% endblock %}
-	{% include ['MajesTeelBundle:parts:menu.html.twig'] %}
+    {% include ['MajesTeelBundle:parts:menu.html.twig'] %}
 
 {% endblock %}
 
@@ -65,8 +65,8 @@
             <h3 class="search-header">{% trans %}Looking for something specific?{% endtrans %}</h3>
             <p class="search-tag-line">{% trans %}Please feel free to ask below or enter what you are looking for!{% endtrans %}</p>
 
-            <form id="search-form" class="search-form clearfix" method="get" action="#" autocomplete="off">
-                <input class="search-term required" type="text" id="s" name="s" placeholder="Type your search terms here" title="* Please enter a search term!" />
+            <form id="search-form" class="search-form clearfix" method="post" action="{{ path('_search_search') }}" autocomplete="off">
+                <input class="search-term required" type="text" id="query" name="query" placeholder="Type your search terms here" title="* Please enter a search term!" value="{% if query is defined %}{{ query }}{% endif %}" />
                 <input class="search-btn" type="submit" value="Search" />
                 <div id="search-error-container"></div>
             </form>
@@ -158,7 +158,7 @@
     <script type='text/javascript' src='{{ asset('bundles/majesteel/js/jquery.easing.1.3.js')}}'></script>
     <script type='text/javascript' src='{{ asset('bundles/majesteel/js/prettyphoto/jquery.prettyPhoto.js')}}'></script>
     <script type='text/javascript' src='{{ asset('bundles/majesteel/js/jflickrfeed.js')}}'></script>
-	<script type='text/javascript' src='{{ asset('bundles/majesteel/js/jquery.liveSearch.js')}}'></script>
+    <script type='text/javascript' src='{{ asset('bundles/majesteel/js/jquery.liveSearch.js')}}'></script>
     <script type='text/javascript' src='{{ asset('bundles/majesteel/js/jquery.form.js')}}'></script>
     <script type='text/javascript' src='{{ asset('bundles/majesteel/js/jquery.validate.min.js')}}'></script>
     <script type='text/javascript' src="{{ asset('bundles/majesteel/js/jquery-twitterFetcher.js')}}"></script>

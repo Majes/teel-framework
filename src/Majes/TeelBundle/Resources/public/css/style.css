@@ -1,12 +1,42 @@
 /*
-	Theme Name: Knowledge Base Theme
-	Theme URI: http://knowledgebase.inspirythemes.com/
-	Description: A Knowledge Base theme for WordPress.
-	Author: 960Development
-	Author URI: http://www.960Development.com/
-	Version: 1.1
-	License: GNU General Public License version 3.0
-	License URI: http://www.gnu.org/licenses/gpl-3.0.html
-	Tags: custom-background, threaded-comments, translation-ready, white, one-column, two-columns, three-columns, four-columns, custom-menu, theme-options, flexible-width, full-width-template, featured-images, right-sidebar
+  Theme Name: Knowledge Base Theme
+  Theme URI: http://knowledgebase.inspirythemes.com/
+  Description: A Knowledge Base theme for WordPress.
+  Author: 960Development
+  Author URI: http://www.960Development.com/
+  Version: 1.1
+  License: GNU General Public License version 3.0
+  License URI: http://www.gnu.org/licenses/gpl-3.0.html
+  Tags: custom-background, threaded-comments, translation-ready, white, one-column, two-columns, three-columns, four-columns, custom-menu, theme-options, flexible-width, full-width-template, featured-images, right-sidebar
 
-	----------------------------------------------------------------------------------------------------------------*/
+  ----------------------------------------------------------------------------------------------------------------*/
+
+.article-entry .count {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  line-height: 18px;
+  font-weight: 600;
+  padding: 3px 5px 3px 5px;
+  border: 1px solid #f2f2f2;
+  border-bottom: none;
+  background: none;
+}
+.article-entry:hover .count {
+  background: none;
+  color: #395996;
+}
+
+#footer .article-entry .count {
+  border-color: #535b61;
+}
+#footer .article-entry:hover .like-count {
+  color: #fff;
+}
+
+.hentry.type-post .post-title{border-bottom: 1px solid #f2f2f2; padding-bottom: 10px}
+.hentry .post-meta{
+  float: right;
+  border-bottom: 0!important;
+  border-top: 0!important;
+}
