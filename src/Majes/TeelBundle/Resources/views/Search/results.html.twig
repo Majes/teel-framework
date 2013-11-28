@@ -41,13 +41,13 @@
                                 {% endfor %}    
                             {% else %}
                                 <article class="format-standard type-post hentry clearfix">
-                                    <p class="notice">Il n'y a aucun résultat à votre recherche</p>
+                                    <p class="error">{% trans %}There is no result to your search{% endtrans %}</p>
                                 </article>
                             {% endif %}
 
 
 
-
+                            {% if page_count > 1 %}
                             <div id="pagination">
                                 {% if page_num > 1 %}<a href="#" class="searchPageTrigger btn" data-page="{{page_num - 1 }}">« Previous</a>{% endif %}
                                 {% for i in 1..page_count %}
@@ -55,6 +55,7 @@
                                 {% endfor %}
                                 {% if page_num < page_count %}<a href="#" class="searchPageTrigger btn" data-page="{{page_num + 1 }}">Next »</a>{% endif %}
                             </div>
+                            {% endif %}
 
                         </div>
                         <!-- end of page content -->
@@ -73,11 +74,15 @@
                             </section>
 
                             <section class="widget">
-                                <h3 class="title">Catégories de recherche</h3>
+                                <h3 class="title">{% trans %}Search category{% endtrans %}</h3>
                                 <ul class="articles">
+                                    <li class="article-entry standard">
+                                                <h4><a href="#" class="searchFilterTrigger" data-filter="">{% trans %}All{% endtrans %}</a></h4>
+                                                <span class="count">{{ total }}</span>
+                                        </li>
                                     {% for facet in facets.tags.terms %}
                                         <li class="article-entry standard">
-                                                <h4><!--<input name="filters[{{ facet.term }}]" type="checkbox" value="" {% if facet.term in filters|keys %}checked="checked" {% endif %}>--><a href="#">{{ facet.term }}</a></h4>
+                                                <h4><!--<input name="filters[{{ facet.term }}]" type="checkbox" value="" {% if facet.term in filters|keys %}checked="checked" {% endif %}>--><a href="#" class="searchFilterTrigger" data-filter="{{ facet.term }}">{{ facet.term }}</a></h4>
                                                 <span class="count">{{ facet.count }}</span>
                                         </li>
                                     {% endfor %}
@@ -96,6 +101,17 @@
             e.preventDefault();
             var self = $(this);
             $("form#search-form input[name=page_num]").val(self.data('page'));
+            $("form#search-form").submit();
+        });
+
+        $("a.searchFilterTrigger").click(function(e){
+            e.preventDefault();
+            var self = $(this);
+            if(self.data('filter') == ''){
+                $("form#search-form input[name=filters").remove();
+            }else{
+                $("form#search-form").append('<input type="hidden" name="filters[]" value="'+self.data('filter')+'" />');
+            }
             $("form#search-form").submit();
         });
     });
