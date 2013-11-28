@@ -171,6 +171,8 @@ CREATE TABLE IF NOT EXISTS `cms_page_lang` (
   KEY `page_id` (`page_id`,`locale`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=23 ;
 
+ALTER TABLE  `cms_page_lang` ADD  `search_description` TEXT NOT NULL DEFAULT  '' AFTER  `title`;
+
 --
 -- Structure de la table `cms_page_role`
 --
