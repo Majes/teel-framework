@@ -152,6 +152,7 @@ CREATE TABLE IF NOT EXISTS `cms_page` (
 
 DROP TABLE IF EXISTS `cms_page_lang`;
 CREATE TABLE IF NOT EXISTS `cms_page_lang` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `page_id` int(11) NOT NULL,
   `locale` varchar(5) NOT NULL,
   `user_id` int(11) NOT NULL,
@@ -161,12 +162,15 @@ CREATE TABLE IF NOT EXISTS `cms_page_lang` (
   `meta_title` varchar(150) DEFAULT NULL,
   `meta_description` varchar(255) DEFAULT NULL,
   `meta_keywords` varchar(255) DEFAULT NULL,
+  `tags` varchar(150) NOT NULL DEFAULT 'Page',
   `create_date` datetime NOT NULL,
   `update_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`page_id`,`locale`),
-  KEY `user_id` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-ALTER TABLE  `cms_page_lang` ADD  `tags` VARCHAR( 150 ) NOT NULL DEFAULT  'Page' AFTER  `meta_keywords`;
+  PRIMARY KEY (`id`),
+  KEY `user_id` (`user_id`),
+  KEY `id` (`id`),
+  KEY `page_id` (`page_id`,`locale`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=23 ;
+
 --
 -- Structure de la table `cms_page_role`
 --
