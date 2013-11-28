@@ -166,7 +166,7 @@ CREATE TABLE IF NOT EXISTS `cms_page_lang` (
   PRIMARY KEY (`page_id`,`locale`),
   KEY `user_id` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
+ALTER TABLE  `cms_page_lang` ADD  `tags` VARCHAR( 150 ) NOT NULL DEFAULT  'Page' AFTER  `meta_keywords`;
 --
 -- Structure de la table `cms_page_role`
 --
