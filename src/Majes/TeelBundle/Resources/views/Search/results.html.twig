@@ -49,10 +49,11 @@
 
 
                             <div id="pagination">
-                                <a href="#" class="btn active">1</a>
-                                <a href="#" class="btn">2</a>
-                                <a href="#" class="btn">3</a>
-                                <a href="#" class="btn">Next »</a>
+                                {% if page_num > 1 %}<a href="#" class="searchPageTrigger btn" data-page="{{page_num - 1 }}">« Previous</a>{% endif %}
+                                {% for i in 1..page_count %}
+                                <a href="#" class="searchPageTrigger btn{% if i == page_num %} active{% endif %}" data-page="{{i}}">{{ i }}</a>
+                                {% endfor %}
+                                {% if page_num < page_count %}<a href="#" class="searchPageTrigger btn" data-page="{{page_num + 1 }}">Next »</a>{% endif %}
                             </div>
 
                         </div>
@@ -89,6 +90,15 @@
         </div>
 </div>
 <!-- End of Page Container -->
-
+<script>
+    $(document).ready(function(){
+        $("a.searchPageTrigger").click(function(e){
+            e.preventDefault();
+            var self = $(this);
+            $("form#search-form input[name=page_num]").val(self.data('page'));
+            $("form#search-form").submit();
+        });
+    });
+</script>
 {% endblock %}
 
