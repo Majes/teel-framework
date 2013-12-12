@@ -2,10 +2,6 @@
     "name": "majes/teel-framework",
     "type": "project",
     "description": "The \"MajeS'teel Edition\" distribution",
-    "autoload": {
-        "psr-0": { "": "src/" },
-        "classmap": ["vendor/google/google-api-php-client/src","vendor/google/google-api-php-client/src/contrib"]
-    },
     "require": {
         "php": ">=5.3.0",
         "symfony/symfony": "2.3.*",
@@ -22,7 +18,7 @@
         "jms/security-extra-bundle": "dev-master",
         "stof/doctrine-extensions-bundle": "~1.1@dev",
         "symfony-cmf/routing-bundle": "1.1.*",
-        "google/google-api-php-client": "1.0.0",
+         "google/apiclient": "dev-master",
         "doctrine/doctrine-migrations-bundle": "dev-master",
         "friendsofsymfony/elastica-bundle": "3.0.*@dev",
         "knplabs/knp-paginator-bundle": "dev-master",
@@ -58,18 +54,5 @@
         "incenteev-parameters": {
             "file": "app/config/parameters.yml"
         }
-    },
-    "repositories": [
-    {
-        "type": "package",
-        "package": {
-            "name": "google/google-api-php-client",
-            "version": "1.0.0",
-            "source": {
-                "type": "svn",
-                "url": "http://google-api-php-client.googlecode.com/svn",
-                "reference": "trunk"
-            }
-        }
-    }]
+    }
 }
