@@ -344,11 +344,10 @@ CREATE TABLE IF NOT EXISTS `core_log` (
 CREATE TABLE IF NOT EXISTS `core_chat` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
-  `content` int(11) NOT NULL,
+  `content` TINYTEXT NOT NULL,
   `create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
 
 --
 -- Structure de la table `media`
