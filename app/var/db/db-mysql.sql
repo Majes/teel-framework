@@ -338,6 +338,25 @@ CREATE TABLE IF NOT EXISTS `core_log` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2408 ;
 
 --
+-- Structure de la table `core_stats`
+--
+
+CREATE TABLE IF NOT EXISTS `core_stat` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `is_tablet` tinyint(4) NOT NULL DEFAULT '0',
+  `is_mobile` tinyint(4) NOT NULL DEFAULT '0',
+  `begin_date` datetime NOT NULL,
+  `end_date` datetime NOT NULL,
+  `new_visits` int(11) NOT NULL,
+  `percent_new_visits` double NOT NULL,
+  `avg_time_to_site` double NOT NULL,
+  `pageviews_per_visits` double NOT NULL,
+  `create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+
+--
 -- Structure de la table `core_chat`
 --
 
