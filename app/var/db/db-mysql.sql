@@ -184,7 +184,6 @@ CREATE TABLE IF NOT EXISTS `cms_page_role` (
   PRIMARY KEY (`page_id`,`role_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-ALTER TABLE  `role` ADD  `tags` TEXT NOT NULL DEFAULT  '' AFTER  `internal`;
 --
 -- Structure de la table `cms_page_template_block`
 --
@@ -337,24 +336,6 @@ CREATE TABLE IF NOT EXISTS `core_log` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2408 ;
 
---
--- Structure de la table `core_stats`
---
-
-CREATE TABLE IF NOT EXISTS `core_stat` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `is_tablet` tinyint(4) NOT NULL DEFAULT '0',
-  `is_mobile` tinyint(4) NOT NULL DEFAULT '0',
-  `begin_date` datetime NOT NULL,
-  `end_date` datetime NOT NULL,
-  `new_visits` int(11) NOT NULL,
-  `percent_new_visits` double NOT NULL,
-  `avg_time_to_site` double NOT NULL,
-  `pageviews_per_visits` double NOT NULL,
-  `create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
 
 --
 -- Structure de la table `core_chat`
@@ -405,6 +386,9 @@ CREATE TABLE IF NOT EXISTS `role` (
   `internal` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=19 ;
+
+
+ALTER TABLE  `role` ADD  `tags` TEXT NOT NULL DEFAULT  '' AFTER  `internal`;
 
 --
 -- Contenu de la table `role`
@@ -476,6 +460,27 @@ INSERT INTO `user_role` (`user_id`, `role_id`) VALUES
 (1, 1),
 (1, 2),
 (1, 3);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `core_stat`
+--
+
+DROP TABLE IF EXISTS `core_stat`;
+CREATE TABLE IF NOT EXISTS `core_stat` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `is_tablet` tinyint(4) NOT NULL DEFAULT '0',
+  `is_mobile` tinyint(4) NOT NULL DEFAULT '0',
+  `begin_date` datetime NOT NULL,
+  `end_date` datetime NOT NULL,
+  `new_visits` int(11) NOT NULL,
+  `percent_new_visits` double NOT NULL,
+  `avg_time_to_site` double NOT NULL,
+  `pageviews_per_visits` double NOT NULL,
+  `create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=20 ;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
