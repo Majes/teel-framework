@@ -478,9 +478,10 @@ CREATE TABLE IF NOT EXISTS `core_stat` (
   `percent_new_visits` double NOT NULL,
   `avg_time_to_site` double NOT NULL,
   `pageviews_per_visits` double NOT NULL,
+  `current` tinyint(4) NOT NULL DEFAULT '0',
   `create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=20 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=26 ;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
