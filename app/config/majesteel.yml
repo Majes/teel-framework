@@ -3,17 +3,6 @@ twig:
         default_lang: fr
 
 parameters: 
-    admin:
-        wysiwyg: false
-        maintenance: false
-    google:
-        oauth2_client_id: 
-        oauth2_client_secret: 
-        oauth2_redirect_uri: 
-        api_server_key: 
-        api_browser_key: 
-        analytics: 
-        view_id: 
     menu:
         admin_index:
             label: Dashboard
