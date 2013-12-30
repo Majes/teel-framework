@@ -6,8 +6,6 @@ parameters:
     database_user:     root
     database_password: ~
 
-    domain_url: majesteel.dev
-
     mailer_transport:  smtp
     mailer_host:       127.0.0.1
     mailer_user:       ~
@@ -17,7 +15,7 @@ parameters:
     secret:            ThisTokenIsNotSoSecretChangeIt
 
     admin:
-        wysiwyg: false
+        wysiwyg: true
         maintenance: false
     google:
         oauth2_client_id: 
@@ -25,8 +23,11 @@ parameters:
         oauth2_redirect_uri: 
         api_server_key: 
         api_browser_key: 
-        analytics: 
+        service_client_id: 
+        service_email_address: 
+        service_key_fingerprints: 
         view_id: 
+        analytics: 
 
     menu:
         admin_index:
