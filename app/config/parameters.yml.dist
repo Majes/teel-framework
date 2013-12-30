@@ -27,3 +27,42 @@ parameters:
         api_browser_key: 
         analytics: 
         view_id: 
+
+    menu:
+        admin_index:
+            label: Dashboard
+            icon: se7en-home
+            route: _admin_index
+        cms: 
+            label: Content management
+            icon: icon-folder-open-alt
+            submenu:
+                content: 
+                    route: _cms_content
+                    label: Content
+                template:
+                    route: _cms_templates_list
+                    label: Templates setup
+                block:
+                    route: _cms_blocks_list
+                    label: Blocks setup
+                role: 
+                    route: _cms_roles
+                    label: Roles
+        gallery: 
+            label: Medialibrary
+            icon: icon-picture
+            route: _media_list
+        admin: 
+            label: Admin
+            icon: icon-cogs
+            submenu:
+                users:
+                    label: Users
+                    route: _admin_users
+                language: 
+                    label: Languages
+                    route: _admin_languages
+                roles: 
+                    label: Roles
+                    route: _admin_roles
