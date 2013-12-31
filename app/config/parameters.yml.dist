@@ -15,6 +15,7 @@ parameters:
     secret:            ThisTokenIsNotSoSecretChangeIt
 
     domain_url: yourdomain.com
+    is_multilingual: true
 
     admin:
         wysiwyg: true
