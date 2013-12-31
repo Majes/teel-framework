@@ -64,6 +64,9 @@ parameters:
                 language: 
                     label: Languages
                     route: _admin_languages
+                language_messages: 
+                    label: Traductions statiques
+                    route: _admin_language_messages
                 roles: 
                     label: Roles
                     route: _admin_roles
