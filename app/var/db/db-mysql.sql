@@ -3,18 +3,12 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Jeu 02 Janvier 2014 à 10:56
+-- Généré le: Jeu 02 Janvier 2014 à 11:02
 -- Version du serveur: 5.1.72
 -- Version de PHP: 5.3.21
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
 
 --
 -- Base de données: `teelempty`
@@ -68,7 +62,7 @@ CREATE TABLE IF NOT EXISTS `cms_block` (
 --
 
 INSERT INTO `cms_block` (`id`, `user_id`, `is_repeatable`, `title`, `ref`, `create_date`, `update_date`) VALUES
-(13, 1, 1, 'Paragraph', 'paragraph', '2014-01-02 10:20:10', '2014-01-02 09:20:11');
+(1, 1, 1, 'Paragraph', 'paragraph', '2014-01-02 10:20:10', '2014-01-02 10:00:40');
 
 -- --------------------------------------------------------
 
@@ -95,8 +89,8 @@ CREATE TABLE IF NOT EXISTS `cms_block_attribute` (
 --
 
 INSERT INTO `cms_block_attribute` (`id`, `block_id`, `attribute_id`, `sort`, `title`, `ref`, `create_date`, `update_date`) VALUES
-(39, 13, 1, 10, 'Title', 'title', '2014-01-02 10:20:19', '2014-01-02 09:21:13'),
-(40, 13, 4, 20, 'Content', 'paragraph', '2014-01-02 10:20:19', '2014-01-02 09:21:13');
+(1, 1, 1, 10, 'Title', 'title', '2014-01-02 10:20:19', '2014-01-02 10:02:24'),
+(2, 1, 4, 20, 'Content', 'paragraph', '2014-01-02 10:20:19', '2014-01-02 10:02:28');
 
 -- --------------------------------------------------------
 
@@ -118,7 +112,7 @@ CREATE TABLE IF NOT EXISTS `cms_host` (
 --
 
 INSERT INTO `cms_host` (`id`, `title`, `url`, `create_date`) VALUES
-(4, 'Majesteel', 'teel.dev', '2014-01-02 09:14:13');
+(1, 'Majesteel', 'teel.dev', '2014-01-02 09:14:13');
 
 -- --------------------------------------------------------
 
@@ -178,7 +172,7 @@ CREATE TABLE IF NOT EXISTS `cms_page` (
 --
 
 INSERT INTO `cms_page` (`id`, `page_id_parent`, `user_id`, `host_id`, `menu_id`, `template_id`, `link_url`, `target_url`, `sort`, `is_inmenu`, `is_active`, `is_folder`, `status`, `enable_comments`, `create_date`, `update_date`) VALUES
-(1, NULL, 1, 4, 1, 9, NULL, NULL, 0, 1, 1, 0, '', 0, '2014-01-02 10:23:33', '2014-01-02 09:23:33');
+(1, NULL, 1, 1, 1, 1, NULL, NULL, 0, 1, 1, 0, '', 0, '2014-01-02 10:23:33', '2014-01-02 09:58:58');
 
 -- --------------------------------------------------------
 
@@ -213,8 +207,8 @@ CREATE TABLE IF NOT EXISTS `cms_page_lang` (
 --
 
 INSERT INTO `cms_page_lang` (`id`, `page_id`, `locale`, `user_id`, `url`, `url_root`, `title`, `search_description`, `meta_title`, `meta_description`, `meta_keywords`, `tags`, `create_date`, `update_date`) VALUES
-(23, 1, 'fr', 1, '/', '', 'Accueil en français', 'Teel framework - Page accueil', 'Teel framework - Page accueil', NULL, NULL, 'Page', '2014-01-02 10:23:33', '2014-01-02 09:41:43'),
-(24, 1, 'en', 1, '/', '', 'Home in English', 'Teel framework - Homepage', 'Teel framework - Homepage', NULL, NULL, 'Page', '2014-01-02 10:45:50', '2014-01-02 09:46:37');
+(1, 1, 'fr', 1, '/', '', 'Accueil en français', 'Teel framework - Page accueil', 'Teel framework - Page accueil', NULL, NULL, 'Page', '2014-01-02 10:23:33', '2014-01-02 09:59:03'),
+(2, 1, 'en', 1, '/', '', 'Home in English', 'Teel framework - Homepage', 'Teel framework - Homepage', NULL, NULL, 'Page', '2014-01-02 10:45:50', '2014-01-02 09:59:12');
 
 -- --------------------------------------------------------
 
@@ -255,8 +249,8 @@ CREATE TABLE IF NOT EXISTS `cms_page_template_block` (
 --
 
 INSERT INTO `cms_page_template_block` (`id`, `version`, `page_id`, `template_block_id`, `user_id`, `locale`, `content`, `create_date`, `update_date`) VALUES
-(26, 1, 1, 24, 1, 'fr', '{"attributes":{"20140102104143":{"title":"Titre paragraphe 1","id":"20140102104143","content":{"title":{"ref":"textline","value":"Titre paragraphe 1"},"paragraph":{"ref":"editor","value":"<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent mattis lorem et risus hendrerit, convallis elementum eros facilisis. Etiam ornare rutrum orci et dignissim. Sed nec dolor venenatis, adipiscing ante quis, euismod lacus. Nullam nec vulputate magna. Nullam enim mi, gravida consequat nibh in, tincidunt blandit est. Donec non nunc sed lacus fringilla laoreet sed ac augue. Etiam nec congue mi. In sed lacus quis felis mattis fringilla.<\\/p>\\r\\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent mattis lorem et risus hendrerit, convallis elementum eros facilisis. Etiam ornare rutrum orci et dignissim. Sed nec dolor venenatis, adipiscing ante quis, euismod lacus. Nullam nec vulputate magna. Nullam enim mi, gravida consequat nibh in, tincidunt blandit est. Donec non nunc sed lacus fringilla laoreet sed ac augue. Etiam nec congue mi. In sed lacus quis felis mattis fringilla.<\\/p>"}}}}}', '2014-01-02 10:41:43', '2014-01-02 09:41:43'),
-(27, 2, 1, 24, 1, 'en', '{"attributes":{"20140102104143":{"title":"Paragraph1 title","id":"20140102104143","content":{"title":{"ref":"textline","value":"Paragraph1 title"},"paragraph":{"ref":"editor","value":"<p>[EN] Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent mattis lorem et risus hendrerit, convallis elementum eros facilisis. Etiam ornare rutrum orci et dignissim. Sed nec dolor venenatis, adipiscing ante quis, euismod lacus. Nullam nec vulputate magna. Nullam enim mi, gravida consequat nibh in, tincidunt blandit est. Donec non nunc sed lacus fringilla laoreet sed ac augue. Etiam nec congue mi. In sed lacus quis felis mattis fringilla.<\\/p>\\r\\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent mattis lorem et risus hendrerit, convallis elementum eros facilisis. Etiam ornare rutrum orci et dignissim. Sed nec dolor venenatis, adipiscing ante quis, euismod lacus. Nullam nec vulputate magna. Nullam enim mi, gravida consequat nibh in, tincidunt blandit est. Donec non nunc sed lacus fringilla laoreet sed ac augue. Etiam nec congue mi. In sed lacus quis felis mattis fringilla.[\\/EN]<\\/p>"}}}}}', '2014-01-02 10:45:50', '2014-01-02 09:46:40');
+(1, 1, 1, 1, 1, 'fr', '{"attributes":{"20140102104143":{"title":"Titre paragraphe 1","id":"20140102104143","content":{"title":{"ref":"textline","value":"Titre paragraphe 1"},"paragraph":{"ref":"editor","value":"<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent mattis lorem et risus hendrerit, convallis elementum eros facilisis. Etiam ornare rutrum orci et dignissim. Sed nec dolor venenatis, adipiscing ante quis, euismod lacus. Nullam nec vulputate magna. Nullam enim mi, gravida consequat nibh in, tincidunt blandit est. Donec non nunc sed lacus fringilla laoreet sed ac augue. Etiam nec congue mi. In sed lacus quis felis mattis fringilla.<\\/p>\\r\\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent mattis lorem et risus hendrerit, convallis elementum eros facilisis. Etiam ornare rutrum orci et dignissim. Sed nec dolor venenatis, adipiscing ante quis, euismod lacus. Nullam nec vulputate magna. Nullam enim mi, gravida consequat nibh in, tincidunt blandit est. Donec non nunc sed lacus fringilla laoreet sed ac augue. Etiam nec congue mi. In sed lacus quis felis mattis fringilla.<\\/p>"}}}}}', '2014-01-02 10:41:43', '2014-01-02 09:59:36'),
+(2, 2, 1, 1, 1, 'en', '{"attributes":{"20140102104143":{"title":"Paragraph1 title","id":"20140102104143","content":{"title":{"ref":"textline","value":"Paragraph1 title"},"paragraph":{"ref":"editor","value":"<p>[EN] Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent mattis lorem et risus hendrerit, convallis elementum eros facilisis. Etiam ornare rutrum orci et dignissim. Sed nec dolor venenatis, adipiscing ante quis, euismod lacus. Nullam nec vulputate magna. Nullam enim mi, gravida consequat nibh in, tincidunt blandit est. Donec non nunc sed lacus fringilla laoreet sed ac augue. Etiam nec congue mi. In sed lacus quis felis mattis fringilla.<\\/p>\\r\\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent mattis lorem et risus hendrerit, convallis elementum eros facilisis. Etiam ornare rutrum orci et dignissim. Sed nec dolor venenatis, adipiscing ante quis, euismod lacus. Nullam nec vulputate magna. Nullam enim mi, gravida consequat nibh in, tincidunt blandit est. Donec non nunc sed lacus fringilla laoreet sed ac augue. Etiam nec congue mi. In sed lacus quis felis mattis fringilla.[\\/EN]<\\/p>"}}}}}', '2014-01-02 10:45:50', '2014-01-02 09:59:38');
 
 -- --------------------------------------------------------
 
@@ -282,7 +276,7 @@ CREATE TABLE IF NOT EXISTS `cms_page_template_block_version` (
 --
 
 INSERT INTO `cms_page_template_block_version` (`page_template_block_id`, `version`, `user_id`, `locale`, `content`, `status`, `create_date`, `update_date`) VALUES
-(27, 2, 1, 'en', '{"attributes":{"20140102104143":{"title":"Paragraph1 title","id":"20140102104143","content":{"title":{"ref":"textline","value":"Paragraph1 title"},"paragraph":{"ref":"editor","value":"<p>[EN] Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent mattis lorem et risus hendrerit, convallis elementum eros facilisis. Etiam ornare rutrum orci et dignissim. Sed nec dolor venenatis, adipiscing ante quis, euismod lacus. Nullam nec vulputate magna. Nullam enim mi, gravida consequat nibh in, tincidunt blandit est. Donec non nunc sed lacus fringilla laoreet sed ac augue. Etiam nec congue mi. In sed lacus quis felis mattis fringilla.<\\/p>\\r\\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent mattis lorem et risus hendrerit, convallis elementum eros facilisis. Etiam ornare rutrum orci et dignissim. Sed nec dolor venenatis, adipiscing ante quis, euismod lacus. Nullam nec vulputate magna. Nullam enim mi, gravida consequat nibh in, tincidunt blandit est. Donec non nunc sed lacus fringilla laoreet sed ac augue. Etiam nec congue mi. In sed lacus quis felis mattis fringilla.[\\/EN]<\\/p>"}}}}}', 'published', '2014-01-02 10:46:37', '2014-01-02 09:46:40');
+(2, 2, 1, 'en', '{"attributes":{"20140102104143":{"title":"Paragraph1 title","id":"20140102104143","content":{"title":{"ref":"textline","value":"Paragraph1 title"},"paragraph":{"ref":"editor","value":"<p>[EN] Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent mattis lorem et risus hendrerit, convallis elementum eros facilisis. Etiam ornare rutrum orci et dignissim. Sed nec dolor venenatis, adipiscing ante quis, euismod lacus. Nullam nec vulputate magna. Nullam enim mi, gravida consequat nibh in, tincidunt blandit est. Donec non nunc sed lacus fringilla laoreet sed ac augue. Etiam nec congue mi. In sed lacus quis felis mattis fringilla.<\\/p>\\r\\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent mattis lorem et risus hendrerit, convallis elementum eros facilisis. Etiam ornare rutrum orci et dignissim. Sed nec dolor venenatis, adipiscing ante quis, euismod lacus. Nullam nec vulputate magna. Nullam enim mi, gravida consequat nibh in, tincidunt blandit est. Donec non nunc sed lacus fringilla laoreet sed ac augue. Etiam nec congue mi. In sed lacus quis felis mattis fringilla.[\\/EN]<\\/p>"}}}}}', 'published', '2014-01-02 10:46:37', '2014-01-02 09:59:57');
 
 -- --------------------------------------------------------
 
@@ -307,8 +301,8 @@ CREATE TABLE IF NOT EXISTS `cms_route` (
 --
 
 INSERT INTO `cms_route` (`id`, `page_id`, `locale`, `title`, `host`, `url`, `redirect_url`) VALUES
-(23, 1, 'fr', 'Accueil en français', 'teel.dev', '/fr', NULL),
-(24, 1, 'en', 'Home in English', 'teel.dev', '/en', NULL);
+(1, 1, 'fr', 'Accueil en français', 'teel.dev', '/fr', NULL),
+(2, 1, 'en', 'Home in English', 'teel.dev', '/en', NULL);
 
 -- --------------------------------------------------------
 
@@ -332,7 +326,7 @@ CREATE TABLE IF NOT EXISTS `cms_template` (
 --
 
 INSERT INTO `cms_template` (`id`, `user_id`, `title`, `ref`, `create_date`, `update_date`) VALUES
-(9, 1, 'Home', 'home', '2014-01-02 10:21:25', '2014-01-02 09:21:25');
+(1, 1, 'Home', 'home', '2014-01-02 10:21:25', '2014-01-02 10:00:22');
 
 -- --------------------------------------------------------
 
@@ -361,7 +355,7 @@ CREATE TABLE IF NOT EXISTS `cms_template_block` (
 --
 
 INSERT INTO `cms_template_block` (`id`, `template_id`, `block_id`, `is_mobile`, `is_tablet`, `is_desktop`, `is_repeatable`, `ref`, `sort`, `create_date`, `update_date`) VALUES
-(24, 9, 13, 1, 1, 1, 1, 'home_paragraph', 10, '2014-01-02 10:21:28', '2014-01-02 09:21:28');
+(1, 1, 1, 1, 1, 1, 1, 'home_paragraph', 10, '2014-01-02 10:21:28', '2014-01-02 10:00:36');
 
 -- --------------------------------------------------------
 
@@ -447,7 +441,20 @@ CREATE TABLE IF NOT EXISTS `core_log` (
   `params` text NOT NULL,
   `create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+
+--
+-- Contenu de la table `core_log`
+--
+
+INSERT INTO `core_log` (`id`, `user_id`, `locale`, `name`, `route`, `params`, `create_date`) VALUES
+(1, 1, 'fr', 'SystemListener', 'majes_cms_1_fr', '{"_locale":"fr"}', '2014-01-02 10:01:14'),
+(2, 1, 'fr', 'SystemListener', '_media_list', '{"context":"full","_locale":"fr"}', '2014-01-02 10:01:28'),
+(3, 1, 'fr', 'SystemListener', '_cms_content', '{"id":null,"menu_id":null,"lang":null,"page_parent_id":null,"_locale":"fr"}', '2014-01-02 10:01:31'),
+(4, 1, 'fr', 'SystemListener', '_cms_content', '{"id":"1","menu_id":"1","lang":"fr","page_parent_id":"0","_locale":"fr"}', '2014-01-02 10:01:34'),
+(5, 1, 'fr', 'SystemListener', '_cms_content', '{"id":"1","menu_id":"1","lang":"fr","page_parent_id":"0","_locale":"fr"}', '2014-01-02 10:02:30'),
+(6, 1, 'fr', 'SystemListener', 'majes_cms_1_fr', '{"_locale":"fr"}', '2014-01-02 10:02:34'),
+(7, 1, 'en', 'SystemListener', 'majes_cms_1_en', '{"_locale":"en"}', '2014-01-02 10:02:42');
 
 -- --------------------------------------------------------
 
@@ -583,7 +590,3 @@ INSERT INTO `user_role` (`user_id`, `role_id`) VALUES
 (1, 1),
 (1, 2),
 (1, 3);
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
