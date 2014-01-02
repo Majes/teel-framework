@@ -14,7 +14,6 @@ parameters:
     locale:            en
     secret:            ThisTokenIsNotSoSecretChangeIt
 
-    domain_url: yourdomain.com
     is_multilingual: true
 
     admin:
