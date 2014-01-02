@@ -9,31 +9,18 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title>{% block title %}Majesteel - {% endblock %}</title>
+        <title>{% block title %}Majesteel - teel framework{% endblock %}</title>
 
         <link rel="shortcut icon" href="images/favicon.png" />
 
-
-        <!-- Google Web Fonts-->
-        <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
-        <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
-        <link href='http://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-
         <!-- Style Sheet-->
-        <link rel="stylesheet" href="{{ asset('bundles/majesteel/css/style.css')}}"/>
-        <link rel='stylesheet' id='bootstrap-css-css'  href='{{ asset('bundles/majesteel/css/bootstrap.css?ver=1.0')}}' type='text/css' media='all' />
-        <link rel='stylesheet' id='responsive-css-css'  href='{{ asset('bundles/majesteel/css/responsive.css?ver=1.0')}}' type='text/css' media='all' />
-        <link rel='stylesheet' id='pretty-photo-css-css'  href='{{ asset('bundles/majesteel/js/prettyphoto/prettyPhoto.css?ver=3.1.4')}}' type='text/css' media='all' />
-        <link rel='stylesheet' id='main-css-css'  href='{{ asset('bundles/majesteel/css/main.css?ver=1.0')}}' type='text/css' media='all' />
-        
+        <link rel='stylesheet' id='bootstrap-css-css'  href='{{ asset('bundles/majesteel/css/bootstrap.css')}}' type='text/css' media='all' />
+        <link rel='stylesheet' id='responsive-css-css'  href='{{ asset('bundles/majesteel/css/custom.css')}}' type='text/css' media='all' />
+         
         {% block teel_css %}{{parent()}}{% endblock %}
 
-        <script type='text/javascript' src='{{ asset('bundles/majesteel/js/jquery-1.8.3.min.js')}}'></script>
-        <script type="text/javascript" src="{{ asset('bundles/majesteel/js/syntax/shCore.js')}}"></script>
-        <script type="text/javascript" src="{{ asset('bundles/majesteel/js/syntax/shBrushJScript.js')}}"></script>
-        <script type="text/javascript" src="{{ asset('bundles/majesteel/js/syntax/shBrushPhp.js')}}"></script>
-        <link type="text/css" rel="stylesheet" href="{{ asset('bundles/majesteel/css/syntax/shCoreDefault.css')}}"/>
-        <script type="text/javascript">SyntaxHighlighter.all();</script>
+        <script type='text/javascript' src='{{ asset('bundles/majesteel/js/jquery.min.js')}}'></script>
+        <script type='text/javascript' src='{{ asset('bundles/majesteel/js/bootstrap.min.js')}}'></script>
 
         <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
         <!--[if lt IE 9]>
@@ -50,121 +37,11 @@
 {% block teel_gatracking %}{{parent()}}{% endblock %}
 
 {% block teel_header %}
-    
     {{parent()}}
-    
     {% block main_menu %}{% endblock %}
     {% include ['MajesTeelBundle:parts:menu.html.twig'] %}
-
 {% endblock %}
 
-{% block content %}
+{% block content %}{% endblock %}
 
-    <!-- Start of Search Wrapper -->
-    <div class="search-area-wrapper">
-        <div class="search-area container">
-            <h3 class="search-header">{% trans %}Looking for something specific?{% endtrans %}</h3>
-            <p class="search-tag-line">{% trans %}Please feel free to ask below or enter what you are looking for!{% endtrans %}</p>
-
-            <form id="search-form" class="search-form clearfix" method="post" action="{{ path('_search_search') }}" autocomplete="off">
-                <input class="search-term required" type="text" id="query" name="query" placeholder="Type your search terms here" title="* Please enter a search term!" value="{% if query is defined %}{{ query }}{% endif %}" />
-                <input class="search-btn" type="submit" value="Search" />
-                <div id="search-error-container"></div>
-            </form>
-        </div>
-    </div>
-    <!-- End of Search Wrapper -->
-
-{% endblock %}
-
-{% block teel_footer %}
-
-    <!-- Start of Footer -->
-    <footer id="footer-wrapper">
-        <div id="footer" class="container">
-            <div class="row">
-
-                <div class="span3">
-                    <section class="widget">
-                        <h3 class="title">{% trans %}How it works{% endtrans %}</h3>
-                        <div class="textwidget">
-                             {% trans %}<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. </p>
-                             <p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. </p>{% endtrans %}
-                        </div>
-                    </section>
-                </div>
-
-                <div class="span3">
-                    <section class="widget"><h3 class="title">{% trans %}Other links{% endtrans %}</h3>
-                        <ul>
-                            {% for menu_page_id, menu_page in menu_footer %}
-                            <li><a href="{% if menu_page.link_url is null %}{{ path('majes_cms_' ~ menu_page.id ~ '_' ~ lang) }}{% else %}{% endif %}"{% if menu_page.target_url is not null %}target="{{ menu_page.target_url }}"{% endif %}>{{menu_page.label}}</a> </li>{% endfor %}
-                        </ul>
-                    </section>
-                </div>
-
-                <div class="span3">
-                    <section class="widget">
-                        <h3 class="title">{% trans %}Latest Tweets{% endtrans %}</h3>
-                        <div id="twitter_update_list">
-                            <ul>
-                                <li>No Tweets loaded !</li>
-                            </ul>
-                        </div>    
-                    </section>
-                </div>
-
-                <div class="span3">
-                        <section class="widget">
-                            <h3 class="title">Flickr Photos</h3>
-                            <div class="flickr-photos" id="basicuse">
-                            </div>
-                        </section>
-                </div>
-
-            </div>
-        </div>
-        <!-- end of #footer -->
-
-        <!-- Footer Bottom -->
-        <div id="footer-bottom-wrapper">
-            <div id="footer-bottom" class="container">
-                    <div class="row">
-                            <div class="span6">
-                                <p class="copyright">
-                                    Copyright © 2013. All Rights Reserved by Maje'Steel.
-                                </p>
-                            </div>
-                            <div class="span6">
-                                    <!-- Social Navigation -->
-                                    <ul class="social-nav clearfix">
-                                            <li class="rss"><a target="_blank" href="#"></a></li>
-                                            <li class="twitter"><a target="_blank" href="#"></a></li>
-                                            <li class="facebook"><a target="_blank" href="#"></a></li>
-                                    </ul>
-                            </div>
-                    </div>
-            </div>
-        </div>
-        <!-- End of Footer Bottom -->
-
-    </footer>
-    <!-- End of Footer -->
-
-    <a href="#top" id="scroll-top"></a>
-
-    <!-- script -->
-    {% block teel_js %}{{parent()}}{% endblock %}
-
-    <script type='text/javascript' src='{{ asset('bundles/majesteel/js/jquery.easing.1.3.js')}}'></script>
-    <script type='text/javascript' src='{{ asset('bundles/majesteel/js/prettyphoto/jquery.prettyPhoto.js')}}'></script>
-    <script type='text/javascript' src='{{ asset('bundles/majesteel/js/jflickrfeed.js')}}'></script>
-    <script type='text/javascript' src='{{ asset('bundles/majesteel/js/jquery.liveSearch.js')}}'></script>
-    <script type='text/javascript' src='{{ asset('bundles/majesteel/js/jquery.form.js')}}'></script>
-    <script type='text/javascript' src='{{ asset('bundles/majesteel/js/jquery.validate.min.js')}}'></script>
-    <script type='text/javascript' src="{{ asset('bundles/majesteel/js/jquery-twitterFetcher.js')}}"></script>
-    <script type='text/javascript' src="{{ asset('bundles/majesteel/js/jquery.sticky-kit.min.js')}}"></script>
-    
-    <script type='text/javascript' src='{{ asset('bundles/majesteel/js/custom.js')}}'></script>
-
-{% endblock %}
+{% block teel_footer %}{% endblock %}

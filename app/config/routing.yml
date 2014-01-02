@@ -31,4 +31,4 @@ _majes_cms_admin:
 
 _majes_teel:
     resource: "@MajesTeelBundle/Resources/config/routing.yml"
-    prefix:   /{_locale}
+    prefix:   /

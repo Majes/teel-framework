@@ -10,111 +10,39 @@
 {% block content %}
 
     {{parent()}}
-<!-- Start of Page Container -->
-<div class="page-container">
-        <div class="container">
-                <div class="row">
-                        <!-- start of page content -->
-                        <div class="span8 main-listing">
+<div class="container">
+
+    <div class="starter-template">
                             
-                            {% if results|length > 0 %}
-                                {% for entity in results %}{% set entity = entity.getTransformed() %}
-                                {% set fields = entity.entityRenderFront() %}
-                                    <article class="format-standard type-post hentry clearfix">
+        {% if results|length > 0 %}
+            {% for entity in results %}{% set entity = entity.getTransformed() %}
+            {% set fields = entity.entityRenderFront() %}
+            <h2>
+                <a href="{% if fields.url is not empty %}{{ path(fields.url.route, fields.url.params) }}{% endif %}">{{fields.title}}</a>
+                    <div class="pull-right">{{entity.tags}}</div><!-- end of post meta -->
+            </h2>
 
-                                        <header class="clearfix">
 
-                                                <h3 class="post-title">
-                                                    <a href="{% if fields.url is not empty %}{{ path(fields.url.route, fields.url.params) }}{% endif %}">{{fields.title}}</a>
-                                                    <div class="post-meta clearfix">
-                                                        <span class="category"><a href="#" title="View all posts in WordPress Plugins">{{entity.tags}}</a></span>
-                                                    </div><!-- end of post meta -->
-                                                </h3>
+            <p>{{entity.searchDescription}}</p>
 
-                                                
+            {% endfor %}    
+        {% else %}
 
-                                        </header>
-
-                                        <p>{{entity.searchDescription}}</p>
-
-                                    </article>
-                                {% endfor %}    
-                            {% else %}
-                                <article class="format-standard type-post hentry clearfix">
-                                    <p class="error">{% trans %}There is no result to your search{% endtrans %}</p>
-                                </article>
-                            {% endif %}
+            <div class="alert alert-danger">{% trans %}There is no result to your search{% endtrans %}</div>
+        {% endif %}
 
 
 
-                            {% if page_count > 1 %}
-                            <div id="pagination">
-                                {% if page_num > 1 %}<a href="#" class="searchPageTrigger btn" data-page="{{page_num - 1 }}">« Previous</a>{% endif %}
-                                {% for i in 1..page_count %}
-                                <a href="#" class="searchPageTrigger btn{% if i == page_num %} active{% endif %}" data-page="{{i}}">{{ i }}</a>
-                                {% endfor %}
-                                {% if page_num < page_count %}<a href="#" class="searchPageTrigger btn" data-page="{{page_num + 1 }}">Next »</a>{% endif %}
-                            </div>
-                            {% endif %}
-
-                        </div>
-                        <!-- end of page content -->
-
-                        <!-- start of sidebar -->
-                        <aside class="span4 page-sidebar">
-                            <section class="widget">
-                                <div class="support-widget">
-                                    <a href="">
-
-                                    <h3 class="title">{% trans %}Support{% endtrans %}</h3>
-                                    <p class="intro">{% trans %}You need technical or functional support on how to use majeS'teel, please feel free to contact us.{% endtrans %}</p>
-                                        
-                                    </a>
-                                </div>
-                            </section>
-
-                            <section class="widget">
-                                <h3 class="title">{% trans %}Search category{% endtrans %}</h3>
-                                <ul class="articles">
-                                    <li class="article-entry standard">
-                                                <h4><a href="#" class="searchFilterTrigger" data-filter="">{% trans %}All{% endtrans %}</a></h4>
-                                                <span class="count">{{ total }}</span>
-                                        </li>
-                                    {% for facet in facets.tags.terms %}
-                                        <li class="article-entry standard">
-                                                <h4><!--<input name="filters[{{ facet.term }}]" type="checkbox" value="" {% if facet.term in filters|keys %}checked="checked" {% endif %}>--><a href="#" class="searchFilterTrigger" data-filter="{{ facet.term }}">{{ facet.term }}</a></h4>
-                                                <span class="count">{{ facet.count }}</span>
-                                        </li>
-                                    {% endfor %}
-                                        
-                                </ul>
-                            </section>
-                        </aside>
-                        <!-- end of sidebar -->
-                </div>
-        </div>
+        {% if page_count > 1 %}
+        <ul class="pagination">
+            <li>{% if page_num > 1 %}<a href="#" data-page="{{page_num - 1 }}">« Previous</a>{% endif %}
+            {% for i in 1..page_count %}
+            <a href="#" data-page="{{i}}">{{ i }}</a>
+            {% endfor %}
+            {% if page_num < page_count %}<a href="#" data-page="{{page_num + 1 }}">Next »</a>{% endif %}</li>
+        </ul>
+        {% endif %}
+    </div>
 </div>
-<!-- End of Page Container -->
-<script>
-    $(document).ready(function(){
-        $("a.searchPageTrigger").click(function(e){
-            e.preventDefault();
-            var self = $(this);
-            $("form#search-form input[name=page_num]").val(self.data('page'));
-            $("form#search-form").submit();
-        });
-
-        $("a.searchFilterTrigger").click(function(e){
-            e.preventDefault();
-            var self = $(this);
-            if(self.data('filter') == ''){
-                $("form#search-form input[name=filters").remove();
-            }else{
-                $("form#search-form").append('<input type="hidden" name="filters[]" value="'+self.data('filter')+'" />');
-            }
-            $("form#search-form").submit();
-        });
-    });
-</script>
 {% endblock %}
 

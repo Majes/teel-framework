@@ -1,17 +1,8 @@
 {% for id, item in block.items %}
 {{wysiwygTagBegin(block, item, lang)|raw}}
-<h2><a href="#" name="{{item.attributes.title.value.value}}">{{item.attributes.title.value.value}}</a></h2>
 
-{{item.attributes.paragraph.value.value|raw}}
-
-{% if item.attributes.link.value and item.attributes.link.value.value is not empty %}
-	{% if item.attributes.link.value.page_id is defined %}
-	{% set url = path('majes_cms_' ~ item.attributes.link.value.page_id ~  '_' ~ lang) %}
-	{% else %}
-	{% set url = item.attributes.link.value.value %}
-	{% endif %}
-	<a href="{{url}}" class="btn">{{item.attributes.link.value.label}}</a>
-{% endif %}
+	<h1>{{item.attributes.title.value.value}}</h1>
+	{{item.attributes.paragraph.value.value|raw}}
 
 
 {{wysiwygTagEnd()|raw}}
