@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Jeu 02 Janvier 2014 à 11:02
+-- Généré le: Jeu 02 Janvier 2014 à 13:40
 -- Version du serveur: 5.1.72
 -- Version de PHP: 5.3.21
 
@@ -112,7 +112,7 @@ CREATE TABLE IF NOT EXISTS `cms_host` (
 --
 
 INSERT INTO `cms_host` (`id`, `title`, `url`, `create_date`) VALUES
-(1, 'Majesteel', 'teel.dev', '2014-01-02 09:14:13');
+(1, 'majesteel example', 'teel.dev', '2014-01-02 09:14:13');
 
 -- --------------------------------------------------------
 
@@ -189,11 +189,11 @@ CREATE TABLE IF NOT EXISTS `cms_page_lang` (
   `url` varchar(150) NOT NULL,
   `url_root` varchar(255) DEFAULT NULL,
   `title` varchar(150) NOT NULL,
-  `search_description` text NOT NULL,
+  `search_description` text,
   `meta_title` varchar(150) DEFAULT NULL,
   `meta_description` varchar(255) DEFAULT NULL,
   `meta_keywords` varchar(255) DEFAULT NULL,
-  `tags` varchar(150) NOT NULL DEFAULT 'Page',
+  `tags` varchar(150) DEFAULT 'Page',
   `create_date` datetime NOT NULL,
   `update_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
@@ -441,7 +441,7 @@ CREATE TABLE IF NOT EXISTS `core_log` (
   `params` text NOT NULL,
   `create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
 
 --
 -- Contenu de la table `core_log`
@@ -454,7 +454,10 @@ INSERT INTO `core_log` (`id`, `user_id`, `locale`, `name`, `route`, `params`, `c
 (4, 1, 'fr', 'SystemListener', '_cms_content', '{"id":"1","menu_id":"1","lang":"fr","page_parent_id":"0","_locale":"fr"}', '2014-01-02 10:01:34'),
 (5, 1, 'fr', 'SystemListener', '_cms_content', '{"id":"1","menu_id":"1","lang":"fr","page_parent_id":"0","_locale":"fr"}', '2014-01-02 10:02:30'),
 (6, 1, 'fr', 'SystemListener', 'majes_cms_1_fr', '{"_locale":"fr"}', '2014-01-02 10:02:34'),
-(7, 1, 'en', 'SystemListener', 'majes_cms_1_en', '{"_locale":"en"}', '2014-01-02 10:02:42');
+(7, 1, 'en', 'SystemListener', 'majes_cms_1_en', '{"_locale":"en"}', '2014-01-02 10:02:42'),
+(8, 1, 'en', 'SystemListener', '_admin_index', '{"_locale":"en"}', '2014-01-02 10:26:02'),
+(9, 1, 'en', 'SystemListener', '_cms_content', '{"id":null,"menu_id":null,"lang":null,"page_parent_id":null,"_locale":"en"}', '2014-01-02 10:26:05'),
+(10, 1, 'en', 'SystemListener', 'majes_cms_1_en', '{"_locale":"en"}', '2014-01-02 10:26:16');
 
 -- --------------------------------------------------------
 
@@ -489,9 +492,9 @@ CREATE TABLE IF NOT EXISTS `media` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) DEFAULT NULL,
   `type` varchar(100) NOT NULL DEFAULT 'picture',
-  `folder` varchar(100) NOT NULL DEFAULT 'default',
-  `title` varchar(255) NOT NULL DEFAULT '',
-  `author` varchar(255) NOT NULL DEFAULT '',
+  `folder` varchar(100) DEFAULT 'default',
+  `title` varchar(255) DEFAULT NULL,
+  `author` varchar(255) DEFAULT NULL,
   `path` varchar(255) DEFAULT NULL,
   `embedded` text,
   `is_protected` tinyint(4) NOT NULL DEFAULT '0',
