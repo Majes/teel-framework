@@ -3,8 +3,8 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Mer 20 Novembre 2013 à 13:37
--- Version du serveur: 5.1.66
+-- Généré le: Jeu 02 Janvier 2014 à 10:56
+-- Version du serveur: 5.1.72
 -- Version de PHP: 5.3.21
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de données: `sf2`
+-- Base de données: `teelempty`
 --
 
 -- --------------------------------------------------------
@@ -61,8 +61,16 @@ CREATE TABLE IF NOT EXISTS `cms_block` (
   `create_date` datetime NOT NULL,
   `update_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
 
+--
+-- Contenu de la table `cms_block`
+--
+
+INSERT INTO `cms_block` (`id`, `user_id`, `is_repeatable`, `title`, `ref`, `create_date`, `update_date`) VALUES
+(13, 1, 1, 'Paragraph', 'paragraph', '2014-01-02 10:20:10', '2014-01-02 09:20:11');
+
+-- --------------------------------------------------------
 
 --
 -- Structure de la table `cms_block_attribute`
@@ -80,7 +88,17 @@ CREATE TABLE IF NOT EXISTS `cms_block_attribute` (
   `update_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `block_id` (`block_id`,`attribute_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=39 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=41 ;
+
+--
+-- Contenu de la table `cms_block_attribute`
+--
+
+INSERT INTO `cms_block_attribute` (`id`, `block_id`, `attribute_id`, `sort`, `title`, `ref`, `create_date`, `update_date`) VALUES
+(39, 13, 1, 10, 'Title', 'title', '2014-01-02 10:20:19', '2014-01-02 09:21:13'),
+(40, 13, 4, 20, 'Content', 'paragraph', '2014-01-02 10:20:19', '2014-01-02 09:21:13');
+
+-- --------------------------------------------------------
 
 --
 -- Structure de la table `cms_host`
@@ -93,7 +111,16 @@ CREATE TABLE IF NOT EXISTS `cms_host` (
   `url` varchar(255) NOT NULL DEFAULT '',
   `create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+
+--
+-- Contenu de la table `cms_host`
+--
+
+INSERT INTO `cms_host` (`id`, `title`, `url`, `create_date`) VALUES
+(4, 'Majesteel', 'teel.dev', '2014-01-02 09:14:13');
+
+-- --------------------------------------------------------
 
 --
 -- Structure de la table `cms_menu`
@@ -144,7 +171,16 @@ CREATE TABLE IF NOT EXISTS `cms_page` (
   KEY `user_id` (`user_id`),
   KEY `host_id` (`host_id`),
   KEY `template_id` (`template_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=22 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Contenu de la table `cms_page`
+--
+
+INSERT INTO `cms_page` (`id`, `page_id_parent`, `user_id`, `host_id`, `menu_id`, `template_id`, `link_url`, `target_url`, `sort`, `is_inmenu`, `is_active`, `is_folder`, `status`, `enable_comments`, `create_date`, `update_date`) VALUES
+(1, NULL, 1, 4, 1, 9, NULL, NULL, 0, 1, 1, 0, '', 0, '2014-01-02 10:23:33', '2014-01-02 09:23:33');
+
+-- --------------------------------------------------------
 
 --
 -- Structure de la table `cms_page_lang`
@@ -159,6 +195,7 @@ CREATE TABLE IF NOT EXISTS `cms_page_lang` (
   `url` varchar(150) NOT NULL,
   `url_root` varchar(255) DEFAULT NULL,
   `title` varchar(150) NOT NULL,
+  `search_description` text NOT NULL,
   `meta_title` varchar(150) DEFAULT NULL,
   `meta_description` varchar(255) DEFAULT NULL,
   `meta_keywords` varchar(255) DEFAULT NULL,
@@ -169,9 +206,17 @@ CREATE TABLE IF NOT EXISTS `cms_page_lang` (
   KEY `user_id` (`user_id`),
   KEY `id` (`id`),
   KEY `page_id` (`page_id`,`locale`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=23 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=25 ;
 
-ALTER TABLE  `cms_page_lang` ADD  `search_description` TEXT NOT NULL DEFAULT  '' AFTER  `title`;
+--
+-- Contenu de la table `cms_page_lang`
+--
+
+INSERT INTO `cms_page_lang` (`id`, `page_id`, `locale`, `user_id`, `url`, `url_root`, `title`, `search_description`, `meta_title`, `meta_description`, `meta_keywords`, `tags`, `create_date`, `update_date`) VALUES
+(23, 1, 'fr', 1, '/', '', 'Accueil en français', 'Teel framework - Page accueil', 'Teel framework - Page accueil', NULL, NULL, 'Page', '2014-01-02 10:23:33', '2014-01-02 09:41:43'),
+(24, 1, 'en', 1, '/', '', 'Home in English', 'Teel framework - Homepage', 'Teel framework - Homepage', NULL, NULL, 'Page', '2014-01-02 10:45:50', '2014-01-02 09:46:37');
+
+-- --------------------------------------------------------
 
 --
 -- Structure de la table `cms_page_role`
@@ -183,6 +228,8 @@ CREATE TABLE IF NOT EXISTS `cms_page_role` (
   `role_id` int(11) NOT NULL,
   PRIMARY KEY (`page_id`,`role_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
 
 --
 -- Structure de la table `cms_page_template_block`
@@ -201,7 +248,17 @@ CREATE TABLE IF NOT EXISTS `cms_page_template_block` (
   `update_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `id` (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=26 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=28 ;
+
+--
+-- Contenu de la table `cms_page_template_block`
+--
+
+INSERT INTO `cms_page_template_block` (`id`, `version`, `page_id`, `template_block_id`, `user_id`, `locale`, `content`, `create_date`, `update_date`) VALUES
+(26, 1, 1, 24, 1, 'fr', '{"attributes":{"20140102104143":{"title":"Titre paragraphe 1","id":"20140102104143","content":{"title":{"ref":"textline","value":"Titre paragraphe 1"},"paragraph":{"ref":"editor","value":"<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent mattis lorem et risus hendrerit, convallis elementum eros facilisis. Etiam ornare rutrum orci et dignissim. Sed nec dolor venenatis, adipiscing ante quis, euismod lacus. Nullam nec vulputate magna. Nullam enim mi, gravida consequat nibh in, tincidunt blandit est. Donec non nunc sed lacus fringilla laoreet sed ac augue. Etiam nec congue mi. In sed lacus quis felis mattis fringilla.<\\/p>\\r\\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent mattis lorem et risus hendrerit, convallis elementum eros facilisis. Etiam ornare rutrum orci et dignissim. Sed nec dolor venenatis, adipiscing ante quis, euismod lacus. Nullam nec vulputate magna. Nullam enim mi, gravida consequat nibh in, tincidunt blandit est. Donec non nunc sed lacus fringilla laoreet sed ac augue. Etiam nec congue mi. In sed lacus quis felis mattis fringilla.<\\/p>"}}}}}', '2014-01-02 10:41:43', '2014-01-02 09:41:43'),
+(27, 2, 1, 24, 1, 'en', '{"attributes":{"20140102104143":{"title":"Paragraph1 title","id":"20140102104143","content":{"title":{"ref":"textline","value":"Paragraph1 title"},"paragraph":{"ref":"editor","value":"<p>[EN] Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent mattis lorem et risus hendrerit, convallis elementum eros facilisis. Etiam ornare rutrum orci et dignissim. Sed nec dolor venenatis, adipiscing ante quis, euismod lacus. Nullam nec vulputate magna. Nullam enim mi, gravida consequat nibh in, tincidunt blandit est. Donec non nunc sed lacus fringilla laoreet sed ac augue. Etiam nec congue mi. In sed lacus quis felis mattis fringilla.<\\/p>\\r\\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent mattis lorem et risus hendrerit, convallis elementum eros facilisis. Etiam ornare rutrum orci et dignissim. Sed nec dolor venenatis, adipiscing ante quis, euismod lacus. Nullam nec vulputate magna. Nullam enim mi, gravida consequat nibh in, tincidunt blandit est. Donec non nunc sed lacus fringilla laoreet sed ac augue. Etiam nec congue mi. In sed lacus quis felis mattis fringilla.[\\/EN]<\\/p>"}}}}}', '2014-01-02 10:45:50', '2014-01-02 09:46:40');
+
+-- --------------------------------------------------------
 
 --
 -- Structure de la table `cms_page_template_block_version`
@@ -218,7 +275,16 @@ CREATE TABLE IF NOT EXISTS `cms_page_template_block_version` (
   `create_date` datetime NOT NULL,
   `update_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`page_template_block_id`,`version`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=26 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=28 ;
+
+--
+-- Contenu de la table `cms_page_template_block_version`
+--
+
+INSERT INTO `cms_page_template_block_version` (`page_template_block_id`, `version`, `user_id`, `locale`, `content`, `status`, `create_date`, `update_date`) VALUES
+(27, 2, 1, 'en', '{"attributes":{"20140102104143":{"title":"Paragraph1 title","id":"20140102104143","content":{"title":{"ref":"textline","value":"Paragraph1 title"},"paragraph":{"ref":"editor","value":"<p>[EN] Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent mattis lorem et risus hendrerit, convallis elementum eros facilisis. Etiam ornare rutrum orci et dignissim. Sed nec dolor venenatis, adipiscing ante quis, euismod lacus. Nullam nec vulputate magna. Nullam enim mi, gravida consequat nibh in, tincidunt blandit est. Donec non nunc sed lacus fringilla laoreet sed ac augue. Etiam nec congue mi. In sed lacus quis felis mattis fringilla.<\\/p>\\r\\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent mattis lorem et risus hendrerit, convallis elementum eros facilisis. Etiam ornare rutrum orci et dignissim. Sed nec dolor venenatis, adipiscing ante quis, euismod lacus. Nullam nec vulputate magna. Nullam enim mi, gravida consequat nibh in, tincidunt blandit est. Donec non nunc sed lacus fringilla laoreet sed ac augue. Etiam nec congue mi. In sed lacus quis felis mattis fringilla.[\\/EN]<\\/p>"}}}}}', 'published', '2014-01-02 10:46:37', '2014-01-02 09:46:40');
+
+-- --------------------------------------------------------
 
 --
 -- Structure de la table `cms_route`
@@ -234,7 +300,17 @@ CREATE TABLE IF NOT EXISTS `cms_route` (
   `url` varchar(255) NOT NULL,
   `redirect_url` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=23 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=25 ;
+
+--
+-- Contenu de la table `cms_route`
+--
+
+INSERT INTO `cms_route` (`id`, `page_id`, `locale`, `title`, `host`, `url`, `redirect_url`) VALUES
+(23, 1, 'fr', 'Accueil en français', 'teel.dev', '/fr', NULL),
+(24, 1, 'en', 'Home in English', 'teel.dev', '/en', NULL);
+
+-- --------------------------------------------------------
 
 --
 -- Structure de la table `cms_template`
@@ -249,7 +325,16 @@ CREATE TABLE IF NOT EXISTS `cms_template` (
   `create_date` datetime NOT NULL,
   `update_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
+
+--
+-- Contenu de la table `cms_template`
+--
+
+INSERT INTO `cms_template` (`id`, `user_id`, `title`, `ref`, `create_date`, `update_date`) VALUES
+(9, 1, 'Home', 'home', '2014-01-02 10:21:25', '2014-01-02 09:21:25');
+
+-- --------------------------------------------------------
 
 --
 -- Structure de la table `cms_template_block`
@@ -269,7 +354,31 @@ CREATE TABLE IF NOT EXISTS `cms_template_block` (
   `create_date` datetime NOT NULL,
   `update_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=24 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=25 ;
+
+--
+-- Contenu de la table `cms_template_block`
+--
+
+INSERT INTO `cms_template_block` (`id`, `template_id`, `block_id`, `is_mobile`, `is_tablet`, `is_desktop`, `is_repeatable`, `ref`, `sort`, `create_date`, `update_date`) VALUES
+(24, 9, 13, 1, 1, 1, 1, 'home_paragraph', 10, '2014-01-02 10:21:28', '2014-01-02 09:21:28');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `core_chat`
+--
+
+DROP TABLE IF EXISTS `core_chat`;
+CREATE TABLE IF NOT EXISTS `core_chat` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `content` tinytext NOT NULL,
+  `create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
 
 --
 -- Structure de la table `core_language`
@@ -306,6 +415,8 @@ CREATE TABLE IF NOT EXISTS `core_language_token` (
   UNIQUE KEY `UNIQ_DB334CE55F37A13B` (`token`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
+-- --------------------------------------------------------
+
 --
 -- Structure de la table `core_language_translation`
 --
@@ -319,6 +430,8 @@ CREATE TABLE IF NOT EXISTS `core_language_translation` (
   `language_token_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+
+-- --------------------------------------------------------
 
 --
 -- Structure de la table `core_log`
@@ -334,20 +447,31 @@ CREATE TABLE IF NOT EXISTS `core_log` (
   `params` text NOT NULL,
   `create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2408 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
+-- --------------------------------------------------------
 
 --
--- Structure de la table `core_chat`
+-- Structure de la table `core_stat`
 --
 
-CREATE TABLE IF NOT EXISTS `core_chat` (
+DROP TABLE IF EXISTS `core_stat`;
+CREATE TABLE IF NOT EXISTS `core_stat` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) NOT NULL,
-  `content` TINYTEXT NOT NULL,
+  `is_tablet` tinyint(4) NOT NULL DEFAULT '0',
+  `is_mobile` tinyint(4) NOT NULL DEFAULT '0',
+  `begin_date` datetime NOT NULL,
+  `end_date` datetime NOT NULL,
+  `new_visits` int(11) NOT NULL,
+  `percent_new_visits` double NOT NULL,
+  `avg_time_to_site` double NOT NULL,
+  `pageviews_per_visits` double NOT NULL,
+  `current` tinyint(4) NOT NULL DEFAULT '0',
   `create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=26 ;
+
+-- --------------------------------------------------------
 
 --
 -- Structure de la table `media`
@@ -373,6 +497,8 @@ CREATE TABLE IF NOT EXISTS `media` (
   KEY `is_protected` (`is_protected`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=24 ;
 
+-- --------------------------------------------------------
+
 --
 -- Structure de la table `role`
 --
@@ -384,11 +510,9 @@ CREATE TABLE IF NOT EXISTS `role` (
   `role` varchar(100) NOT NULL,
   `bundle` varchar(50) NOT NULL DEFAULT '',
   `internal` int(11) NOT NULL DEFAULT '0',
+  `tags` text NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=19 ;
-
-
-ALTER TABLE  `role` ADD  `tags` TEXT NOT NULL DEFAULT  '' AFTER  `internal`;
 
 --
 -- Contenu de la table `role`
@@ -424,20 +548,19 @@ CREATE TABLE IF NOT EXISTS `user` (
   `lastname` varchar(150) NOT NULL,
   `locale` varchar(200) NOT NULL,
   `wysiwyg` tinyint(4) NOT NULL DEFAULT '1',
+  `tags` text NOT NULL,
   `lastconnected_date` datetime DEFAULT NULL,
   `update_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `create_date` datetime NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
-ALTER TABLE  `user` ADD  `tags` TEXT NOT NULL DEFAULT  '' AFTER  `wysiwyg`;
-
 --
 -- Contenu de la table `user`
 --
 
-INSERT INTO `user` (`id`, `media_id`, `username`, `email`, `salt`, `password`, `is_active`, `firstname`, `lastname`, `locale`, `wysiwyg`, `tags`) VALUES
-(1, null, 'admin', 'admin@majes.fr', '', 'd033e22ae348aeb5660fc2140aec35850c4da997', 1, 'Admin', 'Admin', 'en', 1, 'User');
+INSERT INTO `user` (`id`, `media_id`, `username`, `email`, `salt`, `password`, `is_active`, `firstname`, `lastname`, `locale`, `wysiwyg`, `tags`, `lastconnected_date`, `update_date`, `create_date`) VALUES
+(1, NULL, 'admin', 'admin@admin.fr', '', 'd033e22ae348aeb5660fc2140aec35850c4da997', 1, 'Admin', 'Admin', 'en', 1, 'User', NULL, '2014-01-02 09:56:30', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -460,28 +583,6 @@ INSERT INTO `user_role` (`user_id`, `role_id`) VALUES
 (1, 1),
 (1, 2),
 (1, 3);
-
--- --------------------------------------------------------
-
---
--- Structure de la table `core_stat`
---
-
-DROP TABLE IF EXISTS `core_stat`;
-CREATE TABLE IF NOT EXISTS `core_stat` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `is_tablet` tinyint(4) NOT NULL DEFAULT '0',
-  `is_mobile` tinyint(4) NOT NULL DEFAULT '0',
-  `begin_date` datetime NOT NULL,
-  `end_date` datetime NOT NULL,
-  `new_visits` int(11) NOT NULL,
-  `percent_new_visits` double NOT NULL,
-  `avg_time_to_site` double NOT NULL,
-  `pageviews_per_visits` double NOT NULL,
-  `current` tinyint(4) NOT NULL DEFAULT '0',
-  `create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=26 ;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
