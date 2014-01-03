@@ -37,7 +37,8 @@ INSERT INTO `cms_attribute` (`id`, `title`, `ref`) VALUES
 (2, 'Picture', 'picture'),
 (3, 'Text', 'textarea'),
 (4, 'Html editor', 'editor'),
-(5, 'Link', 'link');
+(5, 'Link', 'link'),
+(6, 'File', 'file');
 
 -- --------------------------------------------------------
 
