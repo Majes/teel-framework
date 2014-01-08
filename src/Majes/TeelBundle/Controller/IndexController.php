@@ -15,8 +15,8 @@ class IndexController extends Controller implements SystemController
         
         $request = $this->getRequest();
 
-        
-
-        return $this->render('MajesTeelBundle:Index:index.html.twig');
+       	return $this->_is_multilingual ? 
+       		$this->redirect('/'.$this->_default_lang) : 
+       		$this->render('MajesTeelBundle:Index:index.html.twig');
     }
 }
