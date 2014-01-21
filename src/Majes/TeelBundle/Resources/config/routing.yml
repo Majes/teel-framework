@@ -1,3 +1,23 @@
 _majesteel_index:
     pattern:  /
     defaults: { _controller: MajesTeelBundle:Index:index }
+    
+_majesteel_account:
+    pattern:  /{_locale}/my-account
+    defaults: { _controller: MajesTeelBundle:Myaccount:index }
+
+_majesteel_login:
+    pattern:  /{_locale}/my-account/authentification
+    defaults: { _controller: MajesTeelBundle:Auth:login }
+
+_majesteel_login_facebook:
+    pattern:  /{_locale}/my-account/authentification/facebook
+    defaults: { _controller: MajesTeelBundle:Auth:loginfacebook }
+
+_majesteel_login_check:
+    pattern:   /{_locale}/my-account/authentification_check
+    defaults: { _controller: MajesTeelBundle:Auth:login_check }
+
+_majesteel_logout:
+    pattern:   /{_locale}/my-account/deconnexion
+    defaults: { _controller: MajesTeelBundle:Auth:logout }

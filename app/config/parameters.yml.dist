@@ -19,6 +19,11 @@ parameters:
     admin:
         wysiwyg: true
         maintenance: false
+
+    facebook:
+        app_id:
+        app_secret:
+	
     google:
         oauth2_client_id: 
         oauth2_client_secret: 

@@ -17,8 +17,25 @@
                   {% else %}<a href="{% if menu_page.link_url is null %}{{ path('majes_cms_' ~ menu_page.id ~ '_' ~ lang) }}{% else %}{{menu_page.link_url}}{% endif %}"{% if menu_page.target_url is not null %}target="{{ menu_page.target_url }}"{% endif %}>{% endif %}{{ menu_page.label }}</a>
                 </li>
             {% endfor %}
-
+				
           </ul>
+			<ul class="nav navbar-nav navbar-right">
+			      {% if app.user is not null %}<li class="dropdown">
+			        <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{app.user.email}} <b class="caret"></b></a>
+			        <ul class="dropdown-menu">
+			          <li><a href="{{ path('_majesteel_logout') }}">Disconnect</a></li>
+			        </ul>
+			      </li>{% else %}
+					<li class="dropdown">
+				        <a href="#" class="dropdown-toggle" data-toggle="dropdown">My account <b class="caret"></b></a>
+				        <ul class="dropdown-menu">
+				          	<li><a href="{{ path('_majesteel_login') }}">Login</a></li>
+							<li><a href="{{ path('_majesteel_login') }}">Subscribe</a></li>
+				        </ul>
+				      </li>
+				{% endif %}
+			    </ul>
+	
         </div><!--/.nav-collapse -->
       </div>
 </div>

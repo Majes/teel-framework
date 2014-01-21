@@ -533,6 +533,7 @@ INSERT INTO `role` (`id`, `name`, `role`, `bundle`, `internal`, `tags`) VALUES
 (1, 'Admin - is mandatory in order to have acces to admin panel', 'ROLE_ADMIN', '', 0, 'Role'),
 (2, 'Admin user - has permissions to manage users', 'ROLE_ADMIN_USER', '', 0, 'Role'),
 (3, 'Super admin - has all permissions', 'ROLE_SUPERADMIN', '', 0, 'Role'),
+(4, 'User - access to their account', 'ROLE_USER', '', 0, 'Role'),
 (9, 'Allow admin user to see all media', 'ROLE_MEDIA_LIST', 'media', 0, 'Role'),
 (10, 'Allow admin user to edit or add a media', 'ROLE_MEDIA_EDIT', 'media', 0, 'Role'),
 (11, 'Allow admin user to delete a media', 'ROLE_MEDIA_REMOVE', 'media', 0, 'Role'),
@@ -550,6 +551,7 @@ DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `media_id` int(11) DEFAULT NULL,
+  `facebook_id` int(11) DEFAULT NULL,
   `username` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `salt` varchar(255) NOT NULL,
