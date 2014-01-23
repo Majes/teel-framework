@@ -42,6 +42,10 @@
     {% include ['MajesTeelBundle:parts:menu.html.twig'] %}
 {% endblock %}
 
-{% block content %}{% endblock %}
+{% block content %}
+
+    <!-- script -->
+    {% block teel_js %}{{parent()}}{% endblock %}
+{% endblock %}
 
 {% block teel_footer %}{% endblock %}
