@@ -96,28 +96,6 @@ INSERT INTO `cms_block_attribute` (`id`, `block_id`, `attribute_id`, `sort`, `ti
 -- --------------------------------------------------------
 
 --
--- Structure de la table `cms_host`
---
-
-DROP TABLE IF EXISTS `cms_host`;
-CREATE TABLE IF NOT EXISTS `cms_host` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) NOT NULL DEFAULT '',
-  `url` varchar(255) NOT NULL DEFAULT '',
-  `create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
-
---
--- Contenu de la table `cms_host`
---
-
-INSERT INTO `cms_host` (`id`, `title`, `url`, `create_date`) VALUES
-(1, 'majesteel example', 'teel.dev', '2014-01-02 09:14:13');
-
--- --------------------------------------------------------
-
---
 -- Structure de la table `cms_menu`
 --
 
@@ -395,6 +373,30 @@ CREATE TABLE IF NOT EXISTS `core_language` (
 INSERT INTO `core_language` (`id`, `is_active`, `locale`, `name`) VALUES
 (1, 1, 'fr', 'Française'),
 (2, 1, 'en', 'Anglais');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `core_host`
+--
+
+CREATE TABLE IF NOT EXISTS `core_host` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) NOT NULL DEFAULT '',
+  `url` varchar(255) NOT NULL DEFAULT '',
+  `is_multilingual` tinyint(4) NOT NULL DEFAULT '1',
+  `create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+
+
+--
+-- Contenu de la table `core_host`
+--
+
+INSERT INTO `core_host` (`id`, `title`, `url`, `create_date`) VALUES
+(1, 'majesteel example', 'teel.dev', '2014-01-02 09:14:13');
 
 -- --------------------------------------------------------
 
