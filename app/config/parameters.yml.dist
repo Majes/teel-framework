@@ -68,6 +68,9 @@ parameters:
                 users:
                     label: Users
                     route: _admin_users
+                host: 
+                    label: Domains
+                    route: _admin_domains
                 language: 
                     label: Languages
                     route: _admin_languages
