@@ -1,0 +1,1 @@
+Folder for private media ... sometimes you ll need to manage media that must not be within the web folder
