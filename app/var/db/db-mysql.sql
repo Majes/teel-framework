@@ -361,12 +361,12 @@ CREATE TABLE IF NOT EXISTS `core_mailer` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `subject` varchar(255) NOT NULL,
   `template` varchar(255) NOT NULL,
-  `from` varchar(150) NOT NULL,
-  `to` text NOT NULL,
+  `address_from` varchar(150) NOT NULL,
+  `address_to` text NOT NULL,
   `html` text NOT NULL,
   `create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
