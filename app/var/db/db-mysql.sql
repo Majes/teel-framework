@@ -359,14 +359,15 @@ CREATE TABLE IF NOT EXISTS `core_chat` (
 
 CREATE TABLE IF NOT EXISTS `core_mailer` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `subject` varchar(255) NOT NULL,
-  `template` varchar(255) NOT NULL,
-  `address_from` varchar(150) NOT NULL,
-  `address_to` text NOT NULL,
-  `html` text NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `subject` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `template` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `address_from` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
+  `address_to` text COLLATE utf8_unicode_ci NOT NULL,
+  `html` text COLLATE utf8_unicode_ci NOT NULL,
   `create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
