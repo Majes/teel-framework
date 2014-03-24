@@ -23,6 +23,7 @@
         "symfony-cmf/routing-bundle": "1.1.*",
         "google/apiclient": "dev-master",
 		"facebook/php-sdk" : "*",
+        "doctrine/migrations" : "dev-master",
         "doctrine/doctrine-migrations-bundle": "dev-master",
         "friendsofsymfony/elastica-bundle": "3.0.*@dev",
         "knplabs/knp-paginator-bundle": "dev-master",
