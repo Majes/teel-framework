@@ -9,9 +9,21 @@ _majesteel_account:
 _majesteel_login:
     pattern:  /{_locale}/my-account/authentification
     defaults: { _controller: MajesTeelBundle:Auth:login }
+    
+_majesteel_register:
+    pattern:  /{_locale}/my-account/enregistrement
+    defaults: { _controller: MajesTeelBundle:Auth:register }
 
 _majesteel_login_facebook:
     pattern:  /{_locale}/my-account/authentification/facebook
+    defaults: { _controller: MajesTeelBundle:Auth:loginfacebook }
+    
+_majesteel_login_google:
+    pattern:  /{_locale}/my-account/authentification/google
+    defaults: { _controller: MajesTeelBundle:Auth:loginfacebook }
+
+_majesteel_login_twitter:
+    pattern:  /{_locale}/my-account/authentification/twitter
     defaults: { _controller: MajesTeelBundle:Auth:loginfacebook }
 
 _majesteel_login_check:
