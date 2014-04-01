@@ -49,7 +49,9 @@ security:
         - { path: /[a-z]+/administration/authentification, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: /[a-z]+/administration/authentification_check, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: /[a-z]+/administration/, roles: ROLE_ADMIN }
-        - { path: /[a-z]+/my-account/authentification, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: /[a-z]+/my-account/authentification_check, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: /[a-z]+/my-account/, roles: ROLE_USER }
+        - { path: /[a-z]+/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: /[a-z]+/login_check, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: /[a-z]+/register, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: /[a-z]+/register_check, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: /[a-z]+/, roles: ROLE_USER }
         #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
