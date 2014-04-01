@@ -559,7 +559,8 @@ INSERT INTO `role` (`id`, `name`, `role`, `bundle`, `internal`, `tags`) VALUES
 (11, 'Allow admin user to delete a media', 'ROLE_MEDIA_REMOVE', 'media', 0, 'Role'),
 (13, 'Allowed users to add and edit content within the content management system', 'ROLE_CMS_CONTENT', 'cms', 0, 'Role'),
 (14, 'Allowed users to publish pages within the content management system', 'ROLE_CMS_PUBLISH', 'cms', 0, 'Role'),
-(15, 'Allowed users to edit blocks and templates within the content management system', 'ROLE_CMS_DESIGNER', 'cms', 0, 'Role');
+(15, 'Allowed users to edit blocks and templates within the content management system', 'ROLE_CMS_DESIGNER', 'cms', 0, 'Role'),
+(16, 'Default user right', 'ROLE_USER', 'cms', 0, 'Role');
 
 -- --------------------------------------------------------
 
@@ -571,7 +572,7 @@ DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `media_id` int(11) DEFAULT NULL,
-  `facebook_id` int(11) DEFAULT NULL,
+  `social` text DEFAULT NULL,
   `username` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `salt` varchar(255) NOT NULL,
