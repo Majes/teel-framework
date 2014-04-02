@@ -3,13 +3,14 @@
 namespace Majes\TeelBundle\Controller;
 
 use Majes\CoreBundle\Controller\SystemController;
+use Majes\CoreBundle\Entity\User\User;
+use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Security\Core\SecurityContext;
 
-class AuthController extends Controller implements SystemController
-{
-	
-	public function registerAction() {
+class AuthController extends Controller implements SystemController {
+
+    public function registerAction() {
         $request = $this->getRequest();
         $session = $request->getSession();
         $em = $this->getDoctrine()->getManager();
@@ -34,7 +35,7 @@ class AuthController extends Controller implements SystemController
 
             if ($user = $em->getRepository('MajesCoreBundle:User\User')
                     ->findOneBy(array('email' => $email))) {
-                $user_social = json_decode($user->getSocial());
+                $user_social = $user->getSocial();
                 if (array_key_exists($social, $user_social))
                     return $this->redirect($this->get('router')->generate('_majesteel_index', array('social' => $social, 'social_id' => $social_id)));
                 return $this->redirect($this->get('router')->generate('_majesteel_index'));
@@ -74,9 +75,7 @@ class AuthController extends Controller implements SystemController
         return $this->render('MajesTeelBundle:Auth:register.html.twig', array('auth' => true, 'facebook_url' => $facebook_url, 'twitter_url' => $twitter_url));
     }
 
-
-    public function loginAction()
-    {
+    public function loginAction() {
         /*
          * The action's view can be rendered using render() method
          * or @Template annotation as demonstrated in DemoController.
@@ -87,8 +86,7 @@ class AuthController extends Controller implements SystemController
 
         $social = $this->container->get('majes.social');
         $facebook_url = $social->getFacebookLoginUrl();
-//        $twitter_url = $social->getTwitterLoginUrl();
-        $twitter_url = null;
+        $twitter_url = null;                                // $twitter_url = $social->getTwitterLoginUrl();
         $google_url = $social->getGoogleLoginUrl();
 
 
@@ -98,12 +96,13 @@ class AuthController extends Controller implements SystemController
 
         return $this->render('MajesTeelBundle:Auth:login.html.twig', array('auth' => true, 'facebook_url' => $facebook_url, 'twitter_url' => $twitter_url, 'google_url' => $google_url));
     }
-    
-        public function logingoogleAction() {
+
+    public function logingoogleAction() {
         $request = $this->getRequest();
         $session = $request->getSession();
         $security_context = $this->container->get('security.context');
 
+         $em = $this->getDoctrine()->getManager();
         $gClient = new \Google_Client();
         $code = $request->get('code', null);
 
@@ -145,10 +144,10 @@ class AuthController extends Controller implements SystemController
                     $security_context->setToken($token);
                     return $this->redirect($this->get('router')->generate('_majesteel_index'));
                 } else {
-                     if ($user = $em->getRepository('MajesCoreBundle:User\User')->findOneBy(array('email' => $user_profile['email']))) {
+                    if ($user = $em->getRepository('MajesCoreBundle:User\User')->findOneBy(array('email' => $user_profile['emails'][0]['value']))) {
                         return $this->redirect($this->get('router')->generate('_majesteel_index', array('social' => 'google', 'social_id' => $google_id)));
                     }
-                    
+
                     $social = $this->container->get('majes.social');
                     $facebook_url = $social->getFacebookLoginUrl();
                     $google_url = $social->getGoogleLoginUrl();
@@ -196,10 +195,10 @@ class AuthController extends Controller implements SystemController
                 return $this->redirect($this->get('router')->generate('_majesteel_login'));
             }
         }
-            return $this->redirect($this->get('router')->generate('_majesteel_login'));
+        return $this->redirect($this->get('router')->generate('_majesteel_login'));
     }
 
-	    public function loginfacebookAction() {
+    public function loginfacebookAction() {
         $security_context = $this->container->get('security.context');
         $request = $this->getRequest();
         $session = $request->getSession();
@@ -249,15 +248,14 @@ class AuthController extends Controller implements SystemController
         }
     }
 
-    public function loginCheckAction()
-    {
+    public function loginCheckAction() {
         /*
          * The action's view can be rendered using render() method
          * or @Template annotation as demonstrated in DemoController.
          *
          */
-         
-         $request = $this->getRequest();
+
+        $request = $this->getRequest();
         $em = $this->getDoctrine()->getManager();
 
         $social = $request->get('social', null);
@@ -273,11 +271,11 @@ class AuthController extends Controller implements SystemController
             $em->persist($user);
             $em->flush();
         }
-         
+
         return $this->render('MajesCoreBundle:Auth:login.html.twig');
     }
-    
-      public function registerCheckAction() {
+
+    public function registerCheckAction() {
         /*
          * The action's view can be rendered using render() method
          * or @Template annotation as demonstrated in DemoController.
@@ -285,4 +283,5 @@ class AuthController extends Controller implements SystemController
          */
         return $this->render('MajesCoreBundle:Auth:register.html.twig');
     }
+
 }
