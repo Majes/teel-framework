@@ -20,11 +20,11 @@ _majesteel_login_facebook:
     
 _majesteel_login_google:
     pattern:  /{_locale}/my-account/authentification/google
-    defaults: { _controller: MajesTeelBundle:Auth:loginfacebook }
+    defaults: { _controller: MajesTeelBundle:Auth:logingoogle}
 
 _majesteel_login_twitter:
     pattern:  /{_locale}/my-account/authentification/twitter
-    defaults: { _controller: MajesTeelBundle:Auth:loginfacebook }
+    defaults: { _controller: MajesTeelBundle:Auth:logintwitter }
 
 _majesteel_login_check:
     pattern:   /{_locale}/my-account/authentification_check
