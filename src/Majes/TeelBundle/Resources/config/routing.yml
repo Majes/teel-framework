@@ -8,7 +8,7 @@ _majesteel_account:
 
 _majesteel_login:
     pattern:  /{_locale}/my-account/authentification
-    defaults: { _controller: MajesTeelBundle:Auth:login }
+    defaults: { _controller: MajesTeelBundle:Auth:login, social: null, social_id: null }
     
 _majesteel_register:
     pattern:  /{_locale}/my-account/enregistrement
