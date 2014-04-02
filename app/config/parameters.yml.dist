@@ -32,7 +32,8 @@ parameters:
 
     google:
         oauth2_client_id: 
-        oauth2_client_secret: 
+        oauth2_client_secret:
+        oauth2_api_key:
         oauth2_redirect_uri: 
         api_server_key: 
         api_browser_key: 
