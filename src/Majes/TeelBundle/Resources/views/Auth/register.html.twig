@@ -19,19 +19,19 @@
                         <div class="form-group">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="icon-tag"></i></span>
-                                <input class="form-control" type="text" name="_firstname" value="{{ firstname }}" placeholder="Your firstname" />
+                                <input class="form-control" type="text" name="_firstname" value="{{ firstname is defined ? firstname : '' }}" placeholder="Your firstname" />
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="icon-tag"></i></span>
-                                <input class="form-control" type="text" name="_lastname" value="{{ lastname }}" placeholder="Your lastname"/>
+                                <input class="form-control" type="text" name="_lastname" value="{{ lastname is defined ? lastname : '' }}" placeholder="Your lastname"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="icon-envelope"></i></span>
-                                <input class="form-control" type="text" name="_email" value="{{ email }}" placeholder="Your email" />
+                                <input class="form-control" type="text" name="_email" value="{{ email is defined ? email : '' }}" placeholder="Your email" />
                             </div>
                         </div>
                         <div class="form-group">
@@ -40,8 +40,8 @@
                                 <input class="form-control" type="password" value="" name="_password" placeholder="Your password"/>
                             </div>
                         </div>
-                        <input type="hidden" name="_social" value="{{ social }}"/>
-                        <input type="hidden" name="_social_id" value="{{ social_id }}"/>
+                        <input type="hidden" name="_social" value="{{ social is defined ? social : '' }}"/>
+                        <input type="hidden" name="_social_id" value="{{ social_id is defined ? social_id : '' }}"/>
                         <input type="submit" class="btn btn-lg btn-primary btn-block login-submit" value="Register"/>
 
 
@@ -49,8 +49,8 @@
                 </div>
                 <div class="col-md-4">
 			{% if facebook_url %}<a href="{{ facebook_url }}" class="btn btn-primary btn-lg btn-block btn-facebook">Register with Facebook</a>{% endif %}
-                        {% if twitter_url %}<a href="{{twitter_url}}" class="btn btn-info btn-lg btn-block btn-twitter">Register with Twitter</a>{% endif %}
-                        <a href="" class="btn btn-danger btn-lg btn-block btn-google">Register with Google</a>
+                        {% if twitter_url %}<a href="{{ twitter_url }}" class="btn btn-info btn-lg btn-block btn-twitter">Register with Twitter</a>{% endif %}
+                        {% if google_url %}<a href="{{ google_url }}" class="btn btn-danger btn-lg btn-block btn-google">Register with Google</a>{% endif %}
                 </div>
             </div>
         </div>
