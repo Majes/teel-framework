@@ -18,7 +18,8 @@ class AuthController extends Controller implements SystemController {
         $security_context = $this->container->get('security.context');
         $social = $this->container->get('majes.social');
         $facebook_url = $social->getFacebookLoginUrl();
-        $twitter_url = $social->getTwitterLoginUrl();
+        $twitter_url = null;                                //$twitter_url = $social->getTwitterLoginUrl();
+        $google_url = $social->getGoogleLoginUrl();
 
 
         if ($request->getMethod() == 'POST') {
@@ -72,7 +73,7 @@ class AuthController extends Controller implements SystemController {
         $error = $session->get(SecurityContext::AUTHENTICATION_ERROR);
         $session->remove(SecurityContext::AUTHENTICATION_ERROR);
 
-        return $this->render('MajesTeelBundle:Auth:register.html.twig', array('auth' => true, 'facebook_url' => $facebook_url, 'twitter_url' => $twitter_url));
+        return $this->render('MajesTeelBundle:Auth:register.html.twig', array('auth' => true, 'facebook_url' => $facebook_url, 'twitter_url' => $twitter_url, 'google_url' => $google_url));
     }
 
     public function loginAction() {
@@ -88,8 +89,9 @@ class AuthController extends Controller implements SystemController {
         $facebook_url = $social->getFacebookLoginUrl();
         $twitter_url = null;                                // $twitter_url = $social->getTwitterLoginUrl();
         $google_url = $social->getGoogleLoginUrl();
-
-
+        
+        if (!empty($this->_user) && $this->_user instanceof User)
+            return $this->redirect($this->get('router')->generate('_majesteel_index'));
         // get the login error if there is one
         $error = $session->get(SecurityContext::AUTHENTICATION_ERROR);
         $session->remove(SecurityContext::AUTHENTICATION_ERROR);
@@ -102,7 +104,7 @@ class AuthController extends Controller implements SystemController {
         $session = $request->getSession();
         $security_context = $this->container->get('security.context');
 
-         $em = $this->getDoctrine()->getManager();
+        $em = $this->getDoctrine()->getManager();
         $gClient = new \Google_Client();
         $code = $request->get('code', null);
 
