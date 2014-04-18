@@ -329,6 +329,7 @@ CREATE TABLE IF NOT EXISTS `cms_template_block` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=25 ;
 
+ALTER TABLE `cms_template_block` ADD `title` VARCHAR(150) NOT NULL DEFAULT '' AFTER `is_repeatable`;
 --
 -- Contenu de la table `cms_template_block`
 --
