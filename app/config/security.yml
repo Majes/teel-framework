@@ -53,5 +53,5 @@ security:
         - { path: /[a-z]+/my-account/enregistrement, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: /[a-z]+/my-account/enregistrement_check, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: /[a-z]+/administration/, roles: ROLE_ADMIN }
-        - { path: /[a-z]+, roles: ROLE_USER }
+        #- { path: /[a-z]+, roles: ROLE_USER }
         #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
