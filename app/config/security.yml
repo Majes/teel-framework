@@ -18,21 +18,6 @@ security:
             pattern:  ^/(_(profiler|wdt)|css|images|js)/
             security: false
 
-        myaccount:
-            pattern: ^/[a-z]+/my-account
-            anonymous: ~
-            form_login: 
-                login_path:  _majesteel_login
-                check_path:  _majesteel_login_check
-                post_only:      true
-                remember_me:    false
-                always_use_default_target_path: true
-                default_target_path: _majesteel_account
-            logout:
-                path:   _majesteel_logout
-                target: _majesteel_login
-            context: teel
-
         admin_area:
             switch_user: true
             pattern:   ^/[a-z]+/administration
@@ -47,6 +32,21 @@ security:
             logout:
                 path:   _admin_logout
                 target: _admin_login
+            context: teel
+
+        myaccount:
+            pattern: ^/
+            anonymous: ~
+            form_login: 
+                login_path:  _majesteel_login
+                check_path:  _majesteel_login_check
+                post_only:      true
+                remember_me:    false
+                always_use_default_target_path: true
+                default_target_path: _majesteel_account
+            logout:
+                path:   _majesteel_logout
+                target: _majesteel_login
             context: teel
 
     access_control:
