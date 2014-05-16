@@ -18,6 +18,21 @@ security:
             pattern:  ^/(_(profiler|wdt)|css|images|js)/
             security: false
 
+        myaccount:
+            pattern: ^/[a-z]+/my-account
+            anonymous: ~
+            form_login: 
+                login_path:  _majesteel_login
+                check_path:  _majesteel_login_check
+                post_only:      true
+                remember_me:    false
+                always_use_default_target_path: true
+                default_target_path: _majesteel_account
+            logout:
+                path:   _majesteel_logout
+                target: _majesteel_login
+            context: teel
+
         admin_area:
             switch_user: true
             pattern:   ^/[a-z]+/administration
@@ -27,22 +42,11 @@ security:
                 check_path:  _admin_login_check
                 post_only:      true
                 remember_me:    false
+                always_use_default_target_path: true
+                default_target_path: _admin_index
             logout:
                 path:   _admin_logout
                 target: _admin_login
-            context: teel
-                
-        myaccount:
-            pattern: ^/
-            anonymous: ~
-            form_login: 
-                login_path:  _majesteel_login
-                check_path:  _majesteel_login_check
-                post_only:      true
-                remember_me:    false
-            logout:
-                path:   _majesteel_logout
-                target: _majesteel_login
             context: teel
 
     access_control:
@@ -53,5 +57,5 @@ security:
         - { path: /[a-z]+/my-account/enregistrement, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: /[a-z]+/my-account/enregistrement_check, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: /[a-z]+/administration/, roles: ROLE_ADMIN }
-        #- { path: /[a-z]+, roles: ROLE_USER }
+        - { path: /[a-z]+/my-account, roles: ROLE_USER }
         #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
