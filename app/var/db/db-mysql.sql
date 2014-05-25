@@ -38,7 +38,9 @@ INSERT INTO `cms_attribute` (`id`, `title`, `ref`) VALUES
 (3, 'Text', 'textarea'),
 (4, 'Html editor', 'editor'),
 (5, 'Link', 'link'),
-(6, 'File', 'file');
+(6, 'File', 'file'),
+(7, 'Video', 'video'),
+(7, 'Checkbox', 'checkbox');
 
 -- --------------------------------------------------------
 
@@ -384,6 +386,8 @@ CREATE TABLE IF NOT EXISTS `core_language` (
   `name` varchar(200) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+ALTER TABLE `core_language` ADD `host` VARCHAR(255) NULL DEFAULT NULL AFTER `name`;
 
 --
 -- Contenu de la table `core_language`

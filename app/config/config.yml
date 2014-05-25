@@ -175,3 +175,14 @@ fos_elastica:
                             update: true
                             delete: true
                             is_indexable_callback: "isIndexable"
+
+sensio_framework_extra:
+    view:    { annotations: false }
+    router:  { annotations: true }
+
+fos_rest:
+    format_listener:
+        rules:
+            - prefer_extension: false
+    view:
+        view_response_listener: true

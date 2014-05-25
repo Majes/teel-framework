@@ -23,6 +23,8 @@ class AppKernel extends Kernel
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new Symfony\Cmf\Bundle\RoutingBundle\CmfRoutingBundle(),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
+            new JMS\SerializerBundle\JMSSerializerBundle(),
+            new FOS\RestBundle\FOSRestBundle(),
             new Majes\CoreBundle\MajesCoreBundle(),
             new Majes\MediaBundle\MajesMediaBundle(),
             new Majes\CmsBundle\MajesCmsBundle(),
