@@ -19,6 +19,8 @@ DirectoryIndex app.php
     
     RewriteCond %{REQUEST_URI}::$1 ^(/.+)/(.*)::\2$
     RewriteRule ^(.*) - [E=BASE:%1]
+    #Rewrite rule to redirect trailing slash: /login/ to /login
+    RewriteRule ^(.+)/$ http://%{HTTP_HOST}/$1 [R=301,L]
 
     # Redirect to URI without front controller to prevent duplicate content
     # (with and without `/app.php`). Only do this redirect on the initial
