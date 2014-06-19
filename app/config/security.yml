@@ -32,7 +32,7 @@ security:
             logout:
                 path:   _admin_logout
                 target: _admin_login
-            context: teel
+            context: teel_admin
 
         myaccount:
             pattern: ^/
