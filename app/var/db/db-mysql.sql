@@ -183,6 +183,8 @@ CREATE TABLE IF NOT EXISTS `cms_page_lang` (
   KEY `page_id` (`page_id`,`locale`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=25 ;
 
+ALTER TABLE `cms_page_lang` ADD `is_active` TINYINT NOT NULL DEFAULT '1' AFTER `tags`;
+
 --
 -- Contenu de la table `cms_page_lang`
 --
