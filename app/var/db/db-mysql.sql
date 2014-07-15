@@ -684,7 +684,7 @@ TRUNCATE TABLE `user`;
 --
 
 INSERT INTO `user` VALUES
-(1, 1, NULL, '', 'admin', 'admin@admin.fr', '', 'd033e22ae348aeb5660fc2140aec35850c4da997', 1, 'Admin', 'Admin', 'en', 1, 'User', NULL, '2014-01-02 10:56:30', '0000-00-00 00:00:00');
+(1, 1, NULL, '', 'admin', 'admin@admin.fr', '9cc414192a04b925386bcd9d0bbb1517', 'd033e22ae348aeb5660fc2140aec35850c4da997', 1, 'Admin', 'Admin', 'en', 1, 'User', NULL, '2014-01-02 10:56:30', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
