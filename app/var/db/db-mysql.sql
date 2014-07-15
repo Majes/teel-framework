@@ -657,7 +657,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `userdata_id` int(11) NOT NULL,
   `media_id` int(11) DEFAULT NULL,
-  `social` longtext NOT NULL COMMENT '(DC2Type:json_array)',
+  `social` longtext COMMENT '(DC2Type:json_array)',
   `username` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `salt` varchar(255) NOT NULL,
