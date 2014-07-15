@@ -1,14 +1,14 @@
 <?php
 
-namespace Majes\TeelBundle\Entity\User;
+namespace Majes\TeelBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * UserAddress
- *
+ * Majes\TeelBundle\Entity\UserAddress
  * @ORM\Table(name="user_address")
  * @ORM\Entity
+ * @ORM\HasLifecycleCallbacks
  */
 class UserAddress {
 
@@ -22,7 +22,7 @@ class UserAddress {
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Majes\CoreBundle\Entity\User\User", inversedBy="address", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="Majes\CoreBundle\Entity\User\User", inversedBy="addresses", cascade={"persist"})
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $user;
@@ -72,16 +72,16 @@ class UserAddress {
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="created", type="datetime")
+     * @ORM\Column(name="create_date", type="datetime")
      */
-    private $created;
+    private $createDate;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="updated", type="datetime")
+     * @ORM\Column(name="update_date", type="datetime")
      */
-    private $updated;
+    private $updateDate;
 
     public function __construct() {
         $this->created = new \DateTime();
@@ -244,47 +244,62 @@ class UserAddress {
     }
     
     /**
-     * Set created
+     * Set createDate
      *
-     * @param \DateTime $created
+     * @param \DateTime $createDate
      *
      * @return UserAddress
      */
-    public function setCreated($created) {
-        $this->created = $created;
+    public function setCreateDate($createDate) {
+        $this->createDate = $createDate;
 
         return $this;
     }
 
     /**
-     * Get created
+     * Get createDate
      *
      * @return \DateTime
      */
-    public function getCreated() {
-        return $this->created;
+    public function getCreateDate() {
+        return $this->createDate;
     }
 
     /**
-     * Set updated
+     * Set updateDate
      *
-     * @param \DateTime $updated
+     * @param \DateTime $updateDate
      *
      * @return UserAddress
      */
-    public function setUpdated($updated) {
-        $this->updated = $updated;
+    public function setUpdateDate($updateDate) {
+        $this->updateDate = $updateDate;
 
         return $this;
     }
 
     /**
-     * Get updated
+     * Get updateDate
      *
      * @return \DateTime
      */
-    public function getUpdated() {
-        return $this->updated;
+    public function getUpdateDate() {
+        return $this->updateDate;
+    }
+
+    /**
+     *
+     * @ORM\PrePersist
+     * @ORM\PreUpdate
+     */
+    public function updatedTimestamps()
+    {
+        $this->setUpdateDate(new \DateTime(date('Y-m-d H:i:s')));
+
+        if($this->getCreateDate() == null)
+        {
+            $this->setCreateDate(new \DateTime(date('Y-m-d H:i:s')));
+        }
     }
 
 }
