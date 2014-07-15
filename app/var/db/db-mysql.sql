@@ -65,9 +65,8 @@ CREATE TABLE IF NOT EXISTS `cms_block` (
   `ref` varchar(50) NOT NULL DEFAULT '',
   `create_date` datetime NOT NULL,
   `update_date` datetime NOT NULL,
-  PRIMARY KEY (`id`), ADD KEY `IDX_AD680C0EA76ED395` (`user_id`),
-  CONSTRAINT `FK_AD680C0EA76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+  PRIMARY KEY (`id`), KEY `IDX_AD680C0EA76ED395` (`user_id`)
+  ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
 -- Vider la table avant d'insérer `cms_block`
@@ -96,9 +95,7 @@ CREATE TABLE IF NOT EXISTS `cms_block_attribute` (
   `ref` varchar(150) NOT NULL DEFAULT '',
   `create_date` datetime NOT NULL,
   `update_date` datetime NOT NULL,
-  PRIMARY KEY (`id`), ADD KEY `IDX_6A6984E1E9ED820C` (`block_id`), ADD KEY `IDX_6A6984E1B6E62EFA` (`attribute_id`),
-  CONSTRAINT `FK_6A6984E1B6E62EFA` FOREIGN KEY (`attribute_id`) REFERENCES `cms_attribute` (`id`),
-  CONSTRAINT `FK_6A6984E1E9ED820C` FOREIGN KEY (`block_id`) REFERENCES `cms_block` (`id`)
+  PRIMARY KEY (`id`),  KEY `IDX_6A6984E1E9ED820C` (`block_id`),  KEY `IDX_6A6984E1B6E62EFA` (`attribute_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
@@ -119,24 +116,19 @@ INSERT INTO `cms_block_attribute` VALUES
 --
 -- Structure de la table `cms_menu`
 --
-
 CREATE TABLE IF NOT EXISTS `cms_menu` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(150) NOT NULL,
   `ref` varchar(50) NOT NULL,
-  PRIMARY KEY (`id`);
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
-
---
--- Vider la table avant d'insérer `cms_menu`
---
 
 TRUNCATE TABLE `cms_menu`;
 --
 -- Contenu de la table `cms_menu`
 --
 
-INSERT INTO `cms_menu` VALUES
+INSERT INTO `cms_menu` (`id`, `title`, `ref`) VALUES
 (1, 'Main menu', 'main'),
 (2, 'Footer menu', 'footer');
 
@@ -163,12 +155,7 @@ CREATE TABLE IF NOT EXISTS `cms_page` (
   `enable_comments` tinyint(1) NOT NULL,
   `create_date` datetime NOT NULL,
   `update_date` datetime NOT NULL,
-  PRIMARY KEY (`id`), ADD KEY `page_id_parent` (`page_id_parent`), ADD KEY `user_id` (`user_id`), ADD KEY `host_id` (`host_id`), ADD KEY `template_id` (`template_id`), ADD KEY `IDX_D39C1B5DCCD7E912` (`menu_id`),
-  CONSTRAINT `FK_D39C1B5D5DA0FB8` FOREIGN KEY (`template_id`) REFERENCES `cms_template` (`id`),
-  CONSTRAINT `FK_D39C1B5D1FB8D185` FOREIGN KEY (`host_id`) REFERENCES `core_host` (`id`),
-  CONSTRAINT `FK_D39C1B5D20576A6D` FOREIGN KEY (`page_id_parent`) REFERENCES `cms_page` (`id`),
-  CONSTRAINT `FK_D39C1B5DA76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
-  CONSTRAINT `FK_D39C1B5DCCD7E912` FOREIGN KEY (`menu_id`) REFERENCES `cms_menu` (`id`)
+  PRIMARY KEY (`id`),  KEY `page_id_parent` (`page_id_parent`),  KEY `user_id` (`user_id`),  KEY `host_id` (`host_id`),  KEY `template_id` (`template_id`),  KEY `IDX_D39C1B5DCCD7E912` (`menu_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
@@ -205,9 +192,7 @@ CREATE TABLE IF NOT EXISTS `cms_page_lang` (
   `is_active` tinyint(1) NOT NULL,
   `create_date` datetime NOT NULL,
   `update_date` datetime NOT NULL,
-  PRIMARY KEY (`id`), ADD KEY `user_id` (`user_id`), ADD KEY `id` (`id`), ADD KEY `IDX_75ABF8D5C4663E4` (`page_id`),
-  CONSTRAINT `FK_75ABF8D5A76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
-  CONSTRAINT `FK_75ABF8D5C4663E4` FOREIGN KEY (`page_id`) REFERENCES `cms_page` (`id`)
+  PRIMARY KEY (`id`),  KEY `user_id` (`user_id`),  KEY `id` (`id`),  KEY `IDX_75ABF8D5C4663E4` (`page_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
@@ -232,9 +217,7 @@ INSERT INTO `cms_page_lang` VALUES
 CREATE TABLE IF NOT EXISTS `cms_page_role` (
   `page_id` int(11) NOT NULL,
   `role_id` int(11) NOT NULL,
-  PRIMARY KEY (`page_id`,`role_id`), ADD KEY `IDX_13CBF6DDC4663E4` (`page_id`), ADD KEY `IDX_13CBF6DDD60322AC` (`role_id`),
-  CONSTRAINT `FK_13CBF6DDD60322AC` FOREIGN KEY (`role_id`) REFERENCES `role` (`id`),
-  CONSTRAINT `FK_13CBF6DDC4663E4` FOREIGN KEY (`page_id`) REFERENCES `cms_page` (`id`)
+  PRIMARY KEY (`page_id`,`role_id`),  KEY `IDX_13CBF6DDC4663E4` (`page_id`),  KEY `IDX_13CBF6DDD60322AC` (`role_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -253,10 +236,7 @@ CREATE TABLE IF NOT EXISTS `cms_page_template_block` (
   `content` longtext NOT NULL,
   `create_date` datetime NOT NULL,
   `update_date` datetime NOT NULL,
-  PRIMARY KEY (`id`), ADD KEY `id` (`id`), ADD KEY `IDX_925C55F7B6BBB27F` (`template_block_id`), ADD KEY `IDX_925C55F7C4663E4` (`page_id`), ADD KEY `IDX_925C55F7A76ED395` (`user_id`),
-  CONSTRAINT `FK_925C55F7A76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
-  CONSTRAINT `FK_925C55F7B6BBB27F` FOREIGN KEY (`template_block_id`) REFERENCES `cms_template_block` (`id`),
-  CONSTRAINT `FK_925C55F7C4663E4` FOREIGN KEY (`page_id`) REFERENCES `cms_page` (`id`)
+  PRIMARY KEY (`id`),  KEY `id` (`id`),  KEY `IDX_925C55F7B6BBB27F` (`template_block_id`),  KEY `IDX_925C55F7C4663E4` (`page_id`),  KEY `IDX_925C55F7A76ED395` (`user_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
@@ -287,9 +267,7 @@ CREATE TABLE IF NOT EXISTS `cms_page_template_block_version` (
   `status` varchar(20) NOT NULL,
   `create_date` datetime NOT NULL,
   `update_date` datetime NOT NULL,
-  PRIMARY KEY (`page_template_block_id`,`version`), ADD KEY `IDX_9F9D550139BF2BC8` (`page_template_block_id`), ADD KEY `IDX_9F9D5501A76ED395` (`user_id`),
-  CONSTRAINT `FK_9F9D5501A76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
-  CONSTRAINT `FK_9F9D550139BF2BC8` FOREIGN KEY (`page_template_block_id`) REFERENCES `cms_page_template_block` (`id`)
+  PRIMARY KEY (`page_template_block_id`,`version`),  KEY `IDX_9F9D550139BF2BC8` (`page_template_block_id`),  KEY `IDX_9F9D5501A76ED395` (`user_id`)
 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -319,8 +297,7 @@ CREATE TABLE IF NOT EXISTS `cms_route` (
   `host` varchar(255) NOT NULL,
   `url` varchar(255) NOT NULL,
   `redirect_url` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`), ADD KEY `IDX_2CB7BB55C4663E4` (`page_id`),
-  CONSTRAINT `FK_2CB7BB55C4663E4` FOREIGN KEY (`page_id`) REFERENCES `cms_page` (`id`)
+  PRIMARY KEY (`id`),  KEY `IDX_2CB7BB55C4663E4` (`page_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
@@ -349,8 +326,7 @@ CREATE TABLE IF NOT EXISTS `cms_template` (
   `ref` varchar(50) NOT NULL DEFAULT '',
   `create_date` datetime NOT NULL,
   `update_date` datetime NOT NULL,
-  PRIMARY KEY (`id`), ADD KEY `IDX_FD8ED37EA76ED395` (`user_id`),
-  CONSTRAINT `FK_FD8ED37EA76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
+  PRIMARY KEY (`id`),  KEY `IDX_FD8ED37EA76ED395` (`user_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
@@ -384,9 +360,7 @@ CREATE TABLE IF NOT EXISTS `cms_template_block` (
   `sort` int(11) NOT NULL,
   `create_date` datetime NOT NULL,
   `update_date` datetime NOT NULL,
-  PRIMARY KEY (`id`), ADD KEY `IDX_46C4330DE9ED820C` (`block_id`), ADD KEY `IDX_46C4330D5DA0FB8` (`template_id`),
-  CONSTRAINT `FK_46C4330D5DA0FB8` FOREIGN KEY (`template_id`) REFERENCES `cms_template` (`id`),
-  CONSTRAINT `FK_46C4330DE9ED820C` FOREIGN KEY (`block_id`) REFERENCES `cms_block` (`id`)
+  PRIMARY KEY (`id`),  KEY `IDX_46C4330DE9ED820C` (`block_id`),  KEY `IDX_46C4330D5DA0FB8` (`template_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
@@ -413,8 +387,7 @@ CREATE TABLE IF NOT EXISTS `core_chat` (
   `content` tinytext NOT NULL,
   `create_date` datetime NOT NULL,
   `update_date` datetime NOT NULL,
-  PRIMARY KEY (`id`), ADD KEY `IDX_5778319FA76ED395` (`user_id`),
-  CONSTRAINT `FK_5778319FA76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
+  PRIMARY KEY (`id`),  KEY `IDX_5778319FA76ED395` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -482,7 +455,7 @@ INSERT INTO `core_language` VALUES
 CREATE TABLE IF NOT EXISTS `core_language_token` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `token` varchar(200) NOT NULL,
-  PRIMARY KEY (`id`), ADD UNIQUE KEY `UNIQ_DB334CE55F37A13B` (`token`)
+  PRIMARY KEY (`id`),  UNIQUE KEY `UNIQ_DB334CE55F37A13B` (`token`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -497,8 +470,7 @@ CREATE TABLE IF NOT EXISTS `core_language_translation` (
   `translation` text NOT NULL,
   `locale` varchar(200) NOT NULL,
   `language_token_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`), ADD KEY `IDX_25471F552D7CBF83` (`language_token_id`),
-  CONSTRAINT `FK_25471F552D7CBF83` FOREIGN KEY (`language_token_id`) REFERENCES `core_language_token` (`id`)
+  PRIMARY KEY (`id`),  KEY `IDX_25471F552D7CBF83` (`language_token_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -516,8 +488,7 @@ CREATE TABLE IF NOT EXISTS `core_log` (
   `params` text NOT NULL,
   `create_date` datetime NOT NULL,
   `update_date` datetime NOT NULL,
-  PRIMARY KEY (`id`), ADD KEY `IDX_B290BEE9A76ED395` (`user_id`),
-  CONSTRAINT `FK_B290BEE9A76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
+  PRIMARY KEY (`id`),  KEY `IDX_B290BEE9A76ED395` (`user_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=62 ;
 
 --
@@ -557,8 +528,7 @@ CREATE TABLE IF NOT EXISTS `core_mailer` (
   `html` text COLLATE utf8_unicode_ci NOT NULL,
   `create_date` datetime NOT NULL,
   `update_date` datetime NOT NULL,
-  PRIMARY KEY (`id`), ADD KEY `IDX_A0C485BCA76ED395` (`user_id`),
-  CONSTRAINT `FK_A0C485BCA76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
+  PRIMARY KEY (`id`),  KEY `IDX_A0C485BCA76ED395` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -598,7 +568,7 @@ CREATE TABLE IF NOT EXISTS `ext_log_entries` (
   `version` int(11) NOT NULL,
   `data` longtext COLLATE utf8_unicode_ci COMMENT '(DC2Type:array)',
   `username` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  PRIMARY KEY (`id`), ADD KEY `log_class_lookup_idx` (`object_class`), ADD KEY `log_date_lookup_idx` (`logged_at`), ADD KEY `log_user_lookup_idx` (`username`), ADD KEY `log_version_lookup_idx` (`object_id`,`object_class`,`version`)
+  PRIMARY KEY (`id`),  KEY `log_class_lookup_idx` (`object_class`),  KEY `log_date_lookup_idx` (`logged_at`),  KEY `log_user_lookup_idx` (`username`),  KEY `log_version_lookup_idx` (`object_id`,`object_class`,`version`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -614,7 +584,7 @@ CREATE TABLE IF NOT EXISTS `ext_translations` (
   `field` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
   `foreign_key` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
   `content` longtext COLLATE utf8_unicode_ci,
-  PRIMARY KEY (`id`), ADD UNIQUE KEY `lookup_unique_idx` (`locale`,`object_class`,`field`,`foreign_key`), ADD KEY `translations_lookup_idx` (`locale`,`object_class`,`foreign_key`)
+  PRIMARY KEY (`id`),  UNIQUE KEY `lookup_unique_idx` (`locale`,`object_class`,`field`,`foreign_key`),  KEY `translations_lookup_idx` (`locale`,`object_class`,`foreign_key`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -635,8 +605,7 @@ CREATE TABLE IF NOT EXISTS `media` (
   `is_protected` tinyint(1) NOT NULL,
   `create_date` datetime NOT NULL,
   `update_date` datetime NOT NULL,
-  PRIMARY KEY (`id`), ADD KEY `user_id` (`user_id`),
-  CONSTRAINT `FK_6A2CA10CA76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
+  PRIMARY KEY (`id`),  KEY `user_id` (`user_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 
@@ -653,7 +622,7 @@ CREATE TABLE IF NOT EXISTS `role` (
   `bundle` varchar(50) NOT NULL DEFAULT '',
   `internal` tinyint(1) NOT NULL,
   `tags` text NOT NULL,
-  PRIMARY KEY (`id`), ADD UNIQUE KEY `UNIQ_57698A6A57698A6A` (`role`)
+  PRIMARY KEY (`id`),  UNIQUE KEY `UNIQ_57698A6A57698A6A` (`role`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=17 ;
 
 --
@@ -702,8 +671,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `lastconnected_date` datetime DEFAULT NULL,
   `update_date` datetime DEFAULT NULL,
   `create_date` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`), ADD UNIQUE KEY `UNIQ_8D93D649F85E0677` (`username`), ADD UNIQUE KEY `UNIQ_8D93D649E7927C74` (`email`), ADD KEY `IDX_8D93D649EA9FDD75` (`media_id`),
-  CONSTRAINT `FK_8D93D649EA9FDD75` FOREIGN KEY (`media_id`) REFERENCES `media` (`id`)
+  PRIMARY KEY (`id`),  UNIQUE KEY `UNIQ_8D93D649F85E0677` (`username`),  UNIQUE KEY `UNIQ_8D93D649E7927C74` (`email`),  KEY `IDX_8D93D649EA9FDD75` (`media_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
@@ -728,7 +696,7 @@ CREATE TABLE IF NOT EXISTS `user_data` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
     `update_date` datetime NOT NULL,
     `create_date` datetime NOT NULL,
-    PRIMARY KEY (`id`),
+    PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
 --
 -- Vider la table avant d'insérer `user_role`
@@ -760,8 +728,7 @@ CREATE TABLE IF NOT EXISTS `user_address` (
   `state` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `create_date` datetime NOT NULL,
   `update_date` datetime NOT NULL,
-  PRIMARY KEY (`id`), ADD KEY `IDX_5543718BA76ED395` (`user_id`),
-  CONSTRAINT `FK_5543718BA76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
+  PRIMARY KEY (`id`),  KEY `IDX_5543718BA76ED395` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -773,9 +740,7 @@ CREATE TABLE IF NOT EXISTS `user_address` (
 CREATE TABLE IF NOT EXISTS `user_role` (
   `user_id` int(11) NOT NULL,
   `role_id` int(11) NOT NULL,
-  PRIMARY KEY (`user_id`,`role_id`), ADD KEY `IDX_2DE8C6A3A76ED395` (`user_id`), ADD KEY `IDX_2DE8C6A3D60322AC` (`role_id`),
-  CONSTRAINT `FK_2DE8C6A3D60322AC` FOREIGN KEY (`role_id`) REFERENCES `role` (`id`),
-  CONSTRAINT `FK_2DE8C6A3A76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
+  PRIMARY KEY (`user_id`,`role_id`),  KEY `IDX_2DE8C6A3A76ED395` (`user_id`),  KEY `IDX_2DE8C6A3D60322AC` (`role_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -791,6 +756,131 @@ INSERT INTO `user_role` VALUES
 (1, 1),
 (1, 2),
 (1, 3);
+
+
+--
+-- Contraintes pour les tables exportées
+--
+
+--
+-- Contraintes pour la table `cms_block`
+--
+ALTER TABLE `cms_block`
+ADD CONSTRAINT `FK_AD680C0EA76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
+
+--
+-- Contraintes pour la table `cms_block_attribute`
+--
+ALTER TABLE `cms_block_attribute`
+ADD CONSTRAINT `FK_6A6984E1B6E62EFA` FOREIGN KEY (`attribute_id`) REFERENCES `cms_attribute` (`id`),
+ADD CONSTRAINT `FK_6A6984E1E9ED820C` FOREIGN KEY (`block_id`) REFERENCES `cms_block` (`id`);
+
+--
+-- Contraintes pour la table `cms_page`
+--
+ALTER TABLE `cms_page`
+ADD CONSTRAINT `FK_D39C1B5D5DA0FB8` FOREIGN KEY (`template_id`) REFERENCES `cms_template` (`id`),
+ADD CONSTRAINT `FK_D39C1B5D1FB8D185` FOREIGN KEY (`host_id`) REFERENCES `core_host` (`id`),
+ADD CONSTRAINT `FK_D39C1B5D20576A6D` FOREIGN KEY (`page_id_parent`) REFERENCES `cms_page` (`id`),
+ADD CONSTRAINT `FK_D39C1B5DA76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
+ADD CONSTRAINT `FK_D39C1B5DCCD7E912` FOREIGN KEY (`menu_id`) REFERENCES `cms_menu` (`id`);
+
+--
+-- Contraintes pour la table `cms_page_lang`
+--
+ALTER TABLE `cms_page_lang`
+ADD CONSTRAINT `FK_75ABF8D5A76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
+ADD CONSTRAINT `FK_75ABF8D5C4663E4` FOREIGN KEY (`page_id`) REFERENCES `cms_page` (`id`);
+
+--
+-- Contraintes pour la table `cms_page_role`
+--
+ALTER TABLE `cms_page_role`
+ADD CONSTRAINT `FK_13CBF6DDD60322AC` FOREIGN KEY (`role_id`) REFERENCES `role` (`id`),
+ADD CONSTRAINT `FK_13CBF6DDC4663E4` FOREIGN KEY (`page_id`) REFERENCES `cms_page` (`id`);
+
+--
+-- Contraintes pour la table `cms_page_template_block`
+--
+ALTER TABLE `cms_page_template_block`
+ADD CONSTRAINT `FK_925C55F7A76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
+ADD CONSTRAINT `FK_925C55F7B6BBB27F` FOREIGN KEY (`template_block_id`) REFERENCES `cms_template_block` (`id`),
+ADD CONSTRAINT `FK_925C55F7C4663E4` FOREIGN KEY (`page_id`) REFERENCES `cms_page` (`id`);
+
+--
+-- Contraintes pour la table `cms_page_template_block_version`
+--
+ALTER TABLE `cms_page_template_block_version`
+ADD CONSTRAINT `FK_9F9D5501A76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
+ADD CONSTRAINT `FK_9F9D550139BF2BC8` FOREIGN KEY (`page_template_block_id`) REFERENCES `cms_page_template_block` (`id`);
+
+--
+-- Contraintes pour la table `cms_route`
+--
+ALTER TABLE `cms_route`
+ADD CONSTRAINT `FK_2CB7BB55C4663E4` FOREIGN KEY (`page_id`) REFERENCES `cms_page` (`id`);
+
+--
+-- Contraintes pour la table `cms_template`
+--
+ALTER TABLE `cms_template`
+ADD CONSTRAINT `FK_FD8ED37EA76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
+
+--
+-- Contraintes pour la table `cms_template_block`
+--
+ALTER TABLE `cms_template_block`
+ADD CONSTRAINT `FK_46C4330D5DA0FB8` FOREIGN KEY (`template_id`) REFERENCES `cms_template` (`id`),
+ADD CONSTRAINT `FK_46C4330DE9ED820C` FOREIGN KEY (`block_id`) REFERENCES `cms_block` (`id`);
+
+--
+-- Contraintes pour la table `core_chat`
+--
+ALTER TABLE `core_chat`
+ADD CONSTRAINT `FK_5778319FA76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
+
+--
+-- Contraintes pour la table `core_language_translation`
+--
+ALTER TABLE `core_language_translation`
+ADD CONSTRAINT `FK_25471F552D7CBF83` FOREIGN KEY (`language_token_id`) REFERENCES `core_language_token` (`id`);
+
+--
+-- Contraintes pour la table `core_log`
+--
+ALTER TABLE `core_log`
+ADD CONSTRAINT `FK_B290BEE9A76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
+
+--
+-- Contraintes pour la table `core_mailer`
+--
+ALTER TABLE `core_mailer`
+ADD CONSTRAINT `FK_A0C485BCA76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
+
+--
+-- Contraintes pour la table `media`
+--
+ALTER TABLE `media`
+ADD CONSTRAINT `FK_6A2CA10CA76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
+
+--
+-- Contraintes pour la table `user`
+--
+ALTER TABLE `user`
+ADD CONSTRAINT `FK_8D93D649EA9FDD75` FOREIGN KEY (`media_id`) REFERENCES `media` (`id`);
+
+--
+-- Contraintes pour la table `user_address`
+--
+ALTER TABLE `user_address`
+ADD CONSTRAINT `FK_5543718BA76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
+
+--
+-- Contraintes pour la table `user_role`
+--
+ALTER TABLE `user_role`
+ADD CONSTRAINT `FK_2DE8C6A3D60322AC` FOREIGN KEY (`role_id`) REFERENCES `role` (`id`),
+ADD CONSTRAINT `FK_2DE8C6A3A76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
 
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
