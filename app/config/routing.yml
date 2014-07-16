@@ -16,7 +16,7 @@ _majes_install_db:
 
 _majes_admin:
     resource: "@MajesCoreBundle/Resources/config/routing.yml"
-    prefix:   /{_locale}
+    prefix:   /{_locale}/administration
 
 _majes_media_admin:
     resource: "@MajesMediaBundle/Resources/config/routing_admin.yml"
