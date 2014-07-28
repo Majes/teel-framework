@@ -48,42 +48,77 @@ parameters:
             label: Dashboard
             icon: se7en-home
             route: _admin_index
-        cms: 
-            label: Content management
+        cms:
+            label: 'Content management'
             icon: icon-folder-open-alt
             submenu:
-                content: 
+                content:
                     route: _cms_content
                     label: Content
                 template:
                     route: _cms_templates_list
-                    label: Templates setup
+                    label: 'Templates setup'
                 block:
                     route: _cms_blocks_list
-                    label: Blocks setup
-                role: 
+                    label: 'Blocks setup'
+                role:
                     route: _cms_roles
                     label: Roles
-        gallery: 
+        gallery:
             label: Medialibrary
             icon: icon-picture
             route: _media_list
-        admin: 
+        admin:
             label: Admin
             icon: icon-cogs
             submenu:
                 users:
                     label: Users
                     route: _admin_users
-                host: 
+                host:
                     label: Domains
                     route: _admin_domains
-                language: 
+                language:
                     label: Languages
                     route: _admin_languages
-                language_messages: 
-                    label: Traductions statiques
+                language_messages:
+                    label: 'Static Translations'
                     route: _admin_language_messages
-                roles: 
+                roles:
                     label: Roles
                     route: _admin_roles
+        trash:
+            label: Trash
+            icon: icon-trash
+            route: _admin_trashs
+            entities: 
+                user:
+                    label: User
+                    entity: User\User
+                    bundle: MajesCore
+                    title: email
+                role:
+                    label: Role
+                    entity: User\Role
+                    bundle: MajesCore
+                    title: role
+                host:
+                    label: Domain
+                    entity: Host
+                    bundle: MajesCore
+                    title: title
+                pagelang:
+                    label: Page
+                    entity: PageLang
+                    bundle: MajesCms
+                    title: title
+                template:
+                    label: Template
+                    entity: Template
+                    bundle: MajesCms
+                    title: title
+                block:
+                    label: Block
+                    entity: Block
+                    bundle: MajesCms
+                    title: title

@@ -1,7 +1,7 @@
 _majesteel_index:
     pattern:  /
     defaults: { _controller: MajesTeelBundle:Index:index }
-
+    
 _majesteel_account:
     pattern:  /{_locale}/my-account
     defaults: { _controller: MajesTeelBundle:Myaccount:index }
@@ -9,7 +9,7 @@ _majesteel_account:
 _majesteel_login:
     pattern:  /{_locale}/my-account/authentification
     defaults: { _controller: MajesTeelBundle:Auth:login, social: null, social_id: null }
-
+    
 _majesteel_register:
     pattern:  /{_locale}/my-account/enregistrement
     defaults: { _controller: MajesTeelBundle:Auth:register }
@@ -17,7 +17,7 @@ _majesteel_register:
 _majesteel_login_facebook:
     pattern:  /{_locale}/my-account/authentification/facebook
     defaults: { _controller: MajesTeelBundle:Auth:loginfacebook }
-
+    
 _majesteel_login_google:
     pattern:  /{_locale}/my-account/authentification/google
     defaults: { _controller: MajesTeelBundle:Auth:logingoogle}
