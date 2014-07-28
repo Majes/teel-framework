@@ -32,11 +32,11 @@
         "jms/serializer-bundle": "@stable",
         "friendsofsymfony/rest-bundle": "@stable",
         "guzzlehttp/guzzle": "~4.0",
-        "majes/social-bundle": "1.2.*",
-        "majes/core-bundle": "1.2.*",
-        "majes/media-bundle": "1.2.*",
-        "majes/cms-bundle": "1.2.*",
-        "majes/search-bundle": "1.2.*"
+        "majes/social-bundle": "1.20.*",
+        "majes/core-bundle": "1.20.*",
+        "majes/media-bundle": "1.20.*",
+        "majes/cms-bundle": "1.20.*",
+        "majes/search-bundle": "1.20.*"
     },
     "scripts": {
         "post-install-cmd": [
