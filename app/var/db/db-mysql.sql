@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `cms_attribute` (
 `id` int(11) NOT NULL,
   `title` varchar(150) NOT NULL,
   `ref` varchar(100) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
 
 --
 -- Vider la table avant d'insérer `cms_attribute`
@@ -52,6 +52,7 @@ INSERT INTO `cms_attribute` (`id`, `title`, `ref`) VALUES
 (7, 'Video', 'video'),
 (8, 'Checkbox', 'checkbox'),
 (9, 'Date', 'date');
+(10, 'ListBox', 'listbox');
 
 -- --------------------------------------------------------
 
@@ -1002,7 +1003,7 @@ ALTER TABLE `user_role`
 -- AUTO_INCREMENT pour la table `cms_attribute`
 --
 ALTER TABLE `cms_attribute`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT pour la table `cms_block`
 --
