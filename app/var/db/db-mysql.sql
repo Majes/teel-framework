@@ -52,7 +52,9 @@ INSERT INTO `cms_attribute` (`id`, `title`, `ref`) VALUES
 (7, 'Video', 'video'),
 (8, 'Checkbox', 'checkbox'),
 (9, 'Date', 'date');
-(10, 'ListBox', 'listbox');
+(10, 'ListBox', 'listbox'),
+(11, 'ListBox Multiple', 'listboxmultiple', 1),
+(12, 'Internal Link', 'internallink', 0);
 
 -- --------------------------------------------------------
 
