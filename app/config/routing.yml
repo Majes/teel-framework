@@ -1,3 +1,7 @@
+_majes_blog:
+    resource: "@MajesBlogBundle/Resources/config/routing.yml"
+    prefix:   /{_locale}/administration
+
 _majes_search:
     resource: "@MajesSearchBundle/Resources/config/routing.yml"
     prefix:   /{_locale}
@@ -14,6 +18,10 @@ _majes_install_db:
     pattern:  /install-db
     defaults: { _controller: MajesCoreBundle:Core:installDb }
 
+_admin_sitemapxml:
+    pattern:  /sitemap.xml
+    defaults: { _controller: MajesCoreBundle:Index:sitemap }
+
 _majes_admin:
     resource: "@MajesCoreBundle/Resources/config/routing.yml"
     prefix:   /{_locale}/administration
@@ -28,6 +36,10 @@ _majes_media:
 _majes_cms_admin:
     resource: "@MajesCmsBundle/Resources/config/routing_admin.yml"
     prefix:   /{_locale}/administration
+
+_majes_blog:
+    resource: "@MajesBlogBundle/Resources/config/routing.yml"
+    prefix:   /{_locale}/blog
 
 _majes_teel:
     resource: "@MajesTeelBundle/Resources/config/routing.yml"

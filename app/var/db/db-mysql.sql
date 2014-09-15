@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Lun 28 Juillet 2014 à 17:30
+-- Généré le :  Lun 15 Septembre 2014 à 11:34
 -- Version du serveur :  5.5.38
 -- Version de PHP :  5.4.29
 
@@ -17,8 +17,140 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de données :  `teel_empty`
+-- Base de données :  `test.majesteel`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `blog_article`
+--
+
+CREATE TABLE IF NOT EXISTS `blog_article` (
+`id` int(11) NOT NULL,
+  `blog_id` int(11) NOT NULL,
+  `is_active` tinyint(1) NOT NULL,
+  `enable_comments` tinyint(1) NOT NULL,
+  `deleted` tinyint(1) NOT NULL,
+  `create_date` datetime NOT NULL,
+  `update_date` datetime NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Vider la table avant d'insérer `blog_article`
+--
+
+TRUNCATE TABLE `blog_article`;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `blog_article_lang`
+--
+
+CREATE TABLE IF NOT EXISTS `blog_article_lang` (
+`id` int(11) NOT NULL,
+  `article_id` int(11) NOT NULL,
+  `url` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
+  `is_active` tinyint(1) NOT NULL,
+  `enable_comments` tinyint(1) NOT NULL,
+  `deleted` tinyint(1) NOT NULL,
+  `create_date` datetime NOT NULL,
+  `update_date` datetime NOT NULL,
+  `locale` varchar(5) COLLATE utf8_unicode_ci NOT NULL,
+  `content` longtext COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
+  `date` datetime NOT NULL,
+  `meta_title` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
+  `meta_type` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
+  `meta_description` longtext COLLATE utf8_unicode_ci NOT NULL,
+  `content_update_date` datetime NOT NULL,
+  `media_id` int(11) DEFAULT NULL,
+  `author` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
+  `meta_image` int(11) DEFAULT NULL,
+  `category_id` int(11) NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ;
+
+--
+-- Vider la table avant d'insérer `blog_article_lang`
+--
+
+TRUNCATE TABLE `blog_article_lang`;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `blog_blog`
+--
+
+CREATE TABLE IF NOT EXISTS `blog_blog` (
+`id` int(11) NOT NULL,
+  `host_id` int(11) NOT NULL,
+  `template_article_id` int(11) NOT NULL,
+  `template_index_id` int(11) NOT NULL,
+  `is_active` tinyint(1) NOT NULL,
+  `enable_comments` tinyint(1) NOT NULL,
+  `create_date` datetime NOT NULL,
+  `update_date` datetime NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
+
+--
+-- Vider la table avant d'insérer `blog_blog`
+--
+
+TRUNCATE TABLE `blog_blog`;
+--
+-- Contenu de la table `blog_blog`
+--
+
+INSERT INTO `blog_blog` VALUES(1, 1, 1, 1, 1, 0, '2014-09-10 00:00:00', '2014-09-10 00:00:00');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `blog_category`
+--
+
+CREATE TABLE IF NOT EXISTS `blog_category` (
+`id` int(11) NOT NULL,
+  `blog_id` int(11) NOT NULL,
+  `is_active` tinyint(1) NOT NULL,
+  `enable_comments` tinyint(1) NOT NULL,
+  `deleted` tinyint(1) NOT NULL,
+  `create_date` datetime NOT NULL,
+  `update_date` datetime NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ;
+
+--
+-- Vider la table avant d'insérer `blog_category`
+--
+
+TRUNCATE TABLE `blog_category`;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `blog_category_lang`
+--
+
+CREATE TABLE IF NOT EXISTS `blog_category_lang` (
+`id` int(11) NOT NULL,
+  `category_id` int(11) NOT NULL,
+  `is_active` tinyint(1) NOT NULL,
+  `enable_comments` tinyint(1) NOT NULL,
+  `deleted` tinyint(1) NOT NULL,
+  `create_date` datetime NOT NULL,
+  `update_date` datetime NOT NULL,
+  `name` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
+  `url` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
+  `locale` varchar(5) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ;
+
+--
+-- Vider la table avant d'insérer `blog_category_lang`
+--
+
+TRUNCATE TABLE `blog_category_lang`;
 
 -- --------------------------------------------------------
 
@@ -26,12 +158,12 @@ SET time_zone = "+00:00";
 -- Structure de la table `cms_attribute`
 --
 
-DROP TABLE IF EXISTS `cms_attribute`;
 CREATE TABLE IF NOT EXISTS `cms_attribute` (
 `id` int(11) NOT NULL,
   `title` varchar(150) NOT NULL,
-  `ref` varchar(100) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
+  `ref` varchar(100) NOT NULL,
+  `setup` tinyint(1) NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
 
 --
 -- Vider la table avant d'insérer `cms_attribute`
@@ -42,17 +174,17 @@ TRUNCATE TABLE `cms_attribute`;
 -- Contenu de la table `cms_attribute`
 --
 
-INSERT INTO `cms_attribute` (`id`, `title`, `ref`) VALUES
-(1, 'Text line', 'textline'),
-(2, 'Picture', 'picture'),
-(3, 'Text', 'textarea'),
-(4, 'Html editor', 'editor'),
-(5, 'Link', 'link'),
-(6, 'File', 'file'),
-(7, 'Video', 'video'),
-(8, 'Checkbox', 'checkbox'),
-(9, 'Date', 'date');
-(10, 'ListBox', 'listbox'),
+INSERT INTO `cms_attribute` VALUES
+(1, 'Text line', 'textline', 0),
+(2, 'Picture', 'picture', 0),
+(3, 'Text', 'textarea', 0),
+(4, 'Html editor', 'editor', 0),
+(5, 'Link', 'link', 0),
+(6, 'File', 'file', 0),
+(7, 'Video', 'video', 0),
+(8, 'Checkbox', 'checkbox', 0),
+(9, 'Date', 'date', 0),
+(10, 'ListBox', 'listbox', 1),
 (11, 'ListBox Multiple', 'listboxmultiple', 1),
 (12, 'Internal Link', 'internallink', 0);
 
@@ -62,7 +194,6 @@ INSERT INTO `cms_attribute` (`id`, `title`, `ref`) VALUES
 -- Structure de la table `cms_block`
 --
 
-DROP TABLE IF EXISTS `cms_block`;
 CREATE TABLE IF NOT EXISTS `cms_block` (
 `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
@@ -72,7 +203,7 @@ CREATE TABLE IF NOT EXISTS `cms_block` (
   `create_date` datetime NOT NULL,
   `update_date` datetime NOT NULL,
   `deleted` tinyint(1) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
 -- Vider la table avant d'insérer `cms_block`
@@ -83,7 +214,7 @@ TRUNCATE TABLE `cms_block`;
 -- Contenu de la table `cms_block`
 --
 
-INSERT INTO `cms_block` (`id`, `user_id`, `is_repeatable`, `title`, `ref`, `create_date`, `update_date`, `deleted`) VALUES
+INSERT INTO `cms_block` VALUES
 (1, 1, 1, 'Paragraph', 'paragraph', '2014-01-02 10:20:10', '2014-01-02 11:00:40', 0);
 
 -- --------------------------------------------------------
@@ -92,7 +223,6 @@ INSERT INTO `cms_block` (`id`, `user_id`, `is_repeatable`, `title`, `ref`, `crea
 -- Structure de la table `cms_block_attribute`
 --
 
-DROP TABLE IF EXISTS `cms_block_attribute`;
 CREATE TABLE IF NOT EXISTS `cms_block_attribute` (
 `id` int(11) NOT NULL,
   `block_id` int(11) NOT NULL,
@@ -101,7 +231,8 @@ CREATE TABLE IF NOT EXISTS `cms_block_attribute` (
   `title` varchar(150) DEFAULT NULL,
   `ref` varchar(150) NOT NULL DEFAULT '',
   `create_date` datetime NOT NULL,
-  `update_date` datetime NOT NULL
+  `update_date` datetime NOT NULL,
+  `setup` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
@@ -113,9 +244,9 @@ TRUNCATE TABLE `cms_block_attribute`;
 -- Contenu de la table `cms_block_attribute`
 --
 
-INSERT INTO `cms_block_attribute` (`id`, `block_id`, `attribute_id`, `sort`, `title`, `ref`, `create_date`, `update_date`) VALUES
-(1, 1, 1, 10, 'Title', 'title', '2014-01-02 10:20:19', '2014-01-02 11:02:24'),
-(2, 1, 4, 20, 'Content', 'paragraph', '2014-01-02 10:20:19', '2014-01-02 11:02:28');
+INSERT INTO `cms_block_attribute` VALUES
+(1, 1, 1, 10, 'Title', 'title', '2014-01-02 10:20:19', '2014-09-09 17:47:20', NULL),
+(2, 1, 4, 20, 'Content', 'paragraph', '2014-01-02 10:20:19', '2014-09-09 17:47:20', NULL);
 
 -- --------------------------------------------------------
 
@@ -123,7 +254,6 @@ INSERT INTO `cms_block_attribute` (`id`, `block_id`, `attribute_id`, `sort`, `ti
 -- Structure de la table `cms_menu`
 --
 
-DROP TABLE IF EXISTS `cms_menu`;
 CREATE TABLE IF NOT EXISTS `cms_menu` (
 `id` int(11) NOT NULL,
   `title` varchar(150) NOT NULL,
@@ -139,7 +269,7 @@ TRUNCATE TABLE `cms_menu`;
 -- Contenu de la table `cms_menu`
 --
 
-INSERT INTO `cms_menu` (`id`, `title`, `ref`) VALUES
+INSERT INTO `cms_menu` VALUES
 (1, 'Main menu', 'main'),
 (2, 'Footer menu', 'footer');
 
@@ -149,7 +279,6 @@ INSERT INTO `cms_menu` (`id`, `title`, `ref`) VALUES
 -- Structure de la table `cms_page`
 --
 
-DROP TABLE IF EXISTS `cms_page`;
 CREATE TABLE IF NOT EXISTS `cms_page` (
 `id` int(11) NOT NULL,
   `page_id_parent` int(11) DEFAULT NULL,
@@ -178,16 +307,14 @@ TRUNCATE TABLE `cms_page`;
 -- Contenu de la table `cms_page`
 --
 
-INSERT INTO `cms_page` (`id`, `page_id_parent`, `user_id`, `host_id`, `menu_id`, `template_id`, `link_url`, `target_url`, `sort`, `is_inmenu`, `is_active`, `is_folder`, `enable_comments`, `create_date`, `update_date`, `deleted`) VALUES
-(1, NULL, 1, 1, 1, 1, NULL, '', 0, 1, 1, 0, 0, '2014-01-02 10:23:33', '2014-01-02 10:58:58', 0);
-
+INSERT INTO `cms_page` VALUES
+(1, NULL, 1, 1, 1, 1, NULL, '', 0, 1, 1, 0, 0, '2014-01-02 10:23:33', '2014-09-11 11:15:38', 0);
 -- --------------------------------------------------------
 
 --
 -- Structure de la table `cms_page_lang`
 --
 
-DROP TABLE IF EXISTS `cms_page_lang`;
 CREATE TABLE IF NOT EXISTS `cms_page_lang` (
 `id` int(11) NOT NULL,
   `page_id` int(11) NOT NULL,
@@ -216,7 +343,7 @@ TRUNCATE TABLE `cms_page_lang`;
 -- Contenu de la table `cms_page_lang`
 --
 
-INSERT INTO `cms_page_lang` (`id`, `page_id`, `locale`, `user_id`, `url`, `url_root`, `title`, `search_description`, `meta_title`, `meta_description`, `meta_keywords`, `tags`, `is_active`, `create_date`, `update_date`, `deleted`) VALUES
+INSERT INTO `cms_page_lang` VALUES
 (1, 1, 'fr', 1, '/', '', 'Accueil en français', 'Teel framework - Page accueil', 'Teel framework - Page accueil', NULL, NULL, 'Page', 1, '2014-01-02 10:23:33', '2014-01-02 10:59:03', 0),
 (2, 1, 'en', 1, '/', '', 'Home in English', 'Teel framework - Homepage', 'Teel framework - Homepage', NULL, NULL, 'Page', 1, '2014-01-02 10:45:50', '2014-01-02 10:59:12', 0);
 
@@ -226,24 +353,18 @@ INSERT INTO `cms_page_lang` (`id`, `page_id`, `locale`, `user_id`, `url`, `url_r
 -- Structure de la table `cms_page_role`
 --
 
-DROP TABLE IF EXISTS `cms_page_role`;
 CREATE TABLE IF NOT EXISTS `cms_page_role` (
   `page_id` int(11) NOT NULL,
   `role_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Vider la table avant d'insérer `cms_page_role`
---
 
-TRUNCATE TABLE `cms_page_role`;
 -- --------------------------------------------------------
 
 --
 -- Structure de la table `cms_page_template_block`
 --
 
-DROP TABLE IF EXISTS `cms_page_template_block`;
 CREATE TABLE IF NOT EXISTS `cms_page_template_block` (
 `id` int(11) NOT NULL,
   `version` int(11) NOT NULL,
@@ -265,8 +386,8 @@ TRUNCATE TABLE `cms_page_template_block`;
 -- Contenu de la table `cms_page_template_block`
 --
 
-INSERT INTO `cms_page_template_block` (`id`, `version`, `page_id`, `template_block_id`, `user_id`, `locale`, `content`, `create_date`, `update_date`) VALUES
-(1, 1, 1, 1, 1, 'fr', '{"attributes":{"20140102104143":{"title":"Titre paragraphe 1","id":"20140102104143","content":{"title":{"ref":"textline","value":"Titre paragraphe 1"},"paragraph":{"ref":"editor","value":"<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent mattis lorem et risus hendrerit, convallis elementum eros facilisis. Etiam ornare rutrum orci et dignissim. Sed nec dolor venenatis, adipiscing ante quis, euismod lacus. Nullam nec vulputate magna. Nullam enim mi, gravida consequat nibh in, tincidunt blandit est. Donec non nunc sed lacus fringilla laoreet sed ac augue. Etiam nec congue mi. In sed lacus quis felis mattis fringilla.<\\/p>\\r\\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent mattis lorem et risus hendrerit, convallis elementum eros facilisis. Etiam ornare rutrum orci et dignissim. Sed nec dolor venenatis, adipiscing ante quis, euismod lacus. Nullam nec vulputate magna. Nullam enim mi, gravida consequat nibh in, tincidunt blandit est. Donec non nunc sed lacus fringilla laoreet sed ac augue. Etiam nec congue mi. In sed lacus quis felis mattis fringilla.<\\/p>"}}}}}', '2014-01-02 10:41:43', '2014-01-02 10:59:36'),
+INSERT INTO `cms_page_template_block` VALUES
+(1, 2, 1, 1, 1, 'fr', '{"attributes":{"20140102104143":{"title":"Titre paragraphe 1","id":"20140102104143","content":{"paragraph_picture":{"ref":"picture","title":"","width":"","height":"","author":"","media_id":1,"path":"media\\/Cms\\/2014-09-09\\/1\\/779563c55c89e63a1b7aa57cc7d0ce7b4860372e.png"},"title":{"ref":"textline","value":"Titre paragraphe 1"},"paragraph":{"ref":"editor","value":"<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent mattis lorem et risus hendrerit, convallis elementum eros facilisis. Etiam ornare rutrum orci et dignissim. Sed nec dolor venenatis, adipiscing ante quis, euismod lacus. Nullam nec vulputate magna. Nullam enim mi, gravida consequat nibh in, tincidunt blandit est. Donec non nunc sed lacus fringilla laoreet sed ac augue. Etiam nec congue mi. In sed lacus quis felis mattis fringilla.<\\/p>\\r\\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent mattis lorem et risus hendrerit, convallis elementum eros facilisis. Etiam ornare rutrum orci et dignissim. Sed nec dolor venenatis, adipiscing ante quis, euismod lacus. Nullam nec vulputate magna. Nullam enim mi, gravida consequat nibh in, tincidunt blandit est. Donec non nunc sed lacus fringilla laoreet sed ac augue. Etiam nec congue mi. In sed lacus quis felis mattis fringilla.<\\/p>"}}}}}', '2014-01-02 10:41:43', '2014-09-09 17:47:43'),
 (2, 2, 1, 1, 1, 'en', '{"attributes":{"20140102104143":{"title":"Paragraph1 title","id":"20140102104143","content":{"title":{"ref":"textline","value":"Paragraph1 title"},"paragraph":{"ref":"editor","value":"<p>[EN] Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent mattis lorem et risus hendrerit, convallis elementum eros facilisis. Etiam ornare rutrum orci et dignissim. Sed nec dolor venenatis, adipiscing ante quis, euismod lacus. Nullam nec vulputate magna. Nullam enim mi, gravida consequat nibh in, tincidunt blandit est. Donec non nunc sed lacus fringilla laoreet sed ac augue. Etiam nec congue mi. In sed lacus quis felis mattis fringilla.<\\/p>\\r\\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent mattis lorem et risus hendrerit, convallis elementum eros facilisis. Etiam ornare rutrum orci et dignissim. Sed nec dolor venenatis, adipiscing ante quis, euismod lacus. Nullam nec vulputate magna. Nullam enim mi, gravida consequat nibh in, tincidunt blandit est. Donec non nunc sed lacus fringilla laoreet sed ac augue. Etiam nec congue mi. In sed lacus quis felis mattis fringilla.[\\/EN]<\\/p>"}}}}}', '2014-01-02 10:45:50', '2014-01-02 10:59:38');
 
 -- --------------------------------------------------------
@@ -296,16 +417,14 @@ TRUNCATE TABLE `cms_page_template_block_version`;
 -- Contenu de la table `cms_page_template_block_version`
 --
 
-INSERT INTO `cms_page_template_block_version` (`page_template_block_id`, `version`, `user_id`, `locale`, `content`, `status`, `create_date`, `update_date`) VALUES
-(2, 2, 1, 'en', '{"attributes":{"20140102104143":{"title":"Paragraph1 title","id":"20140102104143","content":{"title":{"ref":"textline","value":"Paragraph1 title"},"paragraph":{"ref":"editor","value":"<p>[EN] Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent mattis lorem et risus hendrerit, convallis elementum eros facilisis. Etiam ornare rutrum orci et dignissim. Sed nec dolor venenatis, adipiscing ante quis, euismod lacus. Nullam nec vulputate magna. Nullam enim mi, gravida consequat nibh in, tincidunt blandit est. Donec non nunc sed lacus fringilla laoreet sed ac augue. Etiam nec congue mi. In sed lacus quis felis mattis fringilla.<\\/p>\\r\\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent mattis lorem et risus hendrerit, convallis elementum eros facilisis. Etiam ornare rutrum orci et dignissim. Sed nec dolor venenatis, adipiscing ante quis, euismod lacus. Nullam nec vulputate magna. Nullam enim mi, gravida consequat nibh in, tincidunt blandit est. Donec non nunc sed lacus fringilla laoreet sed ac augue. Etiam nec congue mi. In sed lacus quis felis mattis fringilla.[\\/EN]<\\/p>"}}}}}', 'published', '2014-01-02 10:46:37', '2014-01-02 10:59:57');
+INSERT INTO `cms_page_template_block_version` VALUES(1, 2, 1, 'fr', '{"attributes":{"20140102104143":{"title":"Titre paragraphe 1","id":"20140102104143","content":{"paragraph_picture":{"ref":"picture","title":"","width":"","height":"","author":"","media_id":1,"path":"media\\/Cms\\/2014-09-09\\/1\\/779563c55c89e63a1b7aa57cc7d0ce7b4860372e.png"},"title":{"ref":"textline","value":"Titre paragraphe 1"},"paragraph":{"ref":"editor","value":"<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent mattis lorem et risus hendrerit, convallis elementum eros facilisis. Etiam ornare rutrum orci et dignissim. Sed nec dolor venenatis, adipiscing ante quis, euismod lacus. Nullam nec vulputate magna. Nullam enim mi, gravida consequat nibh in, tincidunt blandit est. Donec non nunc sed lacus fringilla laoreet sed ac augue. Etiam nec congue mi. In sed lacus quis felis mattis fringilla.<\\/p>\\r\\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent mattis lorem et risus hendrerit, convallis elementum eros facilisis. Etiam ornare rutrum orci et dignissim. Sed nec dolor venenatis, adipiscing ante quis, euismod lacus. Nullam nec vulputate magna. Nullam enim mi, gravida consequat nibh in, tincidunt blandit est. Donec non nunc sed lacus fringilla laoreet sed ac augue. Etiam nec congue mi. In sed lacus quis felis mattis fringilla.<\\/p>"}}}}}', 'published', '2014-09-09 17:47:40', '2014-09-09 17:47:43');
+INSERT INTO `cms_page_template_block_version` VALUES(2, 2, 1, 'en', '{"attributes":{"20140102104143":{"title":"Paragraph1 title","id":"20140102104143","content":{"title":{"ref":"textline","value":"Paragraph1 title"},"paragraph":{"ref":"editor","value":"<p>[EN] Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent mattis lorem et risus hendrerit, convallis elementum eros facilisis. Etiam ornare rutrum orci et dignissim. Sed nec dolor venenatis, adipiscing ante quis, euismod lacus. Nullam nec vulputate magna. Nullam enim mi, gravida consequat nibh in, tincidunt blandit est. Donec non nunc sed lacus fringilla laoreet sed ac augue. Etiam nec congue mi. In sed lacus quis felis mattis fringilla.<\\/p>\\r\\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent mattis lorem et risus hendrerit, convallis elementum eros facilisis. Etiam ornare rutrum orci et dignissim. Sed nec dolor venenatis, adipiscing ante quis, euismod lacus. Nullam nec vulputate magna. Nullam enim mi, gravida consequat nibh in, tincidunt blandit est. Donec non nunc sed lacus fringilla laoreet sed ac augue. Etiam nec congue mi. In sed lacus quis felis mattis fringilla.[\\/EN]<\\/p>"}}}}}', 'published', '2014-01-02 10:46:37', '2014-01-02 10:59:57');
 
 -- --------------------------------------------------------
 
 --
 -- Structure de la table `cms_route`
 --
-
-DROP TABLE IF EXISTS `cms_route`;
 CREATE TABLE IF NOT EXISTS `cms_route` (
 `id` int(11) NOT NULL,
   `page_id` int(11) NOT NULL,
@@ -325,9 +444,8 @@ TRUNCATE TABLE `cms_route`;
 -- Contenu de la table `cms_route`
 --
 
-INSERT INTO `cms_route` (`id`, `page_id`, `locale`, `title`, `host`, `url`, `redirect_url`) VALUES
-(1, 1, 'fr', 'Accueil en français', 'local.test.majesteel', '/fr', ''),
-(2, 1, 'en', 'Home in English', 'local.test.majesteel', '/en', '');
+INSERT INTO `cms_route` VALUES(1, 1, 'fr', 'Accueil en français', 'local.test.majesteel', '/fr', '');
+INSERT INTO `cms_route` VALUES(2, 1, 'en', 'Home in English', 'local.test.majesteel', '/en', '');
 
 -- --------------------------------------------------------
 
@@ -335,7 +453,6 @@ INSERT INTO `cms_route` (`id`, `page_id`, `locale`, `title`, `host`, `url`, `red
 -- Structure de la table `cms_template`
 --
 
-DROP TABLE IF EXISTS `cms_template`;
 CREATE TABLE IF NOT EXISTS `cms_template` (
 `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
@@ -355,7 +472,7 @@ TRUNCATE TABLE `cms_template`;
 -- Contenu de la table `cms_template`
 --
 
-INSERT INTO `cms_template` (`id`, `user_id`, `title`, `ref`, `create_date`, `update_date`, `deleted`) VALUES
+INSERT INTO `cms_template` VALUES
 (1, 1, 'Home', 'home', '2014-01-02 10:21:25', '2014-01-02 11:00:22', 0);
 
 -- --------------------------------------------------------
@@ -364,7 +481,6 @@ INSERT INTO `cms_template` (`id`, `user_id`, `title`, `ref`, `create_date`, `upd
 -- Structure de la table `cms_template_block`
 --
 
-DROP TABLE IF EXISTS `cms_template_block`;
 CREATE TABLE IF NOT EXISTS `cms_template_block` (
 `id` int(11) NOT NULL,
   `template_id` int(11) NOT NULL,
@@ -378,7 +494,7 @@ CREATE TABLE IF NOT EXISTS `cms_template_block` (
   `sort` int(11) NOT NULL,
   `create_date` datetime NOT NULL,
   `update_date` datetime NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
 -- Vider la table avant d'insérer `cms_template_block`
@@ -389,8 +505,8 @@ TRUNCATE TABLE `cms_template_block`;
 -- Contenu de la table `cms_template_block`
 --
 
-INSERT INTO `cms_template_block` (`id`, `template_id`, `block_id`, `is_mobile`, `is_tablet`, `is_desktop`, `is_repeatable`, `title`, `ref`, `sort`, `create_date`, `update_date`) VALUES
-(1, 1, 1, 1, 1, 1, 1, '', 'home_paragraph', 10, '2014-01-02 10:21:28', '2014-01-02 11:00:36');
+INSERT INTO `cms_template_block` VALUES
+(1, 1, 1, 1, 1, 1, 1, 'Paragraph', 'home_paragraph', 20, '2014-01-02 10:21:28', '2014-09-11 10:43:11');
 
 -- --------------------------------------------------------
 
@@ -398,7 +514,6 @@ INSERT INTO `cms_template_block` (`id`, `template_id`, `block_id`, `is_mobile`, 
 -- Structure de la table `core_chat`
 --
 
-DROP TABLE IF EXISTS `core_chat`;
 CREATE TABLE IF NOT EXISTS `core_chat` (
 `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
@@ -407,18 +522,12 @@ CREATE TABLE IF NOT EXISTS `core_chat` (
   `update_date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
---
--- Vider la table avant d'insérer `core_chat`
---
-
-TRUNCATE TABLE `core_chat`;
 -- --------------------------------------------------------
 
 --
 -- Structure de la table `core_host`
 --
 
-DROP TABLE IF EXISTS `core_host`;
 CREATE TABLE IF NOT EXISTS `core_host` (
 `id` int(11) NOT NULL,
   `title` varchar(255) NOT NULL DEFAULT '',
@@ -438,7 +547,7 @@ TRUNCATE TABLE `core_host`;
 -- Contenu de la table `core_host`
 --
 
-INSERT INTO `core_host` (`id`, `title`, `url`, `is_multilingual`, `create_date`, `update_date`, `deleted`) VALUES
+INSERT INTO `core_host` VALUES
 (1, 'Majesteel', 'local.test.majesteel', 1, '2014-01-02 10:14:13', '0000-00-00 00:00:00', 0);
 
 -- --------------------------------------------------------
@@ -447,7 +556,6 @@ INSERT INTO `core_host` (`id`, `title`, `url`, `is_multilingual`, `create_date`,
 -- Structure de la table `core_language`
 --
 
-DROP TABLE IF EXISTS `core_language`;
 CREATE TABLE IF NOT EXISTS `core_language` (
 `id` int(11) NOT NULL,
   `is_active` tinyint(1) NOT NULL,
@@ -465,7 +573,7 @@ TRUNCATE TABLE `core_language`;
 -- Contenu de la table `core_language`
 --
 
-INSERT INTO `core_language` (`id`, `is_active`, `locale`, `name`, `host`) VALUES
+INSERT INTO `core_language` VALUES
 (1, 1, 'fr', 'Française', NULL),
 (2, 1, 'en', 'Anglais', NULL);
 
@@ -475,24 +583,17 @@ INSERT INTO `core_language` (`id`, `is_active`, `locale`, `name`, `host`) VALUES
 -- Structure de la table `core_language_token`
 --
 
-DROP TABLE IF EXISTS `core_language_token`;
 CREATE TABLE IF NOT EXISTS `core_language_token` (
 `id` int(11) NOT NULL,
   `token` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
---
--- Vider la table avant d'insérer `core_language_token`
---
-
-TRUNCATE TABLE `core_language_token`;
 -- --------------------------------------------------------
 
 --
 -- Structure de la table `core_language_translation`
 --
 
-DROP TABLE IF EXISTS `core_language_translation`;
 CREATE TABLE IF NOT EXISTS `core_language_translation` (
 `id` int(11) NOT NULL,
   `catalogue` varchar(200) NOT NULL,
@@ -501,18 +602,28 @@ CREATE TABLE IF NOT EXISTS `core_language_translation` (
   `language_token_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
+-- --------------------------------------------------------
+
 --
--- Vider la table avant d'insérer `core_language_translation`
+-- Structure de la table `core_list`
 --
 
-TRUNCATE TABLE `core_language_translation`;
+CREATE TABLE IF NOT EXISTS `core_list` (
+`id` int(11) NOT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `content` longtext COLLATE utf8_unicode_ci NOT NULL COMMENT '(DC2Type:json_array)',
+  `update_date` datetime NOT NULL,
+  `create_date` datetime NOT NULL,
+  `deleted` tinyint(1) NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+
+
 -- --------------------------------------------------------
 
 --
 -- Structure de la table `core_log`
 --
 
-DROP TABLE IF EXISTS `core_log`;
 CREATE TABLE IF NOT EXISTS `core_log` (
 `id` int(11) NOT NULL,
   `user_id` int(11) DEFAULT NULL,
@@ -522,7 +633,7 @@ CREATE TABLE IF NOT EXISTS `core_log` (
   `params` text NOT NULL,
   `create_date` datetime NOT NULL,
   `update_date` datetime NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=15 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1487 ;
 
 --
 -- Vider la table avant d'insérer `core_log`
@@ -533,8 +644,7 @@ TRUNCATE TABLE `core_log`;
 -- Contenu de la table `core_log`
 --
 
-INSERT INTO `core_log` (`id`, `user_id`, `locale`, `name`, `route`, `params`, `create_date`, `update_date`) VALUES
-(1, 1, 'fr', 'SystemListener', 'majes_cms_1_fr', '{"_locale":"fr"}', '2014-01-02 11:01:14', '0000-00-00 00:00:00'),
+INSERT INTO `core_log` VALUES(1, 1, 'fr', 'SystemListener', 'majes_cms_1_fr', '{"_locale":"fr"}', '2014-01-02 11:01:14', '0000-00-00 00:00:00'),
 (2, 1, 'fr', 'SystemListener', '_media_list', '{"context":"full","_locale":"fr"}', '2014-01-02 11:01:28', '0000-00-00 00:00:00'),
 (3, 1, 'fr', 'SystemListener', '_cms_content', '{"id":null,"menu_id":null,"lang":null,"page_parent_id":null,"_locale":"fr"}', '2014-01-02 11:01:31', '0000-00-00 00:00:00'),
 (4, 1, 'fr', 'SystemListener', '_cms_content', '{"id":"1","menu_id":"1","lang":"fr","page_parent_id":"0","_locale":"fr"}', '2014-01-02 11:01:34', '0000-00-00 00:00:00'),
@@ -543,11 +653,7 @@ INSERT INTO `core_log` (`id`, `user_id`, `locale`, `name`, `route`, `params`, `c
 (7, 1, 'en', 'SystemListener', 'majes_cms_1_en', '{"_locale":"en"}', '2014-01-02 11:02:42', '0000-00-00 00:00:00'),
 (8, 1, 'en', 'SystemListener', '_admin_index', '{"_locale":"en"}', '2014-01-02 11:26:02', '0000-00-00 00:00:00'),
 (9, 1, 'en', 'SystemListener', '_cms_content', '{"id":null,"menu_id":null,"lang":null,"page_parent_id":null,"_locale":"en"}', '2014-01-02 11:26:05', '0000-00-00 00:00:00'),
-(10, 1, 'en', 'SystemListener', 'majes_cms_1_en', '{"_locale":"en"}', '2014-01-02 11:26:16', '0000-00-00 00:00:00'),
-(11, 1, 'fr', 'SystemListener', '_admin_index', '{"_locale":"fr"}', '2014-07-28 17:12:44', '2014-07-28 17:12:44'),
-(12, 1, 'fr', 'SystemListener', '_admin_myaccount', '{"_locale":"fr"}', '2014-07-28 17:27:27', '2014-07-28 17:27:27'),
-(13, 1, 'fr', 'SystemListener', '_admin_myaccount', '{"myaccount":{"firstname":"Admin","lastname":"Admin","email":"admin@admin.fr","is_active":"1","wysiwyg":"1","locale":"en","password":{"password":"admin","password_confirm":"admin"}},"_locale":"fr"}', '2014-07-28 17:27:34', '2014-07-28 17:27:34'),
-(14, 1, 'fr', 'SystemListener', '_admin_index', '{"_locale":"fr"}', '2014-07-28 17:28:20', '2014-07-28 17:28:20');
+(10, 1, 'en', 'SystemListener', 'majes_cms_1_en', '{"_locale":"en"}', '2014-01-02 11:26:16', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -555,7 +661,6 @@ INSERT INTO `core_log` (`id`, `user_id`, `locale`, `name`, `route`, `params`, `c
 -- Structure de la table `core_mailer`
 --
 
-DROP TABLE IF EXISTS `core_mailer`;
 CREATE TABLE IF NOT EXISTS `core_mailer` (
 `id` int(11) NOT NULL,
   `user_id` int(11) DEFAULT NULL,
@@ -568,18 +673,12 @@ CREATE TABLE IF NOT EXISTS `core_mailer` (
   `update_date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
---
--- Vider la table avant d'insérer `core_mailer`
---
-
-TRUNCATE TABLE `core_mailer`;
 -- --------------------------------------------------------
 
 --
 -- Structure de la table `core_stat`
 --
 
-DROP TABLE IF EXISTS `core_stat`;
 CREATE TABLE IF NOT EXISTS `core_stat` (
 `id` int(11) NOT NULL,
   `is_tablet` tinyint(1) NOT NULL,
@@ -595,18 +694,12 @@ CREATE TABLE IF NOT EXISTS `core_stat` (
   `update_date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
---
--- Vider la table avant d'insérer `core_stat`
---
-
-TRUNCATE TABLE `core_stat`;
 -- --------------------------------------------------------
 
 --
 -- Structure de la table `ext_log_entries`
 --
 
-DROP TABLE IF EXISTS `ext_log_entries`;
 CREATE TABLE IF NOT EXISTS `ext_log_entries` (
 `id` int(11) NOT NULL,
   `action` varchar(8) COLLATE utf8_unicode_ci NOT NULL,
@@ -618,18 +711,12 @@ CREATE TABLE IF NOT EXISTS `ext_log_entries` (
   `username` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
---
--- Vider la table avant d'insérer `ext_log_entries`
---
-
-TRUNCATE TABLE `ext_log_entries`;
 -- --------------------------------------------------------
 
 --
 -- Structure de la table `ext_translations`
 --
 
-DROP TABLE IF EXISTS `ext_translations`;
 CREATE TABLE IF NOT EXISTS `ext_translations` (
 `id` int(11) NOT NULL,
   `locale` varchar(8) COLLATE utf8_unicode_ci NOT NULL,
@@ -639,18 +726,12 @@ CREATE TABLE IF NOT EXISTS `ext_translations` (
   `content` longtext COLLATE utf8_unicode_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
---
--- Vider la table avant d'insérer `ext_translations`
---
-
-TRUNCATE TABLE `ext_translations`;
 -- --------------------------------------------------------
 
 --
 -- Structure de la table `media`
 --
 
-DROP TABLE IF EXISTS `media`;
 CREATE TABLE IF NOT EXISTS `media` (
 `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
@@ -663,20 +744,14 @@ CREATE TABLE IF NOT EXISTS `media` (
   `is_protected` tinyint(1) NOT NULL,
   `create_date` datetime NOT NULL,
   `update_date` datetime NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
---
--- Vider la table avant d'insérer `media`
---
-
-TRUNCATE TABLE `media`;
 -- --------------------------------------------------------
 
 --
 -- Structure de la table `role`
 --
 
-DROP TABLE IF EXISTS `role`;
 CREATE TABLE IF NOT EXISTS `role` (
 `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
@@ -696,8 +771,7 @@ TRUNCATE TABLE `role`;
 -- Contenu de la table `role`
 --
 
-INSERT INTO `role` (`id`, `name`, `role`, `bundle`, `is_system`, `tags`, `deleted`) VALUES
-(1, 'Admin - is mandatory in order to have acces to admin panel', 'ROLE_ADMIN', '', 0, 'Role', 0),
+INSERT INTO `role` VALUES(1, 'Admin - is mandatory in order to have acces to admin panel', 'ROLE_ADMIN', '', 0, 'Role', 0),
 (2, 'Admin user - has permissions to manage users', 'ROLE_ADMIN_USER', '', 0, 'Role', 0),
 (3, 'Super admin - has all permissions', 'ROLE_SUPERADMIN', '', 0, 'Role', 0),
 (4, 'User - access to their account', 'ROLE_USER', '', 0, 'Role', 0),
@@ -715,7 +789,6 @@ INSERT INTO `role` (`id`, `name`, `role`, `bundle`, `is_system`, `tags`, `delete
 -- Structure de la table `user`
 --
 
-DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
 `id` int(11) NOT NULL,
   `userdata_id` int(11) DEFAULT NULL,
@@ -746,7 +819,7 @@ TRUNCATE TABLE `user`;
 -- Contenu de la table `user`
 --
 
-INSERT INTO `user` (`id`, `userdata_id`, `media_id`, `social`, `username`, `email`, `salt`, `password`, `is_active`, `firstname`, `lastname`, `locale`, `wysiwyg`, `tags`, `lastconnected_date`, `update_date`, `create_date`, `deleted`) VALUES
+INSERT INTO `user` VALUES
 (1, 1, NULL, '', 'admin@admin.fr', 'admin@admin.fr', '', 'd033e22ae348aeb5660fc2140aec35850c4da997', 1, 'Admin', 'Admin', 'en', 1, 'User', NULL, '2014-07-28 17:27:34', '2014-01-01 00:00:00', 0);
 
 -- --------------------------------------------------------
@@ -755,7 +828,6 @@ INSERT INTO `user` (`id`, `userdata_id`, `media_id`, `social`, `username`, `emai
 -- Structure de la table `user_address`
 --
 
-DROP TABLE IF EXISTS `user_address`;
 CREATE TABLE IF NOT EXISTS `user_address` (
 `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
@@ -769,23 +841,18 @@ CREATE TABLE IF NOT EXISTS `user_address` (
   `update_date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
---
--- Vider la table avant d'insérer `user_address`
---
 
-TRUNCATE TABLE `user_address`;
 -- --------------------------------------------------------
 
 --
 -- Structure de la table `user_data`
 --
 
-DROP TABLE IF EXISTS `user_data`;
 CREATE TABLE IF NOT EXISTS `user_data` (
 `id` int(11) NOT NULL,
   `update_date` datetime NOT NULL,
   `create_date` datetime NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
 
 --
 -- Vider la table avant d'insérer `user_data`
@@ -796,7 +863,7 @@ TRUNCATE TABLE `user_data`;
 -- Contenu de la table `user_data`
 --
 
-INSERT INTO `user_data` (`id`, `update_date`, `create_date`) VALUES
+INSERT INTO `user_data` VALUES
 (1, '2014-07-15 00:00:00', '2014-07-15 00:00:00');
 
 -- --------------------------------------------------------
@@ -805,7 +872,6 @@ INSERT INTO `user_data` (`id`, `update_date`, `create_date`) VALUES
 -- Structure de la table `user_role`
 --
 
-DROP TABLE IF EXISTS `user_role`;
 CREATE TABLE IF NOT EXISTS `user_role` (
   `user_id` int(11) NOT NULL,
   `role_id` int(11) NOT NULL
@@ -820,7 +886,7 @@ TRUNCATE TABLE `user_role`;
 -- Contenu de la table `user_role`
 --
 
-INSERT INTO `user_role` (`user_id`, `role_id`) VALUES
+INSERT INTO `user_role` VALUES
 (1, 1),
 (1, 2),
 (1, 3);
@@ -828,6 +894,36 @@ INSERT INTO `user_role` (`user_id`, `role_id`) VALUES
 --
 -- Index pour les tables exportées
 --
+
+--
+-- Index pour la table `blog_article`
+--
+ALTER TABLE `blog_article`
+ ADD PRIMARY KEY (`id`), ADD KEY `IDX_EECCB3E5DAE07E97` (`blog_id`);
+
+--
+-- Index pour la table `blog_article_lang`
+--
+ALTER TABLE `blog_article_lang`
+ ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `UNIQ_DB97ECE4F47645AE` (`url`), ADD KEY `IDX_DB97ECE47294869C` (`article_id`), ADD KEY `IDX_DB97ECE42A7BB206` (`meta_image`), ADD KEY `IDX_DB97ECE4EA9FDD75` (`media_id`), ADD KEY `IDX_DB97ECE412469DE2` (`category_id`);
+
+--
+-- Index pour la table `blog_blog`
+--
+ALTER TABLE `blog_blog`
+ ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `UNIQ_20C5DDD31FB8D185` (`host_id`), ADD KEY `IDX_20C5DDD3505FC353` (`template_article_id`), ADD KEY `IDX_20C5DDD3DB654212` (`template_index_id`);
+
+--
+-- Index pour la table `blog_category`
+--
+ALTER TABLE `blog_category`
+ ADD PRIMARY KEY (`id`), ADD KEY `IDX_72113DE6DAE07E97` (`blog_id`);
+
+--
+-- Index pour la table `blog_category_lang`
+--
+ALTER TABLE `blog_category_lang`
+ ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `UNIQ_C9143449F47645AE` (`url`), ADD KEY `IDX_C914344912469DE2` (`category_id`);
 
 --
 -- Index pour la table `cms_attribute`
@@ -932,6 +1028,12 @@ ALTER TABLE `core_language_translation`
  ADD PRIMARY KEY (`id`), ADD KEY `IDX_25471F552D7CBF83` (`language_token_id`);
 
 --
+-- Index pour la table `core_list`
+--
+ALTER TABLE `core_list`
+ ADD PRIMARY KEY (`id`);
+
+--
 -- Index pour la table `core_log`
 --
 ALTER TABLE `core_log`
@@ -1002,20 +1104,45 @@ ALTER TABLE `user_role`
 --
 
 --
+-- AUTO_INCREMENT pour la table `blog_article`
+--
+ALTER TABLE `blog_article`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT pour la table `blog_article_lang`
+--
+ALTER TABLE `blog_article_lang`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
+--
+-- AUTO_INCREMENT pour la table `blog_blog`
+--
+ALTER TABLE `blog_blog`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT pour la table `blog_category`
+--
+ALTER TABLE `blog_category`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT pour la table `blog_category_lang`
+--
+ALTER TABLE `blog_category_lang`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+--
 -- AUTO_INCREMENT pour la table `cms_attribute`
 --
 ALTER TABLE `cms_attribute`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT pour la table `cms_block`
 --
 ALTER TABLE `cms_block`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT pour la table `cms_block_attribute`
 --
 ALTER TABLE `cms_block_attribute`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT pour la table `cms_menu`
 --
@@ -1025,12 +1152,12 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 -- AUTO_INCREMENT pour la table `cms_page`
 --
 ALTER TABLE `cms_page`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT pour la table `cms_page_lang`
 --
 ALTER TABLE `cms_page_lang`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT pour la table `cms_page_template_block`
 --
@@ -1040,7 +1167,7 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 -- AUTO_INCREMENT pour la table `cms_route`
 --
 ALTER TABLE `cms_route`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT pour la table `cms_template`
 --
@@ -1050,7 +1177,7 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 -- AUTO_INCREMENT pour la table `cms_template_block`
 --
 ALTER TABLE `cms_template_block`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT pour la table `core_chat`
 --
@@ -1077,10 +1204,15 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `core_language_translation`
 MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT pour la table `core_list`
+--
+ALTER TABLE `core_list`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
 -- AUTO_INCREMENT pour la table `core_log`
 --
 ALTER TABLE `core_log`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1487;
 --
 -- AUTO_INCREMENT pour la table `core_mailer`
 --
@@ -1105,7 +1237,7 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT pour la table `media`
 --
 ALTER TABLE `media`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT pour la table `role`
 --
@@ -1115,7 +1247,7 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=17;
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT pour la table `user_address`
 --
@@ -1125,10 +1257,45 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT pour la table `user_data`
 --
 ALTER TABLE `user_data`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- Contraintes pour les tables exportées
 --
+
+--
+-- Contraintes pour la table `blog_article`
+--
+ALTER TABLE `blog_article`
+ADD CONSTRAINT `FK_EECCB3E5DAE07E97` FOREIGN KEY (`blog_id`) REFERENCES `blog_blog` (`id`);
+
+--
+-- Contraintes pour la table `blog_article_lang`
+--
+ALTER TABLE `blog_article_lang`
+ADD CONSTRAINT `FK_DB97ECE412469DE2` FOREIGN KEY (`category_id`) REFERENCES `blog_category_lang` (`id`),
+ADD CONSTRAINT `FK_DB97ECE42A7BB206` FOREIGN KEY (`meta_image`) REFERENCES `media` (`id`) ON DELETE SET NULL,
+ADD CONSTRAINT `FK_DB97ECE47294869C` FOREIGN KEY (`article_id`) REFERENCES `blog_article` (`id`),
+ADD CONSTRAINT `FK_DB97ECE4EA9FDD75` FOREIGN KEY (`media_id`) REFERENCES `media` (`id`) ON DELETE SET NULL;
+
+--
+-- Contraintes pour la table `blog_blog`
+--
+ALTER TABLE `blog_blog`
+ADD CONSTRAINT `FK_20C5DDD31FB8D185` FOREIGN KEY (`host_id`) REFERENCES `core_host` (`id`),
+ADD CONSTRAINT `FK_20C5DDD3505FC353` FOREIGN KEY (`template_article_id`) REFERENCES `cms_template` (`id`),
+ADD CONSTRAINT `FK_20C5DDD3DB654212` FOREIGN KEY (`template_index_id`) REFERENCES `cms_template` (`id`);
+
+--
+-- Contraintes pour la table `blog_category`
+--
+ALTER TABLE `blog_category`
+ADD CONSTRAINT `FK_72113DE6DAE07E97` FOREIGN KEY (`blog_id`) REFERENCES `blog_blog` (`id`);
+
+--
+-- Contraintes pour la table `blog_category_lang`
+--
+ALTER TABLE `blog_category_lang`
+ADD CONSTRAINT `FK_C914344912469DE2` FOREIGN KEY (`category_id`) REFERENCES `blog_category` (`id`);
 
 --
 -- Contraintes pour la table `cms_block`
@@ -1164,8 +1331,8 @@ ADD CONSTRAINT `FK_75ABF8D5C4663E4` FOREIGN KEY (`page_id`) REFERENCES `cms_page
 -- Contraintes pour la table `cms_page_role`
 --
 ALTER TABLE `cms_page_role`
-ADD CONSTRAINT `FK_13CBF6DDD60322AC` FOREIGN KEY (`role_id`) REFERENCES `role` (`id`),
-ADD CONSTRAINT `FK_13CBF6DDC4663E4` FOREIGN KEY (`page_id`) REFERENCES `cms_page` (`id`);
+ADD CONSTRAINT `FK_13CBF6DDC4663E4` FOREIGN KEY (`page_id`) REFERENCES `cms_page` (`id`),
+ADD CONSTRAINT `FK_13CBF6DDD60322AC` FOREIGN KEY (`role_id`) REFERENCES `role` (`id`);
 
 --
 -- Contraintes pour la table `cms_page_template_block`
@@ -1179,8 +1346,8 @@ ADD CONSTRAINT `FK_925C55F7C4663E4` FOREIGN KEY (`page_id`) REFERENCES `cms_page
 -- Contraintes pour la table `cms_page_template_block_version`
 --
 ALTER TABLE `cms_page_template_block_version`
-ADD CONSTRAINT `FK_9F9D5501A76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
-ADD CONSTRAINT `FK_9F9D550139BF2BC8` FOREIGN KEY (`page_template_block_id`) REFERENCES `cms_page_template_block` (`id`);
+ADD CONSTRAINT `FK_9F9D550139BF2BC8` FOREIGN KEY (`page_template_block_id`) REFERENCES `cms_page_template_block` (`id`),
+ADD CONSTRAINT `FK_9F9D5501A76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
 
 --
 -- Contraintes pour la table `cms_route`
@@ -1235,8 +1402,8 @@ ADD CONSTRAINT `FK_6A2CA10CA76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (
 -- Contraintes pour la table `user`
 --
 ALTER TABLE `user`
-ADD CONSTRAINT `FK_8D93D649EA9FDD75` FOREIGN KEY (`media_id`) REFERENCES `media` (`id`) ON DELETE SET NULL,
-ADD CONSTRAINT `FK_8D93D649AB945D82` FOREIGN KEY (`userdata_id`) REFERENCES `user_data` (`id`);
+ADD CONSTRAINT `FK_8D93D649AB945D82` FOREIGN KEY (`userdata_id`) REFERENCES `user_data` (`id`),
+ADD CONSTRAINT `FK_8D93D649EA9FDD75` FOREIGN KEY (`media_id`) REFERENCES `media` (`id`) ON DELETE SET NULL;
 
 --
 -- Contraintes pour la table `user_address`
@@ -1248,8 +1415,8 @@ ADD CONSTRAINT `FK_5543718BA76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (
 -- Contraintes pour la table `user_role`
 --
 ALTER TABLE `user_role`
-ADD CONSTRAINT `FK_2DE8C6A3D60322AC` FOREIGN KEY (`role_id`) REFERENCES `role` (`id`),
-ADD CONSTRAINT `FK_2DE8C6A3A76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
+ADD CONSTRAINT `FK_2DE8C6A3A76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
+ADD CONSTRAINT `FK_2DE8C6A3D60322AC` FOREIGN KEY (`role_id`) REFERENCES `role` (`id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

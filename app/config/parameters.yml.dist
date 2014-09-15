@@ -55,12 +55,24 @@ parameters:
                 content:
                     route: _cms_content
                     label: Content
+                blog:
+                    route: _blog_content
+                    label: Blog
+                    attributes: 
+                        date : 9
+                        title : 1
+                        author : 1
+                        content : 4
+                        media : 2
                 template:
                     route: _cms_templates_list
                     label: 'Templates setup'
                 block:
                     route: _cms_blocks_list
                     label: 'Blocks setup'
+                list:
+                    route: _admin_listboxs_list
+                    label: 'Lists setup'
                 role:
                     route: _cms_roles
                     label: Roles
