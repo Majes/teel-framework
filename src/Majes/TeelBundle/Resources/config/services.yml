@@ -1,0 +1,4 @@
+services:
+    majesteel.teel_service:
+        class: Majes\TeelBundle\Services\TeelServices
+        arguments: ["@doctrine.orm.entity_manager"]
