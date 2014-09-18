@@ -17,15 +17,44 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de données :  `essai`
+-- Base de données :  `teel_empty`
 --
 
 --
--- Contenu de la table `blog_blog`
+-- Contenu de la table `user_data`
 --
 
-INSERT INTO `blog_blog` (`id`, `host_id`, `template_article_id`, `template_index_id`, `is_active`, `enable_comments`, `create_date`, `update_date`) VALUES
-(1, 1, 1, 1, 1, 0, '2014-09-10 00:00:00', '2014-09-10 00:00:00');
+INSERT INTO `user_data` (`id`, `update_date`, `create_date`) VALUES
+(1, '2014-07-15 00:00:00', '2014-07-15 00:00:00');
+
+--
+-- Contenu de la table `user`
+--
+
+INSERT INTO `user` (`id`, `userdata_id`, `media_id`, `social`, `username`, `email`, `salt`, `password`, `is_active`, `firstname`, `lastname`, `locale`, `wysiwyg`, `tags`, `lastconnected_date`, `update_date`, `create_date`, `deleted`) VALUES
+(1, 1, NULL, '', 'admin@admin.fr', 'admin@admin.fr', '', 'd033e22ae348aeb5660fc2140aec35850c4da997', 1, 'Admin', 'Admin', 'en', 1, 'User', NULL, '2014-07-28 17:27:34', '2014-01-01 00:00:00', 0);
+
+--
+-- Contenu de la table `role`
+--
+
+INSERT INTO `role` (`id`, `name`, `role`, `bundle`, `is_system`, `tags`, `deleted`) VALUES
+(1, 'Admin - is mandatory in order to have acces to admin panel', 'ROLE_ADMIN', '', 0, 'Role', 0),
+(2, 'Admin user - has permissions to manage users', 'ROLE_ADMIN_USER', '', 0, 'Role', 0),
+(3, 'Super admin - has all permissions', 'ROLE_SUPERADMIN', '', 0, 'Role', 0),
+(4, 'User - access to their account', 'ROLE_USER', '', 0, 'Role', 0),
+(9, 'Allow admin user to see all media', 'ROLE_MEDIA_LIST', 'media', 0, 'Role', 0),
+(10, 'Allow admin user to edit or add a media', 'ROLE_MEDIA_EDIT', 'media', 0, 'Role', 0),
+(11, 'Allow admin user to delete a media', 'ROLE_MEDIA_REMOVE', 'media', 0, 'Role', 0),
+(13, 'Allowed users to add and edit content within the content management system', 'ROLE_CMS_CONTENT', 'cms', 0, 'Role', 0),
+(14, 'Allowed users to publish pages within the content management system', 'ROLE_CMS_PUBLISH', 'cms', 0, 'Role', 0),
+(15, 'Allowed users to edit blocks and templates within the content management system', 'ROLE_CMS_DESIGNER', 'cms', 0, 'Role', 0),
+(16, 'Default user right', 'ROLE_CMS_USER', 'cms', 0, 'Role', 0);
+
+INSERT INTO `user_role` (`user_id`, `role_id`) VALUES
+(1, 1),
+(1, 2),
+(1, 3);
 
 --
 -- Contenu de la table `cms_attribute`
@@ -61,12 +90,41 @@ INSERT INTO `cms_block_attribute` (`id`, `block_id`, `attribute_id`, `sort`, `ti
 (2, 1, 4, 20, 'Content', 'paragraph', '2014-01-02 10:20:19', '2014-09-09 17:47:20', NULL);
 
 --
+-- Contenu de la table `core_host`
+--
+
+INSERT INTO `core_host` (`id`, `title`, `url`, `is_multilingual`, `create_date`, `update_date`, `deleted`) VALUES
+(1, 'Majesteel', 'local.test.majesteel', 1, '2014-01-02 10:14:13', '0000-00-00 00:00:00', 0);
+
+--
 -- Contenu de la table `cms_menu`
 --
 
 INSERT INTO `cms_menu` (`id`, `title`, `ref`) VALUES
 (1, 'Main menu', 'main'),
 (2, 'Footer menu', 'footer');
+
+--
+-- Contenu de la table `cms_template`
+--
+
+INSERT INTO `cms_template` (`id`, `user_id`, `title`, `ref`, `create_date`, `update_date`, `deleted`) VALUES
+(1, 1, 'Home', 'home', '2014-01-02 10:21:25', '2014-01-02 11:00:22', 0);
+
+--
+-- Contenu de la table `cms_template_block`
+--
+
+INSERT INTO `cms_template_block` (`id`, `template_id`, `block_id`, `is_mobile`, `is_tablet`, `is_desktop`, `is_repeatable`, `title`, `ref`, `sort`, `create_date`, `update_date`) VALUES
+(1, 1, 1, 1, 1, 1, 1, 'Paragraph', 'home_paragraph', 20, '2014-01-02 10:21:28', '2014-09-11 10:43:11');
+
+--
+-- Contenu de la table `core_language`
+--
+
+INSERT INTO `core_language` (`id`, `is_active`, `locale`, `name`, `host`) VALUES
+(1, 1, 'fr', 'Française', NULL),
+(2, 1, 'en', 'Anglais', NULL);
 
 --
 -- Contenu de la table `cms_page`
@@ -82,6 +140,7 @@ INSERT INTO `cms_page` (`id`, `page_id_parent`, `user_id`, `host_id`, `menu_id`,
 INSERT INTO `cms_page_lang` (`id`, `page_id`, `locale`, `user_id`, `url`, `url_root`, `title`, `search_description`, `meta_title`, `meta_description`, `meta_keywords`, `tags`, `is_active`, `create_date`, `update_date`, `deleted`) VALUES
 (1, 1, 'fr', 1, '/', '', 'Accueil en français', 'Teel framework - Page accueil', 'Teel framework - Page accueil', NULL, NULL, 'Page', 1, '2014-01-02 10:23:33', '2014-01-02 10:59:03', 0),
 (2, 1, 'en', 1, '/', '', 'Home in English', 'Teel framework - Homepage', 'Teel framework - Homepage', NULL, NULL, 'Page', 1, '2014-01-02 10:45:50', '2014-01-02 10:59:12', 0);
+
 
 --
 -- Contenu de la table `cms_page_template_block`
@@ -108,33 +167,12 @@ INSERT INTO `cms_route` (`id`, `page_id`, `locale`, `title`, `host`, `url`, `red
 (2, 1, 'en', 'Home in English', 'local.test.majesteel', '/en', '');
 
 --
--- Contenu de la table `cms_template`
+-- Contenu de la table `blog_blog`
 --
 
-INSERT INTO `cms_template` (`id`, `user_id`, `title`, `ref`, `create_date`, `update_date`, `deleted`) VALUES
-(1, 1, 'Home', 'home', '2014-01-02 10:21:25', '2014-01-02 11:00:22', 0);
+INSERT INTO `blog_blog` (`id`, `host_id`, `template_article_id`, `template_index_id`, `is_active`, `enable_comments`, `create_date`, `update_date`) VALUES
+(1, 1, 1, 1, 1, 0, '2014-09-10 00:00:00', '2014-09-10 00:00:00');
 
---
--- Contenu de la table `cms_template_block`
---
-
-INSERT INTO `cms_template_block` (`id`, `template_id`, `block_id`, `is_mobile`, `is_tablet`, `is_desktop`, `is_repeatable`, `title`, `ref`, `sort`, `create_date`, `update_date`) VALUES
-(1, 1, 1, 1, 1, 1, 1, 'Paragraph', 'home_paragraph', 20, '2014-01-02 10:21:28', '2014-09-11 10:43:11');
-
---
--- Contenu de la table `core_host`
---
-
-INSERT INTO `core_host` (`id`, `title`, `url`, `is_multilingual`, `create_date`, `update_date`, `deleted`) VALUES
-(1, 'Majesteel', 'local.test.majesteel', 1, '2014-01-02 10:14:13', '0000-00-00 00:00:00', 0);
-
---
--- Contenu de la table `core_language`
---
-
-INSERT INTO `core_language` (`id`, `is_active`, `locale`, `name`, `host`) VALUES
-(1, 1, 'fr', 'Française', NULL),
-(2, 1, 'en', 'Anglais', NULL);
 
 --
 -- Contenu de la table `core_log`
@@ -151,46 +189,6 @@ INSERT INTO `core_log` (`id`, `user_id`, `locale`, `name`, `route`, `params`, `c
 (8, 1, 'en', 'SystemListener', '_admin_index', '{"_locale":"en"}', '2014-01-02 11:26:02', '0000-00-00 00:00:00'),
 (9, 1, 'en', 'SystemListener', '_cms_content', '{"id":null,"menu_id":null,"lang":null,"page_parent_id":null,"_locale":"en"}', '2014-01-02 11:26:05', '0000-00-00 00:00:00'),
 (10, 1, 'en', 'SystemListener', 'majes_cms_1_en', '{"_locale":"en"}', '2014-01-02 11:26:16', '0000-00-00 00:00:00');
-
---
--- Contenu de la table `role`
---
-
-INSERT INTO `role` (`id`, `name`, `role`, `bundle`, `is_system`, `tags`, `deleted`) VALUES
-(1, 'Admin - is mandatory in order to have acces to admin panel', 'ROLE_ADMIN', '', 0, 'Role', 0),
-(2, 'Admin user - has permissions to manage users', 'ROLE_ADMIN_USER', '', 0, 'Role', 0),
-(3, 'Super admin - has all permissions', 'ROLE_SUPERADMIN', '', 0, 'Role', 0),
-(4, 'User - access to their account', 'ROLE_USER', '', 0, 'Role', 0),
-(9, 'Allow admin user to see all media', 'ROLE_MEDIA_LIST', 'media', 0, 'Role', 0),
-(10, 'Allow admin user to edit or add a media', 'ROLE_MEDIA_EDIT', 'media', 0, 'Role', 0),
-(11, 'Allow admin user to delete a media', 'ROLE_MEDIA_REMOVE', 'media', 0, 'Role', 0),
-(13, 'Allowed users to add and edit content within the content management system', 'ROLE_CMS_CONTENT', 'cms', 0, 'Role', 0),
-(14, 'Allowed users to publish pages within the content management system', 'ROLE_CMS_PUBLISH', 'cms', 0, 'Role', 0),
-(15, 'Allowed users to edit blocks and templates within the content management system', 'ROLE_CMS_DESIGNER', 'cms', 0, 'Role', 0),
-(16, 'Default user right', 'ROLE_CMS_USER', 'cms', 0, 'Role', 0);
-
---
--- Contenu de la table `user`
---
-
-INSERT INTO `user` (`id`, `userdata_id`, `media_id`, `social`, `username`, `email`, `salt`, `password`, `is_active`, `firstname`, `lastname`, `locale`, `wysiwyg`, `tags`, `lastconnected_date`, `update_date`, `create_date`, `deleted`) VALUES
-(1, 1, NULL, '', 'admin@admin.fr', 'admin@admin.fr', '', 'd033e22ae348aeb5660fc2140aec35850c4da997', 1, 'Admin', 'Admin', 'en', 1, 'User', NULL, '2014-07-28 17:27:34', '2014-01-01 00:00:00', 0);
-
---
--- Contenu de la table `user_data`
---
-
-INSERT INTO `user_data` (`id`, `update_date`, `create_date`) VALUES
-(1, '2014-07-15 00:00:00', '2014-07-15 00:00:00');
-
---
--- Contenu de la table `user_role`
---
-
-INSERT INTO `user_role` (`user_id`, `role_id`) VALUES
-(1, 1),
-(1, 2),
-(1, 3);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
