@@ -37,6 +37,10 @@ _majes_cms_admin:
     resource: "@MajesCmsBundle/Resources/config/routing_admin.yml"
     prefix:   /{_locale}/administration
 
+_majes_blog_admin:
+    resource: "@MajesBlogBundle/Resources/config/routing_admin.yml"
+    prefix:   /{_locale}/administration/blog
+
 _majes_blog:
     resource: "@MajesBlogBundle/Resources/config/routing.yml"
     prefix:   /{_locale}/blog
