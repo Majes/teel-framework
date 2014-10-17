@@ -60,7 +60,7 @@ class TeelServices {
 	                                'number' => array("icon" => "icon-picture", "value" => count($this->_em->getRepository('MajesMediaBundle:Media')->findAll()) )),
 	                    'language' => array('label' => 'Languages', 
 	                                'number' => array("icon" => "icon-flag-alt", "value" => count($this->_em->getRepository('MajesCoreBundle:Language')->findAll()) ), 
-	                                'items' => $this->_em->getRepository('MajesCoreBundle:Language')->findAll()),
+	                                'flags' => $this->_em->getRepository('MajesCoreBundle:Language')->findAll()),
 	                    'activity' => array('label' => "Today's Activity",
 	                                'number' => array('icon' => 'icon-stackexchange', 'value' => count($this->_em->getRepository('MajesCoreBundle:Log')->getActivityReal($type = 'day', $page = 1, $limit = 200))))
 	               );
