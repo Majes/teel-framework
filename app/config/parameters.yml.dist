@@ -42,19 +42,30 @@ parameters:
         service_key_fingerprints: 
         view_id: 
         analytics: 
+    
+    instagram:
+        api_url: https://api.instagram.com/v1/
+        api_auth_url: https://api.instagram.com/oauth/authorize
+        access_token_url: https://api.instagram.com/oauth/access_token
+        client_id: 
+        client_secret: 
+        access_token: 
 
     menu:
         admin_index:
             label: Dashboard
             icon: se7en-home
             route: _admin_index
+            role: ROLE_SUPERADMIN
         cms:
             label: 'Content management'
             icon: icon-folder-open-alt
+            role: ROLE_SUPERADMIN
             submenu:
                 content:
                     route: _cms_content
                     label: Content
+                    role: ROLE_SUPERADMIN
                 blog:
                     route: _blog_content
                     label: Blog
@@ -64,45 +75,58 @@ parameters:
                         author : 1
                         content : 4
                         media : 2
+                    role: ROLE_SUPERADMIN
                 template:
                     route: _cms_templates_list
                     label: 'Templates setup'
+                    role: ROLE_SUPERADMIN
                 block:
                     route: _cms_blocks_list
                     label: 'Blocks setup'
+                    role: ROLE_SUPERADMIN
                 list:
                     route: _admin_listboxs_list
                     label: 'Lists setup'
+                    role: ROLE_SUPERADMIN
                 role:
                     route: _cms_roles
                     label: Roles
+                    role: ROLE_SUPERADMIN
         gallery:
             label: Medialibrary
             icon: icon-picture
             route: _media_list
+            role: ROLE_SUPERADMIN
         admin:
             label: Admin
             icon: icon-cogs
+            role: ROLE_SUPERADMIN
             submenu:
                 users:
                     label: Users
                     route: _admin_users
+                    role: ROLE_SUPERADMIN
                 host:
                     label: Domains
                     route: _admin_domains
+                    role: ROLE_SUPERADMIN
                 language:
                     label: Languages
                     route: _admin_languages
+                    role: ROLE_SUPERADMIN
                 language_messages:
                     label: 'Static Translations'
                     route: _admin_language_messages
+                    role: ROLE_SUPERADMIN
                 roles:
                     label: Roles
                     route: _admin_roles
+                    role: ROLE_SUPERADMIN
         trash:
             label: Trash
             icon: icon-trash
             route: _admin_trashs
+            role: ROLE_SUPERADMIN
             entities: 
                 user:
                     label: User

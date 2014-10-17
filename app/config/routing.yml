@@ -45,6 +45,10 @@ _majes_blog:
     resource: "@MajesBlogBundle/Resources/config/routing.yml"
     prefix:   /{_locale}/blog
 
+_majes_social:
+    resource: "@MajesSocialBundle/Resources/config/routing_admin.yml"
+    prefix:   /{_locale}/administration/social
+
 _majes_teel:
     resource: "@MajesTeelBundle/Resources/config/routing.yml"
     prefix:   /

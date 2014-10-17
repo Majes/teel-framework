@@ -31,6 +31,7 @@ class AppKernel extends Kernel
             new Majes\TeelBundle\MajesTeelBundle(),
             new Majes\SearchBundle\MajesSearchBundle(),
             new Majes\BlogBundle\MajesBlogBundle(),
+            new Majes\SocialBundle\MajesSocialBundle(),
 	        new FOS\ElasticaBundle\FOSElasticaBundle()
         );
 
