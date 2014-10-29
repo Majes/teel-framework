@@ -42,14 +42,6 @@ parameters:
         service_key_fingerprints: 
         view_id: 
         analytics: 
-    
-    instagram:
-        api_url: https://api.instagram.com/v1/
-        api_auth_url: https://api.instagram.com/oauth/authorize
-        access_token_url: https://api.instagram.com/oauth/access_token
-        client_id: 
-        client_secret: 
-        access_token: 
 
     menu:
         admin_index:
