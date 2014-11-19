@@ -73,7 +73,7 @@ INSERT INTO `cms_attribute` (`id`, `title`, `ref`, `setup`) VALUES
 (10, 'ListBox', 'listbox', 1),
 (11, 'ListBox Multiple', 'listboxmultiple', 1),
 (12, 'Internal Link', 'internallink', 0),
-(12, 'Media', 'media', 0);
+(13, 'Media', 'media', 0);
 
 --
 -- Contenu de la table `cms_block`
