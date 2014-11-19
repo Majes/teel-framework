@@ -130,8 +130,7 @@ INSERT INTO `core_language` (`id`, `is_active`, `locale`, `name`, `host`) VALUES
 --
 -- Contenu de la table `cms_page`
 --
-
-INSERT INTO `cms_page` (`id`, `page_id_parent`, `user_id`, `host_id`, `menu_id`, `template_id`, `link_url`, `target_url`, `sort`, `is_inmenu`, `is_active`, `is_folder`, `enable_comments`, `create_date`, `update_date`, `deleted`) VALUES
+INSERT INTO `cms_page` (`id`, `page_id_parent`, `user_id`, `host_id`, `menu_id`, `template_id`, `link_url`, `target_url`, `sort`, `is_inmenu`, `is_active`, `is_folder`, `has_option`, `create_date`, `update_date`, `deleted`) VALUES
 (1, NULL, 1, 1, 1, 1, NULL, '', 0, 1, 1, 0, 0, '2014-01-02 10:23:33', '2014-09-11 11:15:38', 0);
 
 --
