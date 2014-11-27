@@ -76,6 +76,10 @@ parameters:
                     route: _cms_blocks_list
                     label: 'Blocks setup'
                     role: ROLE_SUPERADMIN
+                attribute:
+                    route: _cms_attributes_list
+                    label: 'Attributes setup'
+                    role: ROLE_SUPERADMIN
                 list:
                     route: _admin_listboxs_list
                     label: 'Lists setup'
