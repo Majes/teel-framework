@@ -292,7 +292,7 @@ CREATE TABLE IF NOT EXISTS `cms_page` (
   `is_inmenu` tinyint(1) NOT NULL,
   `is_active` tinyint(1) NOT NULL,
   `is_folder` tinyint(1) NOT NULL,
-  `enable_comments` tinyint(1) NOT NULL,
+  `has_option` tinyint(1) NOT NULL,
   `create_date` datetime NOT NULL,
   `update_date` datetime NOT NULL,
   `deleted` tinyint(1) NOT NULL
