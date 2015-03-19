@@ -1,6 +1,6 @@
 _majes_blog:
     resource: "@MajesBlogBundle/Resources/config/routing.yml"
-    prefix:   /{_locale}/administration
+    prefix:   /{_locale}/blog
 
 _majes_search:
     resource: "@MajesSearchBundle/Resources/config/routing.yml"
