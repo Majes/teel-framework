@@ -673,6 +673,8 @@ CREATE TABLE IF NOT EXISTS `core_mailer` (
   `update_date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
+ALTER TABLE `core_mailer` ADD `boo_read` TINYINT NOT NULL DEFAULT '0' , ADD `boo_sent` TINYINT NOT NULL DEFAULT '0' ;
+
 -- --------------------------------------------------------
 
 --

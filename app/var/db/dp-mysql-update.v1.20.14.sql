@@ -1,0 +1,1 @@
+ALTER TABLE `core_mailer` ADD `boo_read` TINYINT NOT NULL DEFAULT '0' , ADD `boo_sent` TINYINT NOT NULL DEFAULT '0' ;
