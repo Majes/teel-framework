@@ -96,7 +96,7 @@ parameters:
         admin:
             label: Admin
             icon: icon-cogs
-            role: ROLE_SUPERADMIN
+            role: ROLE_ADMIN
             submenu:
                 users:
                     label: Users
@@ -105,7 +105,11 @@ parameters:
                 host:
                     label: Domains
                     route: _admin_domains
-                    role: ROLE_SUPERADMIN
+                    role: ROLE_ADMIN
+                redirect:
+                    label: Redirections
+                    route: _admin_redirects
+                    role: ROLE_ADMIN
                 language:
                     label: Languages
                     route: _admin_languages
@@ -113,7 +117,7 @@ parameters:
                 language_messages:
                     label: 'Static Translations'
                     route: _admin_language_messages
-                    role: ROLE_SUPERADMIN
+                    role: ROLE_ADMIN
                 roles:
                     label: Roles
                     route: _admin_roles
