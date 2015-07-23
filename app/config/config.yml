@@ -202,3 +202,5 @@ fos_rest:
             - prefer_extension: false
     view:
         view_response_listener: true
+parameters:
+    front_bundles: [ MajesTeelBundle ]
