@@ -29,3 +29,5 @@ app/config/parameters.yml
 bin
 
 nbproject*
+
+.db_data/

@@ -1,0 +1,40 @@
+version: '2'
+
+services:
+  front:
+    image: purplebabar/symfony
+    ports:
+      - 80:80
+    tty: true
+    extra_hosts:
+      - "dev.teel:127.0.0.1"
+    environment:
+      - MAX_EXECUTIION_TIME=300
+      - DATE_TIMEZONE=Europe/Paris
+    volumes:
+      - ${PWD}:/var/www:rw
+      - ${PWD}/docker/host:/etc/nginx/sites-enabled:rw
+    networks:
+      - default
+
+  db:
+    image: mysql:5.5
+    ports:
+      - 127.0.0.1:3306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+    #   - MYSQL_USER=your_user
+    #   - MYSQL_PASSWORD=your_user_password
+    #   - MYSQL_DATABASE=your_database_name
+    volumes:
+      - ${PWD}/.db_data:/var/lib/mysql:rw
+    networks:
+      - default
+    dns_search:
+      - db
+
+volumes:
+  db: {}
+
+networks:
+  default: {}
