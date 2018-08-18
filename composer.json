@@ -24,7 +24,7 @@
         "google/apiclient": "2.1.*",
         "abraham/twitteroauth": "0.5.0",
         "fp/lightopenid": "dev-master",
-        "doctrine/doctrine-migrations-bundle": "dev-master",
+        "doctrine/doctrine-migrations-bundle": "1.1.*",
         "friendsofsymfony/elastica-bundle": "3.2.*",
         "knplabs/knp-paginator-bundle": "dev-master",
         "jms/serializer-bundle": "@stable",

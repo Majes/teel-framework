@@ -2,7 +2,7 @@ version: '2'
 
 services:
   front:
-    image: purplebabar/symfony
+    image: purplebabar/symfony:2-php-5.6
     ports:
       - 80:80
     tty: true
@@ -13,7 +13,7 @@ services:
       - DATE_TIMEZONE=Europe/Paris
     volumes:
       - ${PWD}:/var/www:rw
-      - ${PWD}/docker/host:/etc/nginx/sites-enabled:rw
+      - ${PWD}/docker/host/default.conf:/etc/nginx/conf.d/default.conf:rw
     networks:
       - default
 
